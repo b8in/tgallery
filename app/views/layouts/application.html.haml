@@ -9,7 +9,9 @@
 %body
   = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path do
     - menu_group do
-      = menu_item 'Categories', '#'
+      = drop_down 'Categories' do
+        - @categories.each do |cat|
+          = menu_item cat.name, '#'
       = menu_item 'All images', '#'
       = menu_item 'All comments', '#'
       = menu_item 'User events', '#'
