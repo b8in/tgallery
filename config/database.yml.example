@@ -1,0 +1,18 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  port: 5432
+  username: <postgres_user>
+  password: <password>
+
+development:
+  <<: *common
+  database: tgallery_development
+test:
+  <<: *common
+  database: tgallery_test
+production:
+  <<: *common
+  database: tgallery_production
