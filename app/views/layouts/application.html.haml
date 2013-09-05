@@ -7,6 +7,10 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 %body
-
+  = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path do
+    - menu_group do
+      = menu_item 'Categories', '#'
+      = menu_item 'All images', '#'
+      = menu_item 'All comments', '#'
+      = menu_item 'User events', '#'
   = yield
-
