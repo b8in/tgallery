@@ -6,6 +6,8 @@ class PaintingsController < ApplicationController
 
   def create
     @paintings = Painting.create(params[:painting])
+
+    puts "#{params[:painting]}"
 #    @paintings.save
 
     redirect_to root_path

@@ -4,7 +4,7 @@
   Find me in app/views/homes/index.html.erb
 %br
 = form_for @painting, :html => {:multipart => true} do |f|
-  = f.text_field :GImageCategory_id
+  = f.text_field :GImageCategory_id, value: "2"
   %p
     = f.label :name
     %br
