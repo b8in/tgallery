@@ -1,5 +1,5 @@
 namespace :gallery do
-  desc "This task upload one image on sever"
+  desc "This task upload images on sever"
   task :upload_image => :environment do
     dir_name = Rails.root.join("db", "seeds", "images")
     if Dir.exists?(dir_name)
