@@ -2,3 +2,15 @@
   ROOT page
 %p
   Find me in app/views/homes/index.html.erb
+%br
+= form_for @painting, :html => {:multipart => true} do |f|
+  = f.text_field :GImageCategory_id
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.file_field :image
+  %p
+    = f.submit
+

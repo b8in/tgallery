@@ -1,4 +1,6 @@
 Tgallery::Application.routes.draw do
+
+  resource :paintings
   root to:"homes#index"
 
   # The priority is based upon order of creation:
