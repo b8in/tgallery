@@ -3,8 +3,13 @@
 %p
   Find me in app/views/homes/index.html.erb
 %br
+#categories
+  - @ch.each do |k,v|
+    =# image_tag cat.paintings.sample.image.url(:thumb), title: cat.name
+    = image_tag v, title: k
+%br
 = form_for @painting, :html => {:multipart => true} do |f|
-  = f.text_field :GImageCategory_id, value: "2"
+  = f.text_field :g_image_category_id, value: "2"
   %p
     = f.label :name
     %br

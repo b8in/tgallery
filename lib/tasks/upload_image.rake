@@ -10,7 +10,7 @@ namespace :gallery do
           Dir.chdir(Dir.getwd+"/"+subdir)
           Dir.glob("*.{jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}") do |file|
             if File.file?(Dir.getwd+"/"+file)
-              Painting.create(GImageCategory_id: cat.id, name:file, image: File.open(Dir.getwd+"/"+file))
+              Painting.create(g_image_category_id: cat.id, name:file, image: File.open(Dir.getwd+"/"+file))
             end
           end
         end

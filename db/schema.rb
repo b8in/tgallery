@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906082350) do
+ActiveRecord::Schema.define(:version => 20130908140516) do
 
   create_table "g_image_categories", :force => true do |t|
     t.string "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20130906082350) do
   create_table "paintings", :force => true do |t|
     t.string  "name"
     t.string  "image"
-    t.integer "GImageCategory_id"
+    t.integer "g_image_category_id"
   end
 
 end

@@ -8,6 +8,7 @@ gem 'rails', '3.2.14'
 gem 'pg'
 gem 'puma'
 gem 'carrierwave'
+gem 'rmagick'
 
 
 # Gems used only for assets and not required
