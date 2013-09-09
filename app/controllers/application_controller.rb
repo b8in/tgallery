@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
   def load_categories
-    @categories = GImageCategory.all
+    @categories = GImageCategory.all   #FIXME вместо объектов хеш: (имя категории => url)
+
   end
 end

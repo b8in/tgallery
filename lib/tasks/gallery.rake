@@ -11,7 +11,6 @@ namespace :gallery do
           Dir.glob("*.{jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}") do |file|
             if File.file?(Dir.getwd+"/"+file)
               cat.g_images.create(name:file, image: File.open(Dir.getwd+"/"+file))
-              #GImage.create(g_image_category_id: cat.id, name:file, image: File.open(Dir.getwd+"/"+file))
             end
           end
         end
