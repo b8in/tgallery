@@ -6,5 +6,6 @@ class GImageCategory < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false},
             length: { in: 2..60 }
-  max_paginates_per 12
+
+  paginates_per 12
 end
