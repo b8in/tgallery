@@ -15,6 +15,14 @@
       = menu_item 'All images', '#'
       = menu_item 'All comments', '#'
       = menu_item 'User events', '#'
+    .pull-right
+      - unless user_signed_in?
+        = link_to "Sign in", new_user_session_path
+        = link_to "Sign up", new_user_registration_path
+      - else
+        = "You login as: "+current_user.email
+        %br
+        = link_to "Sign out", destroy_user_session_path, method: :delete
   .row-fluid
     .span10.offset1#page-container
       = yield
