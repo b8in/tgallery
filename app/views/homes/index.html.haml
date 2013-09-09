@@ -1,4 +1,9 @@
-%h
-  ROOT page
-%p
-  Find me in app/views/homes/index.html.erb
+%h3
+  Images
+.image-categories-container
+  - @categories.each do |cat|
+    .image-category
+      = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name), "#"
+      %br
+      = link_to cat.name, "#"
+  = paginate @categories
