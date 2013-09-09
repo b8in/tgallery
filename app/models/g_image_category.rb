@@ -1,5 +1,5 @@
 class GImageCategory < ActiveRecord::Base
-  #new picture add by rake_task. From Ctrl cannt create category
+  #new picture add by rake_task. From Ctrl can't create category
   #attr_accessible :name
   has_many :g_images
   validates :name,
