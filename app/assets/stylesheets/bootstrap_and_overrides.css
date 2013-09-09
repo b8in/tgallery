@@ -9,7 +9,17 @@
 body {
     background-color: darkseagreen;
 }
+
 #page-container {
     background-color: white;
     border-radius: 20px;
+}
+
+.text-align-center-aa{
+    text-align: center;
+}
+
+.horizontal-divs {
+    display: inline-block;
+    padding-left: 20px;
 }

@@ -7,22 +7,24 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 %body
-  = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path do
-    - menu_group do
+  = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path, class: 'row' do
+    = menu_group pull: 'left' do
       = drop_down 'Categories' do
         - @categories.each do |cat|
           = menu_item cat.name, '#'
       = menu_item 'All images', '#'
       = menu_item 'All comments', '#'
       = menu_item 'User events', '#'
-    .pull-right
+    = menu_group pull: 'right' do
       - unless user_signed_in?
-        = link_to "Sign in", new_user_session_path
-        = link_to "Sign up", new_user_registration_path
+        = menu_item 'Sign in', new_user_session_path
+        = menu_item 'Sign up', new_user_registration_path
+        -#= link_to "Sign in", new_user_session_path
+        -#= link_to "Sign up", new_user_registration_path
       - else
-        = "You login as: "+current_user.email
-        %br
-        = link_to "Sign out", destroy_user_session_path, method: :delete
+        =# menu_text "You login as: "+current_user.email
+        = menu_item 'Sign out', destroy_user_session_path, method: :delete
+  = bootstrap_flash
   .row-fluid
     .span10.offset1#page-container
       = yield

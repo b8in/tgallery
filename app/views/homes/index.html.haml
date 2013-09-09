@@ -1,9 +1,10 @@
-%h3
+%h3.text-align-center-aa
   Images
 .image-categories-container
   - @categories.each do |cat|
-    .image-category
-      = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name), "#"
+    .image-category.horizontal-divs
+      = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
       %br
-      = link_to cat.name, "#"
+      .text-align-center-aa
+        = link_to cat.name.capitalize, "#"
   = paginate @categories
