@@ -1,4 +1,10 @@
 %h3.text-align-center-aa
   = @image.name
 .image-box
+  = "#{@image.likes.count} likes"
+  = button_to "I like", set_like_path(image_id: @image.id)
   = image_tag @image.image.url
+.comment-box
+  = form_for @comment, url: create_comment_path(image_id: @image.id), remote: true do |f|
+    = f.text_area :text
+    =f.submit "Add comment"
