@@ -3,5 +3,5 @@
 #images-container
   - @images.each do |img|
     .image-box
-      = image_tag img.image.url
+      = link_to (image_tag img.image.url, title: img.name), picture_path(@category.name, img.id)
   = paginate @images
