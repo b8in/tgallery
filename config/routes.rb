@@ -1,10 +1,13 @@
 Tgallery::Application.routes.draw do
+
   devise_for :users
 
   root to:"homes#index"
   get '/categories', to: "categories#index"
   get '/categories/:category_name', to:"categories#show_by_name", as:"category"
   get '/categories/:category_name/:id', to: "pictures#show", as:"picture"
+
+  resource :likes, only: [:create], as: 'set_like'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

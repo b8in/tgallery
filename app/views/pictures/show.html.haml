@@ -2,3 +2,4 @@
   = @image.name
 .image-box
   = image_tag @image.image.url
+  = button_to "I like", set_like_path(image_id: @image.id)

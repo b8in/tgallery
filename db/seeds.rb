@@ -17,3 +17,9 @@
 #GImageCategory.create(name: 'alcohol')
 #GImageCategory.create(name: 'christmas')
 #GImageCategory.create(name: 'ruby')
+
+Event.create(name: 'navigation')
+Event.create(name: 'sign_in')
+Event.create(name: 'sign_out')
+Event.create(name: 'likes')
+Event.create(name: 'comments')
