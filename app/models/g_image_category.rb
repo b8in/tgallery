@@ -7,5 +7,5 @@ class GImageCategory < ActiveRecord::Base
             uniqueness: { case_sensitive: false},
             length: { in: 2..60 }
 
-  paginates_per 12
+  paginates_per 25
 end

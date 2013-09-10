@@ -7,21 +7,36 @@
   */
 
 body {
-    background-color: darkseagreen;
+  background-color: darkseagreen;
+}
+
+.bottom-page-div {
+  width: 100%;
+  height: 1px;
+  margin-top: 19px;
 }
 
 #page-container {
-    background-color: white;
-    border-radius: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
+  background-color: white;
+  border-radius: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .text-align-center-aa{
-    text-align: center;
+  text-align: center;
 }
 
 .horizontal-divs {
-    display: inline-block;
-    padding-left: 20px;
+  display: inline-block;
+  padding-left: 20px;
+}
+
+/*#images-container {*/
+  /*padding: 5%;*/
+  /*display: inline-block;*/
+/*}*/
+
+.image-box {
+  margin: 10px;
 }

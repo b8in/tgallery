@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   private
   def load_categories
     @categories = GImageCategory.all   #FIXME вместо объектов хеш: (имя категории => url)
+  end
 
+  # Overwriting the sign_in redirect path method
+  def after_sign_in_path_for(resource_or_scope)
+    categories_path
   end
 end
