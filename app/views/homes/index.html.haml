@@ -1,10 +1,20 @@
+-#%h3.text-align-center-aa
+-#  Images
+-#.image-categories-container
+-#  - @categories.each do |cat|
+-#    .image-category.horizontal-divs
+-#      = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
+-#      %br
+-#      .text-align-center-aa
+-#        = link_to cat.name.capitalize, "#"
+-#  = paginate @categories
+
 %h3.text-align-center-aa
-  Images
-.image-categories-container
-  - @categories.each do |cat|
-    .image-category.horizontal-divs
-      = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
-      %br
-      .text-align-center-aa
-        = link_to cat.name.capitalize, "#"
-  = paginate @categories
+  Dear Friend
+#about-tgallery
+  %p
+    Это супер пупер галлерея, blah-blah-blah, доступ к которой возможно получит только
+    = link_to 'зарегистировавшись', new_user_registration_path
+    = " и "
+    = link_to 'авторизовавшись', new_user_session_path
+    = "."

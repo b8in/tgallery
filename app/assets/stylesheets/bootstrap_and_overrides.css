@@ -13,6 +13,8 @@ body {
 #page-container {
     background-color: white;
     border-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .text-align-center-aa{
