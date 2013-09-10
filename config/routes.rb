@@ -8,6 +8,7 @@ Tgallery::Application.routes.draw do
   get '/categories/:category_name/:id', to: "pictures#show", as:"picture"
 
   resource :likes, only: [:create], as: 'set_like'
+  resource :user_comments, only: [:create], as: "create_comment"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
