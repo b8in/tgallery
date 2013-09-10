@@ -1,14 +1,3 @@
--#%h3.text-align-center-aa
--#  Images
--#.image-categories-container
--#  - @categories.each do |cat|
--#    .image-category.horizontal-divs
--#      = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
--#      %br
--#      .text-align-center-aa
--#        = link_to cat.name.capitalize, "#"
--#  = paginate @categories
-
 %h3.text-align-center-aa
   Dear Friend
 #about-tgallery
@@ -18,3 +7,17 @@
     = " и "
     = link_to 'авторизовавшись', new_user_session_path
     = "."
+%h3.text-align-center-aa
+  Last galleries
+.image-categories-container
+  - 2.times do |i|
+    - unless @categories[i*3].blank?
+      .row
+        - 3.times do |j|
+          - unless @categories[i*3+j].blank?
+            - cat = @categories[i*3+j]
+            .span4
+              .image-category.text-align-center-aa
+                = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
+                %br
+                = link_to cat.name.capitalize, "#"
