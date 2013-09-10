@@ -11,7 +11,7 @@
     = menu_group pull: 'left' do
       = drop_down 'Categories' do
         - @categories.each do |cat|
-          = menu_item cat.name, '#'
+          = menu_item cat.name, category_path(cat.name)
       = menu_item 'All images', '#'
       = menu_item 'All comments', '#'
       = menu_item 'User events', '#'
