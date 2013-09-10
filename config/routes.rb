@@ -2,6 +2,8 @@ Tgallery::Application.routes.draw do
   devise_for :users
 
   root to:"homes#index"
+  get '/categories', to: "categories#index"
+  get '/categories/:category_name', to:"categories#show_by_name", as:"category"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

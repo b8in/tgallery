@@ -3,4 +3,5 @@ class GImage < ActiveRecord::Base
   belongs_to :g_image_category
 
   mount_uploader :image, ImageUploader
+  paginates_per 5
 end

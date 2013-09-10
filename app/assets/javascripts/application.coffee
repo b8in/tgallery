@@ -16,4 +16,5 @@
 #= require_tree .
 
 $(document).ready ->
-  $('#page-container').height($(window).height() - $('.navbar').height() - 2 * 20 )   #  20 => $('.navbar').attr("margin-bottom")
+  x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)
+  $('#page-container').height(x - 20 )   #  20 => $('.navbar').attr("margin-bottom")

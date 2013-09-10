@@ -1,0 +1,7 @@
+%h3.text-align-center-aa
+  = "#{@category.name.capitalize}"
+#images-container
+  - @images.each do |img|
+    .image-box
+      = image_tag img.image.url
+  = paginate @images
