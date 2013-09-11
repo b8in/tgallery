@@ -15,6 +15,14 @@
 #= require twitter/bootstrap
 #= require_tree .
 
+
+
 $(document).ready ->
-  x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)
+  default_page_container_height = $('#page-container').height()
+
+  x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
   $('#page-container').height(x - 20 )   #  20 => $('.navbar').attr("margin-bottom")
+
+  $(window).resize ->
+    x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
+    $('#page-container').height(x - 20 )
