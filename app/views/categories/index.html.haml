@@ -5,7 +5,7 @@
     .category-item
       .row
         .span2.offset1
-          = link_to (image_tag cat.g_images.sample.image.url(:thumb)), category_path(cat.name)     #cat.name.capitalize
+          = link_to (image_tag cat.g_images.sample.image.url(:thumb)), category_path(cat.name)
         .span8
           = "Category name: "
           = link_to cat.name.capitalize, category_path(cat.name)
