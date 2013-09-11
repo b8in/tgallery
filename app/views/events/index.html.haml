@@ -1,0 +1,23 @@
+%h3.text-align-center-aa
+  Events
+%table
+  %thead
+    %tr
+      %th
+        User
+      %th{colspan: 5}
+        Events
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user.email
+        - @events.each do |event|
+          %td
+            - user_events = user.events.uniq        #  FIXME: переделать чтобы брать из базы названия эвентов юзера через ДИСТИНКТ, а не ВЫБИРАТЬ ВСЕ, а потом ЮНИК
+            - user_events_names = []
+            - user_events.each { |e| user_events_names << e.name }
+            - if user_events_names.include?(event.name)
+              = link_to event.name, event_path(user_id: user.id, event_name: event.name)
+            - else
+              = event.name

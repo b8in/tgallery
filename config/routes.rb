@@ -1,11 +1,15 @@
 Tgallery::Application.routes.draw do
 
+  get "events/index"
+
   devise_for :users
 
   root to:"homes#index"
   get '/categories', to: "categories#index"
   get '/categories/:category_name', to:"categories#show_by_name", as:"category"
   get '/categories/:category_name/:id', to: "pictures#show", as:"picture"
+  get '/events', to: "events#index", as: "events"
+  get '/events/:user_id/:event_name', to:"events#show", as:"event"
 
   resource :likes, only: [:create], as: 'set_like'
   resource :user_comments, only: [:create], as: "create_comment"
