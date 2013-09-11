@@ -1,16 +1,18 @@
 %h3.text-align-center-aa
   TGallery list categories
 .categories-list
-  .row
-    .span8.offset1
-      = "Category name"
-    .span2
-      = "Count of images"
   - @categories.each do |cat|
     .category-item
       .row
-        .span8.offset1
+        .span2.offset1
+          = link_to (image_tag cat.g_images.sample.image.url(:thumb)), category_path(cat.name)     #cat.name.capitalize
+        .span8
+          = "Category name: "
           = link_to cat.name.capitalize, category_path(cat.name)
-        .span2
-          = "#{cat.g_images.count}"
+          %br
+          = "Images count: "+"#{cat.g_images.count}"
+          %br
+          = "Total comments count: "+"#{@category_comments_count_hash[cat.name]}"
+          %br
+          = "Total likes count: "+"#{@category_likes_count_hash[cat.name]}"
   = paginate @categories
