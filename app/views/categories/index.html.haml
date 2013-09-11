@@ -15,4 +15,6 @@
           = "Total comments count: "+"#{@category_comments_count_hash[cat.name]}"
           %br
           = "Total likes count: "+"#{@category_likes_count_hash[cat.name]}"
+          %br
+          = "Last updated: "+"#{cat.updated_at}"
   = paginate @categories

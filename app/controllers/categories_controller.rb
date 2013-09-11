@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = GImageCategory.includes(:g_images).page params[:page]
+    @categories = GImageCategory.includes(:g_images).order(:updated_at).reverse_order.page params[:page]
     @category_comments_count_hash = {}
     @category_likes_count_hash = {}
     @category_popular_image = {}
