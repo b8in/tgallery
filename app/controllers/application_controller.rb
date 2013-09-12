@@ -16,8 +16,9 @@ class ApplicationController < ActionController::Base
   def save_navigation
     if user_signed_in?
       event = Event.find_by_name("navigation")
-      hist = current_user.e_histories.create(date: Time.now, event_id: event.id)
-      Navigation.create(e_history_id: hist.id, target_url: request.original_url)
+      nav = Navigation.create(target_url: request.original_url)
+      current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: nav)         # eventable_type: event.name, eventable_id: nav.id
+
     end
   end
 
