@@ -14,9 +14,20 @@ class ApplicationController < ActionController::Base
   end
 
   def save_navigation
-    event = Event.find_by_name("navigation")
-    hist = current_user.e_histories.create(date: Time.now, event_id: event.id)
+    if user_signed_in?
+      event = Event.find_by_name("navigation")
+      hist = current_user.e_histories.create(date: Time.now, event_id: event.id)
+      Navigation.create(e_history_id: hist.id, target_url: request.original_url)
+    end
+  end
 
-    Navigation.create(e_history_id: hist.id, target_url: request.original_url)
+  Warden::Manager.after_authentication do |user,auth,opts|
+    event = Event.where(name: 'sign_in').first
+    user.e_histories.create(date: Time.now, event_id: event.id)
+  end
+
+  Warden::Manager.before_logout do |user,auth,opts|
+    event = Event.where(name: 'sign_out').first
+    user.e_histories.create(date: Time.now, event_id: event.id)
   end
 end
