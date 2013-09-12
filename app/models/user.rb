@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
 
   has_many :e_histories, dependent: :destroy
   has_many :user_comments, dependent: :destroy
+
+  has_many :events, through: :e_histories
 end
