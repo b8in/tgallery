@@ -1,6 +1,6 @@
 %h3.text-align-center-aa
   = @h_events[0].event.name
-%table
+%table{align: 'center'}
   %thead
     %tr
       %th
@@ -8,7 +8,7 @@
       - if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name) || (@h_events[0].eventable_type == Navigation.name)
         %th
           = "Link" if @h_events[0].eventable_type == Navigation.name
-          = "Image" if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name)    # FIXME
+          = "Image" if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name)
       - if @h_events[0].eventable_type == UserComment.name
         %th
           = "Text"
@@ -16,7 +16,12 @@
     - @h_events.each do |he|
       %tr
         %td
-          = he.date
-        %td
-        - if @h_events[0].eventable_type == UserComment.name
+          = "#{he.date}"
+        - if (he.eventable_type == UserComment.name) || (he.eventable_type == Like.name) || (he.eventable_type == Navigation.name)
           %td
+            = "#{he.eventable.target_url}" if he.eventable_type == Navigation.name && he.eventable.respond_to?(:target_url)
+            = "#{he.eventable.g_image.name}" if ((he.eventable_type == UserComment.name) || (he.eventable_type == Like.name)) && he.eventable.respond_to?(:g_image)
+          - if (he.eventable_type == UserComment.name) && (he.eventable.respond_to?(:text))
+            %td
+              = "#{he.eventable.text}"
+= paginate @h_events

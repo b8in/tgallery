@@ -11,4 +11,6 @@ class EHistory < ActiveRecord::Base
 
   belongs_to :eventable, polymorphic: true
 
+  paginates_per 15
+
 end
