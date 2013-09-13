@@ -7,7 +7,11 @@ class UserCommentsController < ApplicationController
 
     current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: comment)
 
-    redirect_to :back
+    render json: { comment: comment.text,
+                   author: current_user.name,
+                   image_comments_count: image.user_comments_count,
+                   stat: 'success'
+    }
   end
 
 end
