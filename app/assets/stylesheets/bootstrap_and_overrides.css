@@ -68,3 +68,11 @@ table {
   border-collapse: collapse;
   border: 1px solid black;
 }
+
+.btn-aa {
+  margin: 20px;
+}
+
+.pagination {
+  padding-bottom: 15px;
+}

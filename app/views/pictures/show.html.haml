@@ -11,4 +11,4 @@
   = form_for @comment, url: create_comment_path(image_id: @image.id), remote: true do |f|
     = f.text_area :text, class: 'comment-textarea', rows: 10, align: 'center'
     %br
-    =f.submit "Add comment"
+    =f.submit "Add comment", class: 'btn-aa'
