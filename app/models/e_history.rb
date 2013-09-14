@@ -1,5 +1,4 @@
 class EHistory < ActiveRecord::Base
-  # attr_accessible :title, :body
   attr_accessible :date, :event_id, :eventable
 
   belongs_to :user
@@ -13,4 +12,14 @@ class EHistory < ActiveRecord::Base
 
   paginates_per 15
 
+  validates :date,
+            presence: true
+  validates :user_id,
+            presence: true,
+            numericality: { only_integer: true }
+  validates :event_id,
+            presence: true,
+            numericality: { only_integer: true }
+  validates :eventable_id,
+            numericality: { only_integer: true }
 end

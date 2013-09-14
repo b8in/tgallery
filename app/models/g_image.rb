@@ -6,4 +6,16 @@ class GImage < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
   paginates_per 5
+
+  validates :name,
+            presence: true,
+            uniqueness: { case_sensitive: true}
+  validates :image,
+            presence: true
+  validates :likes_count,
+            presence: true,
+            numericality: { only_integer: true}
+  validates :user_comments_count,
+            presence: true,
+            numericality: { only_integer: true}
 end

@@ -6,6 +6,8 @@ class GImageCategory < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false},
             length: { in: 2..60 }
+  validates :updated_at,
+            presence: true
 
   paginates_per 25
 end
