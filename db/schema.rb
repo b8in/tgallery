@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130913102841) do
   end
 
   create_table "g_image_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "updated_at", :default => '2013-09-11 09:16:13'
+    t.string   "name",                                          :null => false
+    t.datetime "updated_at", :default => '2013-09-14 11:59:35'
   end
 
   create_table "g_images", :force => true do |t|
