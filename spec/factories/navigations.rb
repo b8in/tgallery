@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :navigation do
-    sequence(:target_url) {"http://localhost/some/url/{n}"}
+    sequence(:target_url) {|n| "http://localhost/some/url/#{n}"}
   end
 end
