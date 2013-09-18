@@ -28,4 +28,18 @@ describe UserComment do
     it { should validate_numericality_of(:g_image_id).only_integer }
   end
 
+  describe "saving into db" do
+    it "valid object" do
+      comment = FactoryGirl.build(:user_comment)
+      comment.save.should be_true
+      UserComment.last.should eql(comment)
+      FactoryGirl.create(:user_comment)
+    end
+    it "invalid object" do
+      comment = FactoryGirl.build(:user_comment, text: nil)
+      comment.save.should be_false
+      lambda {comment.save!}.should raise_error
+    end
+  end
+
 end
