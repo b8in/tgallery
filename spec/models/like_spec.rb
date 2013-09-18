@@ -23,4 +23,18 @@ describe Like do
     it { should validate_numericality_of(:g_image_id).only_integer  }
   end
 
+  describe "saving into db" do
+    it "valid object" do
+      like = FactoryGirl.build(:like)
+      like.save.should be_true
+      Like.last.should eql(like)
+      FactoryGirl.create(:like)
+    end
+    it "invalid object" do
+      like = FactoryGirl.build(:like, g_image: nil)
+      like.save.should be_false
+      lambda {like.save!}.should raise_error
+    end
+  end
+
 end
