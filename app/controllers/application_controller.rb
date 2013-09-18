@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       event = Event.find_by_name("navigation")
       nav = Navigation.create(target_url: request.original_url)
-      current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: nav)    end
+      current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: nav)
+    end
   end
 
 end
