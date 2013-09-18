@@ -48,6 +48,7 @@ describe User do
   describe "valid and invalid attributes" do
     it { should allow_value(true).for(:admin) }
     it { should allow_value(false).for(:admin) }
+    it { should_not allow_value(nil).for(:admin) }
     it { should allow_value("usa@mail.com").for(:email) }
     it { should_not allow_value("@mail.com").for(:email) }
     it { should_not allow_value(" @mail.com").for(:email) }
