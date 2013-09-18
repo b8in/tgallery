@@ -20,4 +20,18 @@ describe Navigation do
     it { should validate_presence_of(:target_url) }
   end
 
+  describe "saving into db" do
+    it "valid object" do
+      nav = FactoryGirl.build(:navigation)
+      nav.save.should be_true
+      Navigation.last.should eql(nav)
+      FactoryGirl.create(:navigation)
+    end
+    it "invalid object" do
+      nav = FactoryGirl.build(:navigation, target_url: nil)
+      nav.save.should be_false
+      lambda {nav.save!}.should raise_error
+    end
+  end
+
 end
