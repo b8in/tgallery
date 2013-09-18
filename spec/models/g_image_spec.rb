@@ -36,4 +36,17 @@ describe GImage do
     it { should validate_numericality_of(:user_comments_count).only_integer }
   end
 
+  describe "saving into db" do
+    it "valid object" do
+      g_image = FactoryGirl.build(:g_image)
+      g_image.save.should be_true
+      GImage.last.should eql(g_image)
+    end
+    it "invalid object" do
+      g_image = FactoryGirl.build(:g_image, image: nil)
+      g_image.save.should be_false
+      lambda {g_image.save!}.should raise_error
+    end
+  end
+
 end
