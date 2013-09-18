@@ -26,4 +26,17 @@ describe Event do
     it { should allow_value("navigation").for(:name) }
   end
 
+  describe "saving into db" do
+    it "valid object" do
+      event = FactoryGirl.build(:event)
+      event.save.should be_true
+      Event.last.should eql(event)
+    end
+    it "invalid object" do
+      event = FactoryGirl.build(:event, name: nil)
+      event.save.should be_false
+      lambda {event.save!}.should raise_error
+    end
+  end
+
 end
