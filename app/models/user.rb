@@ -20,6 +20,5 @@ class User < ActiveRecord::Base
   validates :encrypted_password,
             presence: true
   validates :admin,
-            presence: true,
             inclusion: { in: [true, false] }
 end

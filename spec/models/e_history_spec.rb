@@ -33,4 +33,17 @@ describe EHistory do
     it { should validate_numericality_of(:eventable_id).only_integer }
   end
 
+  describe "saving into db" do
+    it "valid object" do
+      e_hist = FactoryGirl.build(:e_history)
+      e_hist.save.should be_true
+      EHistory.last.should eql(e_hist)
+    end
+    it "invalid object" do
+      e_hist = FactoryGirl.build(:e_history, user: nil)
+      e_hist.save.should be_false
+      lambda {e_hist.save!}.should raise_error
+    end
+  end
+
 end

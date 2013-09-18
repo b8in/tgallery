@@ -20,6 +20,4 @@ class EHistory < ActiveRecord::Base
   validates :event_id,
             presence: true,
             numericality: { only_integer: true }
-  validates :eventable_id,
-            numericality: { only_integer: true }
 end
