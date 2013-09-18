@@ -28,4 +28,19 @@ describe GImageCategory do
   describe "valid and invalid objects" do
     it { should allow_value("cats").for(:name) }
   end
+
+  describe "saving into db" do
+    it "valid object" do
+      category = FactoryGirl.build(:g_image_category)
+      category.save.should be_true
+      GImageCategory.last.should eql(category)
+      FactoryGirl.create(:g_image_category).should be
+    end
+    it "invalid object" do
+      category = FactoryGirl.build(:g_image_category, name: nil)
+      category.save.should be_false
+      lambda {category.save!}.should raise_error
+    end
+  end
+
 end
