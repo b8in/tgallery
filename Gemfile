@@ -13,6 +13,19 @@ gem 'kaminari'
 
 gem 'devise'
 
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.12'
+  gem "factory_girl_rails", "~> 4.0"
+end
+
+group :test do
+  gem "shoulda-matchers"
+#  gem "capybara"
+  gem 'database_cleaner'
+#  gem 'selenium-webdriver'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
