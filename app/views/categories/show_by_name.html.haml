@@ -2,6 +2,6 @@
   = "#{@category.name.capitalize}"
 #images-container
   - @images.each do |img|
-    .image-box
+    .image-box.text-align-center-aa
       = link_to (image_tag img.image.url, title: img.name), picture_path(@category.name, img.id)
   = paginate @images

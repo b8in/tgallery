@@ -44,3 +44,35 @@ body {
 .image-box {
   margin: 10px;
 }
+
+.category-item {
+  margin: 15px;
+}
+
+table td{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+table th{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+table td{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.btn-aa {
+  margin: 20px;
+}
+
+.pagination {
+  padding-bottom: 15px;
+}

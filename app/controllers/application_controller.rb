@@ -13,10 +13,15 @@ class ApplicationController < ActionController::Base
     categories_path
   end
 
-  def save_navigation
-    event = Event.find_by_name("navigation")
-    hist = current_user.e_histories.create(date: Time.now, event_id: event.id)
-
-    Navigation.create(e_history_id: hist.id, target_url: request.original_url)
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
   end
+
+  def save_navigation
+    if user_signed_in?
+      event = Event.find_by_name("navigation")
+      nav = Navigation.create(target_url: request.original_url)
+      current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: nav)    end
+  end
+
 end

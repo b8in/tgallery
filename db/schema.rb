@@ -11,12 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910140911) do
+ActiveRecord::Schema.define(:version => 20130913102841) do
 
   create_table "e_histories", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "date"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
   end
 
   create_table "events", :force => true do |t|
@@ -24,27 +26,27 @@ ActiveRecord::Schema.define(:version => 20130910140911) do
   end
 
   create_table "g_image_categories", :force => true do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "updated_at", :default => '2013-09-11 09:16:13'
   end
 
   create_table "g_images", :force => true do |t|
     t.string  "name"
     t.string  "image"
     t.integer "g_image_category_id"
+    t.integer "likes_count",         :default => 0
+    t.integer "user_comments_count", :default => 0
   end
 
   create_table "likes", :force => true do |t|
     t.integer "g_image_id"
-    t.integer "e_history_id"
   end
 
   create_table "navigations", :force => true do |t|
-    t.integer "e_history_id"
-    t.string  "target_url"
+    t.string "target_url"
   end
 
   create_table "user_comments", :force => true do |t|
-    t.integer "e_history_id"
     t.integer "g_image_id"
     t.text    "text"
   end
@@ -63,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130910140911) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "name",                   :default => ""
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

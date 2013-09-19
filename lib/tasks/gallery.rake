@@ -21,4 +21,17 @@ namespace :gallery do
       puts "\nWARNING:  You should create #{dir_name} directory with subdirectories-categories stored images.\n\n"
     end
   end
+
+
+  desc "upload one image on server"
+  task :add_image, [:category_name, :image_full_name] => :environment do |t, args|
+    cat = GImageCategory.find_by_name(args.category_name)
+    if cat.blank?
+      puts "\n ERROR:  Category #{args.category_name} not exists.\n "
+    else
+      r = Random.new
+      n = r.rand()*10000 % 10000
+      cat.g_images.create(name:"file#{n}", image: File.open(args.image_full_name))
+    end
+  end
 end

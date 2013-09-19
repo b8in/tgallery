@@ -210,6 +210,17 @@ Devise.setup do |config|
   # devise role declared in your routes (usually :user).
   # config.default_scope = :user
 
+  Warden::Manager.after_authentication do |user,auth,opts|
+    event = Event.where(name: 'sign_in').first
+    user.e_histories.create(date: Time.now, event_id: event.id)
+  end
+
+  Warden::Manager.before_logout do |user,auth,opts|
+    event = Event.where(name: 'sign_out').first
+    user.e_histories.create(date: Time.now, event_id: event.id)
+  end
+
+
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
   # config.sign_out_all_scopes = true
