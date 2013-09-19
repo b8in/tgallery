@@ -9,5 +9,5 @@ class GImageCategory < ActiveRecord::Base
   validates :updated_at,
             presence: true
 
-  paginates_per 25
+  paginates_per 5
 end
