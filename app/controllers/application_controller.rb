@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
   def load_categories
-    @categories = GImageCategory.all   #FIXME вместо объектов хеш: (имя категории => url)
+    @categories_menu = GImageCategory.select(:name).all
   end
 
   # Overwriting the sign_in redirect path method
