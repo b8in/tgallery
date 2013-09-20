@@ -24,6 +24,12 @@ describe "homes/index" do
     find('.image-categories-container').find_link(@categories[9].name.capitalize).should be
     find('.image-categories-container').find_link(@categories[4].name.capitalize).should be
     find('.image-categories-container').should_not have_content(@categories[3].name.capitalize)
+
+    i = 9
+    all('a > img').each do |img|
+      img[:title].should eq(@categories[i].name.capitalize)
+      i -= 1
+    end
   end
 
 end
