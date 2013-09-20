@@ -13,6 +13,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 #DatabaseCleaner.strategy = :truncation
 
+
 RSpec.configure do |config|
 
   #config.include Warden::Test::Helpers

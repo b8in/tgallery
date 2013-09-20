@@ -23,7 +23,7 @@ group :test do
   gem "shoulda-matchers"
   gem "capybara"
   gem 'database_cleaner'
-#  gem 'selenium-webdriver'
+  gem 'selenium-webdriver'
 end
 
 # Gems used only for assets and not required
