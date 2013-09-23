@@ -1,7 +1,7 @@
 class UserCommentsController < ApplicationController
 
   def index
-    @comments = UserComment.joins(:e_history).includes(:e_history).order('e_histories.date').reverse_order.page params[:page]
+    @comments = UserComment.joins(:e_history).includes(:e_history).order('e_histories.date').page params[:page]
   end
 
   def create
