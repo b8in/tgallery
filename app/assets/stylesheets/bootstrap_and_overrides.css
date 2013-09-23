@@ -81,3 +81,7 @@ table {
   display: table;
   margin: 0 auto;
 }
+
+fieldset {
+  margin: 10px;
+}
