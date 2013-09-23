@@ -18,6 +18,6 @@
             - cat = @categories[i*3+j]
             .span4
               .image-category.text-align-center-aa
-                = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
+                = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), category_path(cat.name)
                 %br
-                = link_to cat.name.capitalize, "#"
+                = link_to cat.name.capitalize, category_path(cat.name)

@@ -7,6 +7,8 @@ class GImage < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   paginates_per 5
 
+  scope :only_with_category, -> { where("g_image_category_id IS NOT NULL") }
+
   validates :name,
             presence: true,
             uniqueness: { case_sensitive: true}
