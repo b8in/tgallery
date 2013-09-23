@@ -7,6 +7,7 @@ Tgallery::Application.routes.draw do
   get '/categories/:category_name', to:"categories#show_by_name", as:"category"
   get '/categories/:category_name/:id', to: "pictures#show", as:"picture"
   get '/pictures', to: "pictures#index", as:"pictures"
+  get '/comments', to: "user_comments#index", as:"user_comments"
   get '/events', to: "events#index", as: "events"
   get '/events/:user_id/:event_name', to:"events#show", as:"event"
 
