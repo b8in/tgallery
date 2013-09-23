@@ -7,10 +7,14 @@ class LikesController < ApplicationController
 
       current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: like)
 
-      redirect_to :back
+      render json: { image_likes_count: image.likes_count+1,
+                     stat: 'success'
+      }
     else
-      flash[:error] = "You should been authorized"
-      redirect_to :back
+      render json: { image_likes_count: -1,
+        stat: 'error',
+        message: "You should been authorized"
+      }
     end
   end
 end

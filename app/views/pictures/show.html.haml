@@ -2,9 +2,12 @@
   = @image.name
 .row
   .span5.offset1.pull-left
-    = 'Total '+"#{@image.likes.count} likes"
+    = 'Total '
+    %span{id: 'span_likes_count'}
+      = "#{@image.likes.count}"
+    = " likes"
   .span1.offset1.pull-right
-    = button_to "I like", set_like_path(image_id: @image.id)
+    = button_to "I like", set_like_path(image_id: @image.id), method: :post, remote: true
 .image-box.text-align-center-aa
   = image_tag @image.image.url
 .comments_block
