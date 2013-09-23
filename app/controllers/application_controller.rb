@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include SimpleCaptcha::ControllerHelpers
+
   protect_from_forgery
   before_filter :load_categories
   after_filter :save_navigation
