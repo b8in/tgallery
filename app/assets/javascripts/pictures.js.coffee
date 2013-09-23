@@ -11,8 +11,6 @@ $(document).ready ->
     if (response) && (response.responseJSON)
       if (response.responseJSON.stat) && (response.responseJSON.stat is "error")
         if response.responseJSON.image_likes_count
-          #$('#alert-error').html(response.responseJSON.message).slideDown(500).delay(3000).slideUp(500)
-          #$('body').append "<div class='alert fade in alert-error'><button class='close' data-dismiss='alert'>×</button>"+response.responseJSON.message+"</div>"
           $('.navbar').after("<div class='alert fade in alert-error'><button class='close' data-dismiss='alert'>×</button>"+response.responseJSON.message+"</div>")
 
       if (response.responseJSON.stat) && (response.responseJSON.stat is "success")

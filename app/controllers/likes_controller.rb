@@ -11,9 +11,9 @@ class LikesController < ApplicationController
                      stat: 'success'
       }
     else
-      render json: { image_likes_count: -1,
-        stat: 'error',
-        message: "You should been authorized"
+      render json: {  image_likes_count: -1,
+                      stat: 'error',
+                      message: "You should been authorized"
       }
     end
   end
