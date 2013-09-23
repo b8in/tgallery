@@ -24,14 +24,20 @@ namespace :gallery do
 
 
   desc "upload one image on server"
-  task :add_image, [:category_name, :image_full_name] => :environment do |t, args|
-    cat = GImageCategory.find_by_name(args.category_name)
-    if cat.blank?
-      puts "\n ERROR:  Category #{args.category_name} not exists.\n "
+  task :add_image, [:image_full_name, :category_name] => :environment do |t, args|
+    unless !!args.category_name
+      GImage.create(name:"file_#{Time.now.to_i%10000}", image: File.open(args.image_full_name, g_image_category_id: nil))
+      puts "\n SUCCESS:  Image #{args.image_full_name} is upload without category. \n\n"
     else
-      r = Random.new
-      n = r.rand()*10000 % 10000
-      cat.g_images.create(name:"file#{n}", image: File.open(args.image_full_name))
+      cat = GImageCategory.find_by_name(args.category_name)
+      if cat.blank?
+        puts "\n ERROR:  Category #{args.category_name} not exists.\n\n "
+      else
+        r = Random.new
+        n = r.rand()*10000 % 10000
+        cat.g_images.create(name:"file#{n}", image: File.open(args.image_full_name))
+        puts "\n SUCCESS:  Image #{args.image_full_name} is upload in category #{args.category_name}. \n\n"
+      end
     end
   end
 end
