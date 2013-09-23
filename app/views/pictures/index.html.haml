@@ -1,8 +1,7 @@
 %h3.text-align-center-aa
   All images
 %div
-  - count = @images.size
-  - count.times do |i|
+  - @images.size.times do |i|
     .row.text-align-center-aa
       - 3.times do |j|
         - unless @images[i*3+j].blank?
@@ -11,3 +10,4 @@
             = link_to (image_tag img.image.url(:thumb)), picture_path(img.g_image_category.name, img.id)
             %br
             = link_to img.name, picture_path(img.g_image_category.name, img.id)
+  = paginate @images
