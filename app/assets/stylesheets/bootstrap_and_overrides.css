@@ -76,3 +76,8 @@ table {
 .pagination {
   padding-bottom: 15px;
 }
+
+.simple_captcha {
+  display: table;
+  margin: 0 auto;
+}

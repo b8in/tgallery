@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130913102841) do
+ActiveRecord::Schema.define(:version => 20130923152810) do
 
   create_table "e_histories", :force => true do |t|
     t.integer  "user_id"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(:version => 20130913102841) do
   end
 
   create_table "events", :force => true do |t|
-    t.string "name", :null => false
+    t.string "name"
   end
 
   create_table "g_image_categories", :force => true do |t|
-    t.string   "name",                                          :null => false
-    t.datetime "updated_at", :default => '2013-09-14 12:25:58'
+    t.string   "name"
+    t.datetime "updated_at", :default => '2013-09-11 09:16:13'
   end
 
   create_table "g_images", :force => true do |t|
@@ -46,9 +46,19 @@ ActiveRecord::Schema.define(:version => 20130913102841) do
     t.string "target_url"
   end
 
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
+
   create_table "user_comments", :force => true do |t|
     t.integer "g_image_id"
     t.text    "text"
+    t.string  "author"
   end
 
   create_table "users", :force => true do |t|
