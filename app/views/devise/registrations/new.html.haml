@@ -1,18 +1,30 @@
-%h3
+%h3.text-align-center-aa
   Sign up
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
   %div
-    %fieldset
-      = f.text_field :name, :autofocus => true, placeholder: 'Enter your nickname*'
-    %fieldset
-      = f.email_field :email, placeholder: 'Enter your email*'
-    %fieldset
-      = f.password_field :password, placeholder: 'Enter your password*'
-    %fieldset
-      = f.password_field :password_confirmation, placeholder: 'Confirm your password*'
-  %div
-    %fieldset
+    %table
+      %tr
+        %td
+          = f.label 'Nickname*: '
+        %td
+          = f.text_field :name, autofocus: true
+      %tr
+        %td
+          = f.label 'Email*: '
+        %td
+          = f.email_field :email
+      %tr
+        %td
+          = f.label 'Password*: '
+        %td
+          = f.password_field :password
+      %tr
+        %td
+          = f.label 'Confirm password*: '
+        %td
+          = f.password_field :password_confirmation
+    %div
       = f.submit "Sign up"
 
 = render "devise/shared/links"

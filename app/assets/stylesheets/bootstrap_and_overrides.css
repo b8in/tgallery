@@ -49,22 +49,17 @@ body {
   margin: 15px;
 }
 
-table td{
+.events-table th{
   border: 1px solid black;
   padding: 10px;
 }
 
-table th{
+.events-table td{
   border: 1px solid black;
   padding: 10px;
 }
 
-table td{
-  border: 1px solid black;
-  padding: 10px;
-}
-
-table {
+.events-table {
   border-collapse: collapse;
   border: 1px solid black;
 }
