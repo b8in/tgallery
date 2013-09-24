@@ -2,7 +2,6 @@ Tgallery::Application.routes.draw do
 
   devise_for :users
 
-  root to:"homes#index"
   get '/categories', to: "categories#index"
   get '/categories/:category_name', to:"categories#show_by_name", as:"category"
   get '/categories/:category_name/:id', to: "pictures#show", as:"picture"
@@ -11,9 +10,13 @@ Tgallery::Application.routes.draw do
   get '/events', to: "events#index", as: "events"
   get '/events/:user_id/:event_name', to:"events#show", as:"event"
 
+  match '/auth/facebook/callback' => 'services#create'
+  resources :services, only: [:create, :destroy]
+
   resource :likes, only: [:create], as: 'set_like'
   resource :user_comments, only: [:create], as: "create_comment"
 
+  root to:"homes#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

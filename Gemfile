@@ -12,6 +12,8 @@ gem 'rmagick'
 gem 'kaminari'
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
 group :development, :test do

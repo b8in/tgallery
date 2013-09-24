@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923152810) do
+ActiveRecord::Schema.define(:version => 20130924093036) do
 
   create_table "e_histories", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20130923152810) do
 
   create_table "navigations", :force => true do |t|
     t.string "target_url"
+  end
+
+  create_table "services", :force => true do |t|
+    t.integer "user_id"
+    t.string  "provider"
+    t.string  "uid"
+    t.string  "uname"
+    t.string  "uemail"
   end
 
   create_table "simple_captcha_data", :force => true do |t|
