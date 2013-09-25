@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  #before_filter :authenticate_user!, except: [:create]
+  before_filter :authenticate_user!, except: [:create]
 
   def create
     # get the full hash from omniauth
@@ -90,7 +90,7 @@ class ServicesController < ApplicationController
     @service = current_user.services.find(params[:id])
     @service.destroy
 
-    redirect_to root_path
+    redirect_to :back
   end
 
 end

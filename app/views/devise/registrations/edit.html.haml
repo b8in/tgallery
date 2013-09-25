@@ -33,6 +33,19 @@
           = f.label 'Confirm password*: '
         %td
           = f.password_field :password_confirmation
+      - @facebook_account = current_user.services.where(provider: 'facebook').first
+      - if @facebook_account.blank?
+        %tr
+          %td
+            = f.label 'Facebook: '
+          %td
+            = link_to "Link account", '/auth/facebook'
+      - else
+        %tr
+          %td
+            = f.label 'Facebook: '
+          %td
+            = link_to "Unlink account", service_path(@facebook_account), method: :delete
       %tr
         %td
           = f.label 'Current password*: ', class: 'with-hint'
@@ -45,6 +58,9 @@
               (maybe it is your downcase email of Facebook)
     %div
       = f.submit "Update profile"
+  %div
+
+
 
 = link_to "Delete account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
 %br
