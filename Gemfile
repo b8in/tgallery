@@ -16,6 +16,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
+gem "validate_url"
+gem "validate_email"
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.12'
   gem "factory_girl_rails", "~> 4.0"

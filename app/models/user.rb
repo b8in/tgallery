@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
-            format: { with: /\A([^@\s]+)@([a-z,0-9]+\.[a-z]{2,})\Z/ }
+            email: true
   validates :encrypted_password,
             presence: true
   validates :admin,
