@@ -8,7 +8,7 @@ class EHistory < ActiveRecord::Base
   #belongs_to :navigation, dependent: :destroy #delete
   #belongs_to :user_comment, dependent: :destroy #delete
 
-  belongs_to :eventable, polymorphic: true
+  belongs_to :eventable, polymorphic: true, dependent: :delete
 
   paginates_per 15
 

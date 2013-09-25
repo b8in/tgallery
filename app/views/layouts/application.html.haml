@@ -21,6 +21,7 @@
         = menu_item 'Sign up', new_user_registration_path
       - else
         =# menu_text "You login as: "+current_user.email
+        = menu_item 'Profile', edit_user_registration_path(current_user)
         = menu_item 'Sign out', destroy_user_session_path, method: :delete
   = bootstrap_flash
   .row-fluid

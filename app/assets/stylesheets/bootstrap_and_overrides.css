@@ -80,3 +80,15 @@ body {
 fieldset {
   margin: 10px;
 }
+
+.hint {
+  font-size: x-small;
+}
+
+.with-hint {
+  margin-bottom: -10px;
+}
+
+.blue-color {
+  color: blue;
+}

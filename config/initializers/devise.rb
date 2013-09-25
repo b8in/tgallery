@@ -216,8 +216,12 @@ Devise.setup do |config|
   end
 
   Warden::Manager.before_logout do |user,auth,opts|
-    event = Event.where(name: 'sign_out').first
-    user.e_histories.create(date: Time.now, event_id: event.id)
+      event = Event.where(name: 'sign_out').first
+      begin
+        user.e_histories.create(date: Time.now, event_id: event.id) if User.find(user.id)
+      rescue
+        puts "Account was deleted"
+      end
   end
 
 
