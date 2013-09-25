@@ -1,0 +1,52 @@
+%h2.text-align-center-aa
+  Edit profile for
+  %span.blue-color
+    = resource.name
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+  = devise_error_messages!
+  %div
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %div
+        Currently waiting confirmation for:
+        = resource.unconfirmed_email
+    %table
+      %tr
+        %td
+          = f.label 'Nickname*: '
+        %td
+          = f.text_field :name, autofocus: true
+      %tr
+        %td
+          = f.label 'Email*: '
+        %td
+          = f.email_field :email
+      %tr
+        %td
+          = f.label 'Password*: ', class: 'with-hint'
+          %i.hint
+            (leave blank if you don't want to change it)
+        %td
+          = f.password_field :password, :autocomplete => "off"
+      %tr
+        %td
+          = f.label 'Confirm password*: '
+        %td
+          = f.password_field :password_confirmation
+      %tr
+        %td
+          = f.label 'Current password*: ', class: 'with-hint'
+          %i.hint
+            (we need your current password to confirm your changes)
+        %td
+          = f.password_field :current_password
+          - unless current_user.services.blank?
+            %i.hint
+              (maybe it is your downcase email of Facebook)
+    %div
+      = f.submit "Update profile"
+
+= link_to "Delete account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
+%br
+%br
+= link_to "Back", :back

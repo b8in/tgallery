@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :services, dependent: :destroy
   has_many :e_histories, dependent: :destroy
-  has_many :user_comments, dependent: :destroy, through: :e_histories
+  has_many :user_comments, through: :e_histories, source: :eventable, source_type: 'UserComment', dependent: :destroy
+  has_many :likes, through: :e_histories, source: :eventable, source_type: 'Like', dependent: :destroy
 
   has_many :events, through: :e_histories
 
