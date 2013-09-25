@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(:version => 20130924093036) do
   end
 
   create_table "events", :force => true do |t|
-    t.string "name"
+    t.string "name", :null => false
   end
 
   create_table "g_image_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "updated_at", :default => '2013-09-11 09:16:13'
+    t.string   "name",                                          :null => false
+    t.datetime "updated_at", :default => '2013-09-24 13:17:59'
   end
 
   create_table "g_images", :force => true do |t|
