@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924093036) do
+ActiveRecord::Schema.define(:version => 20130925133606) do
 
   create_table "e_histories", :force => true do |t|
     t.integer  "user_id"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(:version => 20130924093036) do
   end
 
   create_table "events", :force => true do |t|
-    t.string "name", :null => false
+    t.string "name"
   end
 
   create_table "g_image_categories", :force => true do |t|
-    t.string   "name",                                          :null => false
-    t.datetime "updated_at", :default => '2013-09-24 13:17:59'
+    t.string   "name"
+    t.datetime "updated_at", :default => '2013-09-11 09:16:13'
   end
 
   create_table "g_images", :force => true do |t|
@@ -88,5 +88,11 @@ ActiveRecord::Schema.define(:version => 20130924093036) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "watching_categories", :force => true do |t|
+    t.integer  "user_id",             :null => false
+    t.integer  "g_image_category_id", :null => false
+    t.datetime "created_at"
+  end
 
 end

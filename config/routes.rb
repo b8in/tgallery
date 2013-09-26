@@ -15,6 +15,7 @@ Tgallery::Application.routes.draw do
 
   resource :likes, only: [:create], as: 'set_like'
   resource :user_comments, only: [:create], as: "create_comment"
+  resource :watching_categories, only: [:create, :destroy]
 
   root to:"homes#index"
   # The priority is based upon order of creation:

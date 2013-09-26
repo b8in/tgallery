@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :likes, through: :e_histories, source: :eventable, source_type: 'Like', dependent: :destroy
 
   has_many :events, through: :e_histories
+  has_many :watching_categories, dependent: :destroy
+  has_many :g_image_categories, through: :watching_categories
 
   validates :email,
             presence: true,
