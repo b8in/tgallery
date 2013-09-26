@@ -1,0 +1,21 @@
+pusher:
+  ssl: false
+  disable_statistics: true
+  disable_flash: true
+  wss_host: '192.168.137.142'   #'127.0.0.1'
+  wss_port: 3004
+  api_host: '127.0.0.1'
+  api_port: 4567
+  app_id: '1'
+  app_key: 'c46c644b78f84661ace01b35dffceabc'
+  app_secret: '15c85d0ce00c492888423aca73f65d19'
+
+mailer:
+  address: 'smtp.gmail.com'
+  port: 587
+  domain: 'mail.google.com'
+  user_name: 'ebooks.zmm@gmail.com'
+  password: 'a63Nsr.lp'
+  authentication: :plain
+  enable_starttls_auto: true
+  url_host: 'localhost:3000'
