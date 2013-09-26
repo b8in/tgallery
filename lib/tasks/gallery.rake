@@ -33,9 +33,7 @@ namespace :gallery do
       if cat.blank?
         puts "\n ERROR:  Category #{args.category_name} not exists.\n\n "
       else
-        r = Random.new
-        n = r.rand()*10000 % 10000
-        cat.g_images.create(name:"file#{n}", image: File.open(args.image_full_name))
+        cat.g_images.create(name:args.image_full_name.rpartition('/')[2], image: File.open(args.image_full_name))
         puts "\n SUCCESS:  Image #{args.image_full_name} is upload in category #{args.category_name}. \n\n"
       end
     end
