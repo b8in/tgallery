@@ -10,4 +10,10 @@ class UserWatchCategory < ActionMailer::Base
     mail(to: Settings.mailer.user_name)  #user.email
   end
 
+  def send_notification_email(img_categories, user_name, user_email)
+    @categories = img_categories
+    @user_name = user_name
+    mail(to: Settings.mailer.user_name) #user_email
+  end
+
 end

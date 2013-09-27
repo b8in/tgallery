@@ -1,0 +1,12 @@
+!!!DOCTYPE html
+%html
+%head
+  %title
+    Tgallery Notifier
+%body
+  %h3.text-align-center-aa
+    = "Dear #{@user_name}!"
+  - @categories.each do |category|
+    %div
+      %p
+        = "You subscribed to changes on category #{category.name}. There are added new images FIX!!!."       #FIXME

@@ -25,12 +25,8 @@ class GImage < ActiveRecord::Base
 
   protected
   def send_email_to_subscribed_user
-    unless self.g_image_category.blank?
-      subscribed_users = self.g_image_category.users
-      subscribed_users.each do |user|
-        UserWatchCategory.upload_new_image_mail(self, user.name).deliver
-      end
-    end
+    #Resque.enqueue(UserNiotifierWorker, self.id)
+    Resque.enqueue(NewImagesNiotifier)
   end
 
 end

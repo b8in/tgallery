@@ -20,6 +20,9 @@ gem 'validate_url'
 gem 'validate_email'
 gem 'rails_config'
 
+gem 'resque', :require => 'resque/server'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.12'
   gem "factory_girl_rails", "~> 4.0"
