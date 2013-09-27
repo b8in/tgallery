@@ -21,3 +21,5 @@
 
 /db/seeds/images
 /public/uploads
+
+/config/environments/*.yml
