@@ -1,6 +1,7 @@
 Tgallery::Application.routes.draw do
 
   devise_for :users
+  mount Resque::Server, at: "/resque"
 
   get '/categories', to: "categories#index"
   get '/categories/:category_name', to:"categories#show_by_name", as:"category"

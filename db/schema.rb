@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130925133606) do
+ActiveRecord::Schema.define(:version => 20130928071435) do
 
   create_table "e_histories", :force => true do |t|
     t.integer  "user_id"
@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(:version => 20130925133606) do
   end
 
   create_table "g_images", :force => true do |t|
-    t.string  "name"
-    t.string  "image"
-    t.integer "g_image_category_id"
-    t.integer "likes_count",         :default => 0
-    t.integer "user_comments_count", :default => 0
+    t.string   "name"
+    t.string   "image"
+    t.integer  "g_image_category_id"
+    t.integer  "likes_count",         :default => 0
+    t.integer  "user_comments_count", :default => 0
+    t.datetime "created_at"
   end
 
   create_table "likes", :force => true do |t|
