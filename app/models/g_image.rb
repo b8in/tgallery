@@ -28,7 +28,7 @@ class GImage < ActiveRecord::Base
     unless self.g_image_category.blank?
       subscribed_users = self.g_image_category.users
       subscribed_users.each do |user|
-        UserWatchCategory.upload_new_image_mail(self.id, user.name).deliver!
+        UserWatchCategory.upload_new_image_mail(self.id, user.name).deliver_in(1.minute)
       end
     end
   end
