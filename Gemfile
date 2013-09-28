@@ -7,7 +7,34 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 gem 'puma'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'kaminari'
 
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+
+gem 'validate_url'
+gem 'validate_email'
+gem 'rails_config'
+
+gem 'resque', :require => 'resque/server'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+# sample:  https://github.com/jherrm/Resque-Scheduler-Example
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.12'
+  gem "factory_girl_rails", "~> 4.0"
+end
+
+group :test do
+  gem "shoulda-matchers"
+#  gem "capybara"
+  gem 'database_cleaner'
+#  gem 'selenium-webdriver'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,6 +50,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'twitter-bootstrap-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

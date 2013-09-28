@@ -18,3 +18,8 @@
 /*~
 /Gemfile.lock
 /config/database.yml
+
+/db/seeds/images
+/public/uploads
+
+/config/environments/*.yml

@@ -1,0 +1,28 @@
+%h3.text-align-center-aa
+  = "#{@category.name.capitalize}"
+.box-for-user-subscribe-category-btn
+  - if @user_watch_this_category_id                    #FIXME replace to partial
+    = link_to "Unsubscribe this category", watching_categories_path(id: 0, category_id: @category.id), method: :delete,
+                class: 'user-subscribe-category-btn', remote: true
+  - else
+    - if user_signed_in?
+      = link_to "Subscribe this category", watching_categories_path(category_id: @category.id), method: :post,
+                  class: 'user-subscribe-category-btn', remote: true
+    - else
+      = link_to "Subscribe this category", new_user_session_path, class: 'user-subscribe-category-btn'
+#images-container
+  - @images.each do |img|
+    .image-box.text-align-center-aa
+      = link_to (image_tag img.image.url, title: img.name), picture_path(@category.name, img.id)
+.box-for-user-subscribe-category-btn
+  - if @user_watch_this_category_id                    #FIXME replace to partial
+    = link_to "Unsubscribe this category", watching_categories_path(id: 0, category_id: @category.id), method: :delete,
+                class: 'user-subscribe-category-btn', remote: true
+  - else
+    - if user_signed_in?
+      = link_to "Subscribe this category", watching_categories_path(category_id: @category.id), method: :post,
+                  class: 'user-subscribe-category-btn', remote: true
+    - else
+      = link_to "Subscribe this category", new_user_session_path, class: 'user-subscribe-category-btn'
+
+= paginate @images

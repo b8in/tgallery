@@ -1,0 +1,63 @@
+// Place all the styles related to the pictures controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// for comments
+
+.comment_time {
+  float:right;
+}
+
+.comment_nickname {
+  margin: 10px 0 0 10px;
+}
+
+.comment_description {
+  word-wrap: break-word;
+  margin: 10px 0 0 10px;
+  font-family: "Courier New";
+
+}
+
+.comment_field {
+  width: 70%;
+  min-height: 40px;
+}
+
+.comment_block {
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+blockquote:nth-child(odd) {
+  border-radius: 0 7px 7px 0;
+  background-color: rgba(216, 216, 216, 0.16);
+}
+
+blockquote {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 10px;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+.comments_block small {
+  font-size: 10px;
+}
+
+#all_comments, #close_comments {
+  padding: 7px 0 7px 0;
+  cursor: pointer;
+  margin-bottom: 3px;
+  text-align: center;
+  background-color: #357ebd;
+  color: #fff;
+}
+
+.error_messages {
+  color: red;
+}

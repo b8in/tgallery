@@ -1,0 +1,42 @@
+%h3.text-align-center-aa
+  = @image.name
+.row
+  .span5.offset1.pull-left
+    = 'Total '
+    %span{id: 'span_likes_count'}
+      = "#{@image.likes.count}"
+    = " likes"
+  .span1.offset1.pull-right
+    = button_to "I like", set_like_path(image_id: @image.id), method: :post, remote: true
+.image-box.text-align-center-aa
+  = image_tag @image.image.url
+.comments_block
+  -if @image.user_comments_count > 3
+    #all_comments
+      %b= 'Show previous comments'
+  #close_comments
+    %b= 'Hide previous comments'
+  .comments
+    %a{name: 'comments'}
+    - i = @image.user_comments_count - 3
+    - @comments.each do |comment|
+      %blockquote{id: i}
+        - i += 1
+        .comment_nickname
+          %b.text-primary
+            = comment.e_history.user.name
+        .comment_description
+          = comment.text
+        %br
+        %small.comment_time
+          = time_ago_in_words comment.e_history.date
+          = 'ago'
+        %hr
+.comment-box.text-align-center-aa
+  = form_for @comment, url: create_comment_path(image_id: @image.id), remote: true do |f|
+    = f.text_field :author, placeholder: 'your nickname' unless current_user
+    %br
+    = f.text_area :text, class: 'comment-textarea', rows: 10, align: 'center'
+    %br
+    = show_simple_captcha unless current_user
+    = f.submit "Add comment", class: 'btn-aa'

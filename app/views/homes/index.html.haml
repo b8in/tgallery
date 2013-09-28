@@ -1,4 +1,23 @@
-%h
-  ROOT page
-%p
-  Find me in app/views/homes/index.html.erb
+%h3.text-align-center-aa
+  Dear Friend
+#about-tgallery
+  %p
+    Это супер пупер галлерея, blah-blah-blah, доступ к которой возможно получит только
+    = link_to 'зарегистировавшись', new_user_registration_path
+    = " и "
+    = link_to 'авторизовавшись', new_user_session_path
+    = "."
+%h3.text-align-center-aa
+  Last galleries
+.image-categories-container
+  - 2.times do |i|
+    - unless @categories[i*3].blank?
+      .row
+        - 3.times do |j|
+          - unless @categories[i*3+j].blank?
+            - cat = @categories[i*3+j]
+            .span4
+              .image-category.text-align-center-aa
+                = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), category_path(cat.name)
+                %br
+                = link_to cat.name.capitalize, category_path(cat.name)

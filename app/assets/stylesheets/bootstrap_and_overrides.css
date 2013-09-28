@@ -1,0 +1,94 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+
+body {
+  background-color: darkseagreen;
+}
+
+.bottom-page-div {
+  width: 100%;
+  height: 1px;
+  margin-top: 19px;
+}
+
+#page-container {
+  background-color: white;
+  border-radius: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.text-align-center-aa {
+  text-align: center;
+}
+
+#about-tgallery {
+  margin-bottom: 30px;
+}
+
+.image-category {
+  margin: 30px;
+  margin-top: 5px;
+}
+
+.horizontal-divs {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.image-box {
+  margin: 10px;
+}
+
+.category-item {
+  margin: 15px;
+}
+
+.events-table th{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.events-table td{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.events-table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.btn-aa {
+  margin: 20px;
+}
+
+.pagination {
+  padding-bottom: 15px;
+}
+
+.simple_captcha {
+  display: table;
+  margin: 0 auto;
+}
+
+fieldset {
+  margin: 10px;
+}
+
+.hint {
+  font-size: x-small;
+}
+
+.with-hint {
+  margin-bottom: -10px;
+}
+
+.blue-color {
+  color: blue;
+}

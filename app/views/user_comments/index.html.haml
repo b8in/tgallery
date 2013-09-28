@@ -1,0 +1,13 @@
+%h3.text-align-center-aa
+  All comments
+%div
+  - @comments.each do |com|
+    %div
+      = 'Author: '+com.e_history.user.name
+      %br
+      = 'Date: '+com.e_history.date.to_s
+      %br
+      = 'Image: '+ com.g_image.name
+      %br
+      = 'Text: '+com.text
+  - paginate @comments

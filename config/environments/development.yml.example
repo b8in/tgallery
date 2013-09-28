@@ -1,0 +1,22 @@
+pusher:
+  ssl: false
+  disable_statistics: true
+  disable_flash: true
+  wss_host: '127.0.0.1'   # '192.168.137.142'
+  wss_port: 3004
+  api_host: '127.0.0.1'
+  api_port: 4567
+  app_id: '1'
+  app_key: '****'
+  app_secret: '****'
+
+mailer:
+  address: 'smtp.gmail.com'
+  port: 587
+  domain: 'mail.google.com'
+  user_name: '***my_email***@gmail.com'
+  password: '***password***'
+  authentication: :plain
+  enable_starttls_auto: true
+  url_host: 'localhost:3000'
+

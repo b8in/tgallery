@@ -34,4 +34,19 @@ Tgallery::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.action_mailer.smtp_settings = {
+      address:              Settings.mailer.address,
+      port:                 Settings.mailer.port,
+      domain:               Settings.mailer.domain,
+      user_name:            Settings.mailer.user_name,
+      password:             Settings.mailer.password,
+      authentication:       Settings.mailer.authentication,
+      enable_starttls_auto: Settings.mailer.enable_starttls_auto
+  }
+  config.action_mailer.default_url_options = {
+      host: Settings.mailer.url_host
+  }
+  config.action_mailer.perform_deliveries = true
+
 end
