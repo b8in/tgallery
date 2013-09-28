@@ -8,7 +8,7 @@
     = "Dear #{@user_name}!"
   %div
     %p
-      = "You subscribed to changes on category #{@image.g_image_category.name}. There are added new image #{@image.name}."
+      = "You subscribed to changes on category '#{@image.g_image_category.name.capitalize}'. There are added new image #{@image.name}."
     %p
       = "Image preview:"
       = link_to (image_tag attachments['image.jpg'].url), picture_url(@image.g_image_category.name, @image.id)

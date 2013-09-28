@@ -6,7 +6,13 @@
 %body
   %h3.text-align-center-aa
     = "Dear #{@user_name}!"
-  - @categories.each do |category|
+  - @new_images.each do |cat_name, imgs|
     %div
       %p
-        = "You subscribed to changes on category #{category.name}. There are added new images FIX!!!."       #FIXME
+        = "You subscribed to changes on category #{cat_name}."
+      %div
+        %p
+          = "There are #{imgs.size} new images in this category:"
+        - imgs.each do |img|
+          %div
+            = link_to (image_tag attachments[img.name].url), picture_url(cat_name, img.id)
