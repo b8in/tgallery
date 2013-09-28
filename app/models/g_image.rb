@@ -7,8 +7,6 @@ class GImage < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   paginates_per 5
 
-  after_create :send_email_to_subscribed_user
-
   scope :only_with_category, -> { where("g_image_category_id IS NOT NULL") }
 
   validates :name,
@@ -22,11 +20,5 @@ class GImage < ActiveRecord::Base
   validates :user_comments_count,
             presence: true,
             numericality: { only_integer: true}
-
-  protected
-  def send_email_to_subscribed_user
-    #Resque.enqueue(UserNiotifierWorker, self.id)
-    Resque.enqueue(NewImagesNiotifier)
-  end
 
 end
