@@ -11,16 +11,8 @@ module Webs
       @webs = webs
     end
 
-    def test_event
-      webs.event 'test-channel', 'test-event', {message: 'test'}
-    end
-
-    def send_chat_message(channel_name, event_name, data_hash={})
+    def notify(channel_name, event_name, data_hash={})
       webs.event channel_name, event_name, data_hash
-    end
-
-    def notify_chat_closing(channel_name, event_name)
-      webs.event channel_name, event_name
     end
 
   end

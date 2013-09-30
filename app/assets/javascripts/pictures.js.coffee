@@ -1,7 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script
-
+#= require pusher
+#= require lib/webs
+#= require new_comment_notifier/new_comment_notifier
 
 $(document).ready ->
   $('.comment-textarea').width($('.image-box').width()-400)
@@ -26,3 +28,6 @@ $(document).ready ->
           $(".comments blockquote").slideDown "slow"
 
           $('.comment-textarea').val('')
+
+  channel = 'new-comment-channel'
+  notifier = new NewCommentNotifier(channel)

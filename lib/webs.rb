@@ -26,7 +26,7 @@ module Webs
   end
 
   def logger
-    @logger ||= ActiveSupport::Logger.new("log/webs.log", Rails.logger.level)
+    @logger ||= Logger.new("log/webs.log", Rails.logger.level)
   end
 
   def notify(event, *params)
@@ -46,9 +46,9 @@ module Webs
 
   def pusher
     @pusher ||= (
-    Pusher.encrypted = Settings.pusher.ssl  #Enable or disable SLL depending from environment
-    Pusher.host   = Settings.pusher.api_host
-    Pusher.port   = Settings.pusher.api_port
+    #Pusher.encrypted = Settings.pusher.ssl  #Enable or disable SLL depending from environment
+    #Pusher.host   = Settings.pusher.api_host
+    #Pusher.port   = Settings.pusher.api_port
                                                                     # Configure the application.
     Pusher.app_id = Settings.pusher.app_id
     Pusher.key = Settings.pusher.app_key
