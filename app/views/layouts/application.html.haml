@@ -5,6 +5,7 @@
     Tgallery
   = stylesheet_link_tag    "application", :media => "all"
   = javascript_include_tag "application"
+  = yield :include_gon
   = csrf_meta_tags
 %body
   = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path, class: 'row' do
