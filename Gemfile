@@ -20,6 +20,9 @@ gem 'validate_url'
 gem 'validate_email'
 gem 'rails_config'
 
+gem "pusher", "~> 0.12.0"
+gem 'gon'#, '3.0.5'
+
 gem 'resque', :require => 'resque/server'
 gem 'resque-scheduler', :require => 'resque_scheduler'
 # sample:  https://github.com/jherrm/Resque-Scheduler-Example
