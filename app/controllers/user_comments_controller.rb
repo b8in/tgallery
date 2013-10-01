@@ -33,7 +33,10 @@ class UserCommentsController < ApplicationController
                      stat: 'success'
       }
     else
-      redirect_to :back    # FIXME: json flash-error
+      render json: { stat: 'error',
+                     message: "You are not authorized and enter wrong captcha",
+                     image_comments_count: -1
+      }
     end
   end
 

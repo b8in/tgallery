@@ -11,8 +11,6 @@
     listenChannel: ->
 
       @newCommentCallback = ((responseData)->
-        console.log(TGallery.userId)
-        console.log(responseData.data.author_id)           # FIXME: rm console.log
         if responseData.data.author_id != TGallery.userId
           comment = responseData.data.message
           nickname = responseData.data.author_name
