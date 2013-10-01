@@ -18,11 +18,15 @@
 
 
 $(document).ready ->
-  default_page_container_height = $('#page-container').height()
+#  default_page_container_height = $('#page-container').height()
 
-  x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
+  x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)
   $('#page-container').height(x - 20 )   #  20 => $('.navbar').attr("margin-bottom")
 
-  $(window).resize ->
-    x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
+#  $(window).resize ->
+#    x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
+#    $('#page-container').height(x - 20 )
+
+  $('#page-container').resize ->
+    x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)
     $('#page-container').height(x - 20 )
