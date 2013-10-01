@@ -1,3 +1,6 @@
+= content_for :include_js do
+  = javascript_include_tag 'categories'
+
 %h3.text-align-center-aa
   = "#{@category.name.capitalize}"
 .box-for-user-subscribe-category-btn
