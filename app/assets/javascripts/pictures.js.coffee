@@ -15,6 +15,10 @@ $(document).ready ->
         if response.responseJSON.image_likes_count
           $('.navbar').after("<div class='alert fade in alert-error'><button class='close' data-dismiss='alert'>×</button>"+response.responseJSON.message+"</div>")
 
+        if response.responseJSON.image_comments_count
+          $('.navbar').after("<div class='alert fade in alert-error'><button class='close' data-dismiss='alert'>×</button>"+response.responseJSON.message+"</div>")
+
+
       if (response.responseJSON.stat) && (response.responseJSON.stat is "success")
         if response.responseJSON.image_likes_count
           $('#span_likes_count').text(response.responseJSON.image_likes_count)
