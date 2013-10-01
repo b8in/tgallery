@@ -1,6 +1,9 @@
 = content_for :include_gon do
   = include_gon camel_case: true, namespace: 'TGallery'
 
+= content_for :include_js do
+  = javascript_include_tag 'pictures'
+
 %h3.text-align-center-aa
   = @image.name
 .row

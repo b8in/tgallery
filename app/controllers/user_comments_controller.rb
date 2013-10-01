@@ -21,8 +21,10 @@ class UserCommentsController < ApplicationController
       event = 'new-comment'
       Webs.pusher
       Webs.notify('notify', channel, event, {message: comment.text, image_name: image.name,
-                  author_name: comment.author || current_user.name, author_id: session[:user_id],
-                  image_comments_count: image.user_comments_count})
+                  image_url: picture_path(image.g_image_category.name, image.id),
+                  author_name: comment.author || current_user.name,
+                  author_id: session[:user_id], image_comments_count: image.user_comments_count})
+
 
 
       render json: { comment: comment.text,
