@@ -5,7 +5,7 @@ class UserComment < ActiveRecord::Base
   belongs_to :g_image, counter_cache: true
   has_one :e_history, as: :eventable, dependent: :destroy
 
-  paginates_per 10
+  paginates_per 5 #fixme: 10
 
   validates :text,
             presence: true,

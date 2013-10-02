@@ -2,12 +2,18 @@
   All comments
 %div
   - @comments.each do |com|
-    %div
-      = 'Author: '+com.e_history.user.name
-      %br
-      = 'Date: '+com.e_history.date.to_s
-      %br
-      = 'Image: '+ com.g_image.name
-      %br
-      = 'Text: '+com.text
-  - paginate @comments
+    .comment-div.green-border
+      .row-fluid.green-color
+        .span4
+          = 'Author:'
+          %span.white-color
+            = (com.author || com.e_history.user.name)
+        .span4
+          = 'Date: '
+          %span.white-color
+            = (com.e_history && com.e_history.date.to_s) || 'NULL'
+        .span4
+          = 'Image: '+ com.g_image.name
+      .comment-text
+        = 'Text: '+com.text
+  = paginate @comments
