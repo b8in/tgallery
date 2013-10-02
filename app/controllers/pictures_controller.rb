@@ -12,4 +12,8 @@ class PicturesController < ApplicationController
 
     gon.pusher_config = Webs.pusher_config
   end
+
+  def refresh_captcha_div
+    render partial: "simple_captcha/simple_captcha_block"
+  end
 end

@@ -12,6 +12,7 @@ Tgallery::Application.routes.draw do
   get '/events/:user_id/:event_name', to:"events#show", as:"event"
 
   post '/pusher/auth'
+  post '/pictures/refresh_captcha_div'
 
   match '/auth/facebook/callback' => 'services#create'
   resources :services, only: [:create, :destroy]
