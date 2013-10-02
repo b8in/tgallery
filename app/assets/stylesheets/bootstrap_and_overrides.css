@@ -92,3 +92,23 @@ fieldset {
 .blue-color {
   color: blue;
 }
+
+.white-color {
+  color: #ffffff;
+}
+
+.green-color {
+  background-color: green;
+}
+
+.green-border {
+  border: 1px solid green;
+}
+
+.comment-text {
+  padding: 20px;
+}
+
+.comment-div {
+  margin-bottom: 30px;
+}

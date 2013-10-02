@@ -18,6 +18,11 @@
 
 
 $(document).ready ->
+
+  $('#refresh-captcha-btn').width($('.simple_captcha').width())
+  $(".refresh_image").click ->
+    $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
+
 #  default_page_container_height = $('#page-container').height()
 
   x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)

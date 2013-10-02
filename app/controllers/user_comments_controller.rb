@@ -1,7 +1,7 @@
 class UserCommentsController < ApplicationController
 
   def index
-    @comments = UserComment.joins(:e_history).includes(:e_history).order('e_histories.date').page params[:page]
+    @comments = UserComment.includes(e_history: [:user]).order.page params[:page]
   end
 
   def create
@@ -23,13 +23,13 @@ class UserCommentsController < ApplicationController
       Webs.notify('notify', channel, event, {message: comment.text, image_name: image.name,
                   image_url: picture_path(image.g_image_category.name, image.id),
                   author_name: comment.author || current_user.name,
-                  author_id: session[:user_id], image_comments_count: image.user_comments_count})
+                  author_id: session[:user_id], image_comments_count: image.user_comments_count+1})
 
 
 
       render json: { comment: comment.text,
                      author: comment.author || current_user.name,
-                     image_comments_count: image.user_comments_count,
+                     image_comments_count: image.user_comments_count+1,
                      stat: 'success'
       }
     else
