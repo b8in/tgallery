@@ -45,5 +45,11 @@
     %br
     = f.text_area :text, class: 'comment-textarea', rows: 10, align: 'center'
     %br
-    = show_simple_captcha unless current_user
+    - unless current_user
+      #captcha_block
+        #captcha
+          = render "simple_captcha/simple_captcha_block"
+        %button{id: 'refresh-captcha-btn', class: 'refresh_image', type: :button}
+          %i{class: "icon-refresh"}
+          = "refresh captcha"
     = f.submit "Add comment", class: 'btn-aa'

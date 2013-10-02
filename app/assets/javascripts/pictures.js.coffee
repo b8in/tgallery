@@ -6,6 +6,12 @@
 #= require new_comment_notifier/new_comment_notifier
 
 $(document).ready ->
+
+  $('#refresh-captcha-btn').width($('.simple_captcha').width())
+
+  $(".refresh_image").click ->
+    $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
+
   $('.comment-textarea').width($('.image-box').width()-400)
 
   $(document).ajaxSuccess (event, response, settings) ->
