@@ -5,7 +5,62 @@
 #= require lib/webs
 #= require new_comment_notifier/new_comment_notifier
 
+HtmlEncode = (val) ->
+  $("<div/>").text(val).html()
+
 $(document).ready ->
+
+#  if ($.cookie 'nickname')
+#    $("#comment_nickname").val($.cookie 'nickname')
+
+  # LOAD COMMENTS
+  $("#close_comments").hide()
+  $("#all_comments").on "click", ->
+    id = $(".image-box .number").attr("id")
+    offset = $("blockquote").length
+    $.ajax
+      url: "/load_all_comments"
+      data:
+        id: id
+        offset: offset
+      type: "post"
+      dataType: "json"
+      success: (response) ->
+        $("#all_comments").hide()
+        $("#close_comments").show()
+        comments = response.comments
+        str = undefined
+        i = comments.length - 1
+        $(".comments").slideDown 500, ->
+          $.each comments, (key) ->
+            str = HtmlEncode(comments[key].text)
+            $(".comments").prepend "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + comments[key].author + "</span></b><br>" + "<span class = \"comment_description\">" + str + "</span><br>" + "<hr></blockquote>"
+            id = 'blockquote#'+i
+            $('#page-container').height($('#page-container').height() + $(id).outerHeight(true))
+            $(".comments blockquote").slideDown "slow"
+            i--
+          $('html,body').animate({scrollTop: $(".comments_block").offset().top - $('.navbar .container').height()},'slow');
+
+  $("#close_comments").on "click", ->
+    count = $("blockquote").length - 3
+    i = 1
+
+    while i < count
+      $("#" + i + "").slideToggle 500, ->
+        id = 'blockquote#'+i
+        size = $(id).height()
+        $(this).remove()
+        $('#page-container').height($('#page-container').height() - size - 1)
+      i++
+    if count > 0
+      $("#0").slideToggle 500, ->
+        id = 'blockquote#0'
+        size = $(id).outerHeight(true)
+        $(this).remove()
+        $('#page-container').height($('#page-container').height() - size)
+
+    $("#all_comments").show()
+    $("#close_comments").hide()
 
   $('.comment-textarea').width($('.image-box').width()-400)
 

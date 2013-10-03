@@ -40,4 +40,18 @@ class UserCommentsController < ApplicationController
     end
   end
 
+  def load_all_comments
+    image = GImage.find(params[:id])
+    comments = image.user_comments.includes(e_history: [:user]).reverse_order.offset(params[:offset])
+    array = []
+    comments.each do |com|
+      data_hash = {}
+      data_hash[:text] = com.text
+      data_hash[:author] = com.author || com.e_history.user.name
+      data_hash[:date] = com.e_history.date || 'NULL'
+      array << data_hash
+    end
+    render json: {comments: array}
+  end
+
 end

@@ -13,6 +13,7 @@ Tgallery::Application.routes.draw do
 
   post '/pusher/auth'
   post '/pictures/refresh_captcha_div'
+  post '/load_all_comments', to: "user_comments#load_all_comments"
 
   match '/auth/facebook/callback' => 'services#create'
   resources :services, only: [:create, :destroy]
