@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script
 
+#= require jquery-cookie
 #= require pusher
 #= require lib/webs
 #= require new_comment_notifier/new_comment_notifier
@@ -11,8 +12,8 @@ HtmlEncode = (val) ->
 
 $(document).ready ->
 
-#  if ($.cookie 'nickname')
-#    $("#comment_nickname").val($.cookie 'nickname')
+  if ($.cookie 'nickname') && ($("#user_comment_author"))
+    $("#user_comment_author").val($.cookie 'nickname')
 
   # LOAD COMMENTS
   $("#close_comments").hide()
@@ -63,7 +64,11 @@ $(document).ready ->
     $("#all_comments").show()
     $("#close_comments").hide()
 
+  #===================================================================================
+
   $('.comment-textarea').width($('.image-box').width()-400)
+
+  #===================================================================================
 
   $(document).ajaxSuccess (event, response, settings) ->
 
@@ -97,6 +102,15 @@ $(document).ready ->
           $(".comments blockquote").slideDown "slow"
 
           $('.comment-textarea').val('')
+
+          if ($("#user_comment_author"))
+            unless ($.cookie 'nickname')
+              $.cookie 'nickname', $("#user_comment_author").val(), { expires: 30 , path: '/'  }
+            else
+              if ($.cookie 'nickname').toString() != $("#user_comment_author").val()
+                $.cookie 'nickname', $("#user_comment_author").val(), { expires: 30 , path: '/'  }
+
+  #==============================================================================
 
   channel = 'new-comment-channel'
   notifier = new NewCommentNotifier(channel)
