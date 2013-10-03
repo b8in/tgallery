@@ -2,7 +2,7 @@ class UserCommentsController < ApplicationController
 include ActionView::Helpers::DateHelper
 
   def index
-    @comments = UserComment.includes(e_history: [:user]).order.page params[:page]
+    @comments = UserComment.includes(e_history: [:user]).order(:created_at).page params[:page]
   end
 
   def create
@@ -42,17 +42,13 @@ include ActionView::Helpers::DateHelper
 
   def load_all_comments
     image = GImage.find(params[:id])
-    comments = image.user_comments.includes(e_history: [:user]).reverse_order.offset(params[:offset])
+    comments = image.user_comments.includes(e_history: [:user]).order('created_at').reverse_order.offset(params[:offset])
     array = []
     comments.each do |com|
       data_hash = {}
       data_hash[:text] = com.text
       data_hash[:author] = com.author || com.e_history.user.name
-      if com.e_history
-        data_hash[:date] = "#{time_ago_in_words(com.e_history.date)} ago"
-      else
-        data_hash[:date] = "#{time_ago_in_words(com.created_at)} ago"
-      end
+      data_hash[:date] = "#{time_ago_in_words(com.created_at)} ago"
       array << data_hash
     end
     render json: {comments: array}

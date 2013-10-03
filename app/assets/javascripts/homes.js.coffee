@@ -15,8 +15,6 @@ newCommentCallback = (response) ->
     response.data.author_name+' [ <a href='+response.data.image_url+'>'+response.data.image_name+
     '</a> ]</b></div><div class="comment_description">'+response.data.message+'</div><br/><small class = \"comment_time\">fresh</small><hr></blockquote>')
 
-
-
 $(document).ready ->
 
   settings = TGallery.pusherConfig
@@ -34,6 +32,5 @@ $(document).ready ->
   Pusher.cdn_https = undefined
 
   pusher = new Pusher(settings.key, {encrypted: settings.ssl, disableStats: settings.disable_statistics, disableFlash: settings.disable_flash})
-#  pusher = new Pusher(TGallery.pusherConfig.key)
   channel = pusher.subscribe('new-comment-channel')
   channel.bind 'new-comment', newCommentCallback

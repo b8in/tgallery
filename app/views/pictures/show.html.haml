@@ -36,10 +36,7 @@
           = comment.text
         %br
         %small.comment_time
-          - if comment.e_history
-            = time_ago_in_words(comment.e_history.date)
-          - else
-            = time_ago_in_words(comment.created_at)
+          = time_ago_in_words(comment.created_at)
           = 'ago'
         %hr
 .comment-box.text-align-center-aa

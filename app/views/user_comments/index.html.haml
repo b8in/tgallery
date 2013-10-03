@@ -11,7 +11,7 @@
         .span4
           = 'Date: '
           %span.white-color
-            = (com.e_history && com.e_history.date.to_s) || 'NULL'
+            = com.created_at.getlocal.strftime("%H:%M")
         .span4
           = 'Image: '+ com.g_image.name
       .comment-text
