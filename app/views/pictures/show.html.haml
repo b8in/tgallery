@@ -34,11 +34,13 @@
             = comment.author || comment.e_history.user.name
         .comment_description
           = comment.text
-        - if comment.author.blank?
-          %br
-          %small.comment_time
-            = time_ago_in_words comment.e_history.date
-            = 'ago'
+        %br
+        %small.comment_time
+          - if comment.e_history
+            = time_ago_in_words(comment.e_history.date)
+          - else
+            = time_ago_in_words(comment.created_at)
+          = 'ago'
         %hr
 .comment-box.text-align-center-aa
   = form_for @comment, url: create_comment_path(image_id: @image.id), remote: true do |f|

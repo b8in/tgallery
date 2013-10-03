@@ -1,4 +1,5 @@
 class UserCommentsController < ApplicationController
+include ActionView::Helpers::DateHelper
 
   def index
     @comments = UserComment.includes(e_history: [:user]).order.page params[:page]
@@ -22,9 +23,8 @@ class UserCommentsController < ApplicationController
       Webs.pusher
       Webs.notify('notify', channel, event, {message: comment.text, image_name: image.name,
                   image_url: picture_path(image.g_image_category.name, image.id),
-                  author_name: comment.author || current_user.name,
-                  author_id: session[:user_id], image_comments_count: image.user_comments_count+1})
-
+                  author_name: comment.author || current_user.name, author_id: session[:user_id],
+                  image_comments_count: image.user_comments_count+1})
 
 
       render json: { comment: comment.text,
@@ -48,10 +48,13 @@ class UserCommentsController < ApplicationController
       data_hash = {}
       data_hash[:text] = com.text
       data_hash[:author] = com.author || com.e_history.user.name
-      data_hash[:date] = com.e_history.date || 'NULL'
+      if com.e_history
+        data_hash[:date] = "#{time_ago_in_words(com.e_history.date)} ago"
+      else
+        data_hash[:date] = "#{time_ago_in_words(com.created_at)} ago"
+      end
       array << data_hash
     end
     render json: {comments: array}
   end
-
 end

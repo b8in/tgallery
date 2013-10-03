@@ -13,7 +13,7 @@ newCommentCallback = (response) ->
     i++
   $('.comments').prepend('<blockquote id="comment_4"><div class="comment_nickname"><b class="text-primary">'+
     response.data.author_name+' [ <a href='+response.data.image_url+'>'+response.data.image_name+
-    '</a> ]</b></div><div class="comment_description">'+response.data.message+'</div><hr></blockquote>')
+    '</a> ]</b></div><div class="comment_description">'+response.data.message+'</div><br/><small class = \"comment_time\">fresh</small><hr></blockquote>')
 
 
 

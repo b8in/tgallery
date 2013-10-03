@@ -34,7 +34,7 @@ $(document).ready ->
         $(".comments").slideDown 500, ->
           $.each comments, (key) ->
             str = HtmlEncode(comments[key].text)
-            $(".comments").prepend "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + comments[key].author + "</span></b><br>" + "<span class = \"comment_description\">" + str + "</span><br>" + "<hr></blockquote>"
+            $(".comments").prepend "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + comments[key].author + "</span></b><br>" + "<span class = \"comment_description\">" + str + "</span><br><small class=\"comment_time\">"+comments[key].date+"</small><hr></blockquote>"
             id = 'blockquote#'+i
             $('#page-container').height($('#page-container').height() + $(id).outerHeight(true))
             $(".comments blockquote").slideDown "slow"
@@ -73,18 +73,24 @@ $(document).ready ->
 
         if response.responseJSON.image_comments_count
           $('.navbar').after("<div class='alert fade in alert-error'><button class='close' data-dismiss='alert'>×</button>"+response.responseJSON.message+"</div>")
-
+          #refresh captcha image
+          $(".refresh_image").click()
 
       if (response.responseJSON.stat) && (response.responseJSON.stat is "success")
         if response.responseJSON.image_likes_count
           $('#span_likes_count').text(response.responseJSON.image_likes_count)
 
         if response.responseJSON.comment && response.responseJSON.author
+          #refresh captcha image
+          $(".refresh_image").click()
           # Init variables and add new comment
           comment = response.responseJSON.comment
           nickname = response.responseJSON.author
           i = +response.responseJSON.image_comments_count - 1
-          $(".comments").append "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + nickname + "</span></b><br>" + "<span class = \"comment_description\">" + comment + "</span><br>" + "<small class = \"comment_time\">fresh</small>" + "<hr></blockquote>"
+          $(".comments").append "<blockquote style =\"display:none;\" id = " + i + "><b><span class =\"comment_nickname text-primary\">" +
+            nickname + "</span></b><br><span class = \"comment_description\">" + comment +
+            "</span><br><small class = \"comment_time\">fresh</small><hr></blockquote>"
+
           id = 'blockquote#'+i
           $('#page-container').height($('#page-container').height() + $(id).outerHeight(true))
           $(".comments blockquote").slideDown "slow"
