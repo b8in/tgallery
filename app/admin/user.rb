@@ -1,5 +1,14 @@
 ActiveAdmin.register User do
+
+  filter :name
+  filter :email
+  filter :admin, as: :select
+  filter :created_at, as: :date_range
+  filter :last_sign_in_at, as: :date_range
+
+
   index do
+    selectable_column
     column :id
     column :name
     column :email, sortable: :email do |user|
@@ -26,9 +35,4 @@ ActiveAdmin.register User do
 
   end
 
-  filter :name
-  filter :email
-  filter :admin, as: :select
-  filter :created_at, as: :date_range
-  filter :last_sign_in_at, as: :date_range
 end
