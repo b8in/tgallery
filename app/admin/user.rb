@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  menu priority: 3
 
   filter :name
   filter :email

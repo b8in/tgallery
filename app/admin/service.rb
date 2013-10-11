@@ -1,4 +1,5 @@
 ActiveAdmin.register Service, as:'Social Network Providers' do
+  menu priority: 4
 
   filter :provider, as: :select, label: 'Select provider', collection: proc { Service.pluck(:provider).uniq }
   filter :user_name, as: :string, label: 'by name'

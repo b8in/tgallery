@@ -1,10 +1,12 @@
-ActiveAdmin.register UserComment do
+ActiveAdmin.register UserComment, as:'Comment' do
+  menu priority: 5
 
   filter :text, label: 'in comments text'
   filter :author_or_e_history_user_name, as: :string, label: 'by author'
   filter :g_image_name, as: :string, label: 'by image name'
   filter :created_at, label: 'Select by creation date'
 
+  actions :index, :destroy
 
   index do
     selectable_column

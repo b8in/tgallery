@@ -1,4 +1,5 @@
 ActiveAdmin.register GImage, as:'Image' do
+  menu priority: 7
 
   filter :name, label: 'by name'
   filter :g_image_category, label: 'Category'

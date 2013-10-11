@@ -1,4 +1,5 @@
 ActiveAdmin.register GImageCategory, as:'Category' do
+  menu priority: 6
 
   filter :name, as: :string, label: "by name"
   filter :updated_at, label: "Select by updating date"
