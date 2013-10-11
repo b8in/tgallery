@@ -16,7 +16,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     if model.g_image_category_id.blank?
       "uploads/#{mounted_as.to_s.pluralize}/without_category"
     else
-      "uploads/#{mounted_as.to_s.pluralize}/#{model.g_image_category_id}"
+      "uploads/#{mounted_as.to_s.pluralize}/#{model.g_image_category.name}"
     end
   end
 
