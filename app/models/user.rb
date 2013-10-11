@@ -20,7 +20,12 @@ class User < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false },
             email: true
-  validates :encrypted_password,
+  validates :password,
+            presence: true
+  validates :password_confirmation,
+            presence: true
+  validates :name,
+#            uniqueness: true,
             presence: true
   validates :admin,
             inclusion: { in: [true, false] }

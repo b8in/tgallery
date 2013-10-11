@@ -18,7 +18,7 @@ ActiveAdmin.register UserComment, as:'Comment' do
       truncate(com.text, length: 150)
     end
     column 'Image' do |com|
-      link_to com.g_image.name, '#'     #FIXME
+      link_to com.g_image.name, admin_image_path(com.g_image_id)
     end
     column :created_at, sortable: :created_at do |user|
       user.created_at.strftime("%e %B %Y, %R")

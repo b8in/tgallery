@@ -16,7 +16,9 @@ ActiveAdmin.register GImage, as:'Image' do
       image_tag(img.image.url(:thumb), width:64)
     end
     column :name
-    column 'Category', :g_image_category, sortable: 'g_image_categories.name'    #important: works with scoped_collection method
+    column 'Category', sortable: 'g_image_categories.name' do |img|   #important: works with scoped_collection method
+      img.g_image_category.name
+    end
     column 'URL' do |img|
       "/public#{img.image.url.to_s}"
     end
@@ -41,7 +43,7 @@ ActiveAdmin.register GImage, as:'Image' do
         img.image.url.to_s
       end
       row 'Category' do
-        link_to img.g_image_category.name, admin_category_path(img.g_image_category.id)
+        img.g_image_category.name
       end
       row :likes_count
       row 'Comments count' do

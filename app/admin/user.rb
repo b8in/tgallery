@@ -36,4 +36,53 @@ ActiveAdmin.register User do
 
   end
 
+
+  show do |user|
+    attributes_table do
+      row :id
+      row :name
+      row :email
+      row 'role' do
+        user.admin ? 'ADMIN' : 'User'
+      end
+      row 'Total comments' do
+        user.user_comments.count
+      end
+      row 'Total likes' do
+        user.likes.count
+      end
+      row 'watching categories' do
+        user.watching_categories.count
+      end
+      row :encrypted_password
+      row :reset_password_token
+      row :reset_password_sent_at
+      row :remember_created_at
+      row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :current_sign_in_ip
+      row :last_sign_in_ip
+      row :created_at
+      row :updated_at
+    end
+  end
+
+
+  form do |f|
+    f.semantic_errors :base
+    f.inputs 'User Details' do
+      f.input :name
+      f.input :email
+      f.input :admin
+      f.input :password
+      f.input :password_confirmation
+    end
+    f.actions do
+      label = f.object.new_record? ? 'Create' : 'Update'
+      f.action :submit, label: label, button_html: { disable_with: 'Wait...' }
+      f.action :cancel, label: 'Cancel', wrapper_html: { class: 'cancel' }
+    end
+  end
+
 end

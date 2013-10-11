@@ -9,7 +9,9 @@ ActiveAdmin.register GImageCategory, as:'Category' do
   index title: 'Category' do
     selectable_column
     column :name
-    column :updated_at
+    column 'Total images' do |category|
+      category.g_images.count
+    end
     column 'Total comments' do |category|
       total = 0
       category.g_images.each do |img|
@@ -24,6 +26,8 @@ ActiveAdmin.register GImageCategory, as:'Category' do
       end
       total
     end
+    column :updated_at
+
     actions
   end
 
