@@ -23,6 +23,7 @@ Tgallery::Application.routes.draw do
   resource :watching_categories, only: [:create, :destroy]
 
   root to:"homes#index"
+  ActiveAdmin.routes(self)
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
