@@ -3,10 +3,9 @@ ActiveAdmin.register User do
 
   filter :name
   filter :email
-  filter :admin, as: :select
+  filter :admin     #FIXME в active_admin 0.6.1 пока не работает as: :select так как он работал в 0.6.0
   filter :created_at, as: :date_range
   filter :last_sign_in_at, as: :date_range
-
 
   index do
     selectable_column
@@ -28,7 +27,7 @@ ActiveAdmin.register User do
       user.created_at.strftime("%e %B %Y, %R")
     end
     column :last_sign_in_at, sortable: :last_sign_in_at do |user|
-      user.last_sign_in_at.strftime("%e %B %Y, %R")
+      user.last_sign_in_at.blank? ? '' : user.last_sign_in_at.strftime("%e %B %Y, %R")
     end
     column :last_sign_in_ip
 
@@ -77,12 +76,36 @@ ActiveAdmin.register User do
       f.input :admin
       f.input :password
       f.input :password_confirmation
+
+      f.input :admin_password if f.object.new_record?
     end
     f.actions do
       label = f.object.new_record? ? 'Create' : 'Update'
-      f.action :submit, label: label, button_html: { disable_with: 'Wait...' }
+      f.action :submit, label: "#{label} User", button_html: { disable_with: 'Wait...' }
       f.action :cancel, label: 'Cancel', wrapper_html: { class: 'cancel' }
     end
+  end
+
+  controller do
+
+    def create
+      puts params.inspect
+      admin_passwd = params[:user].delete(:admin_password)
+      @user = User.new(params[:user])
+      if current_user.valid_password?(admin_passwd)
+        if @user.save
+          flash[:notice] = 'User was successfuly created'
+          redirect_to admin_users_path
+        else
+          flash[:alert] = 'Wrong form fields'
+          render 'new'
+        end
+      else
+        flash[:alert] = 'Wrong admin password'
+        render 'new'
+      end
+    end
+
   end
 
 end
