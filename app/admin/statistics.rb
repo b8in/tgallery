@@ -8,6 +8,23 @@ ActiveAdmin.register_page "Statistics" do
     columns do
       column do
         panel "User activity statistic" do
+
+          #table_for @users do
+          #  column "User", :email
+          #  @events.each do |event|
+          #    column "Event" do |user|
+          #      user_events = user.events.uniq        #  FIXME: переделать чтобы брать из базы названия эвентов юзера через ДИСТИНКТ, а не ВЫБИРАТЬ ВСЕ, а потом ЮНИК
+          #      user_events_names = []
+          #      user_events.each { |e| user_events_names << e.name }
+          #      if user_events_names.include?(event.name)
+          #        link_to event.name, event_path(user_id: user.id, event_name: event.name)
+          #      else
+          #        event.name
+          #      end
+          #    end
+          #  end
+          #end
+
           table class: 'events-table' do     #.events-table{align: 'center'}
             thead do
               tr do
