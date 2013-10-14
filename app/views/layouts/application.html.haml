@@ -16,7 +16,7 @@
           = menu_item cat.name, category_path(cat.name)
       = menu_item 'All images', pictures_path
       = menu_item 'All comments', user_comments_path
-      = menu_item 'User events', events_path
+      = menu_item 'User events', events_path if user_signed_in? && current_user.admin?
     = menu_group pull: 'right' do
       - unless user_signed_in?
         = menu_item 'Sign in', new_user_session_path
