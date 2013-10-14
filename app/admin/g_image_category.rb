@@ -31,4 +31,15 @@ ActiveAdmin.register GImageCategory, as:'Category' do
     actions
   end
 
+  form do |f|
+    f.inputs "Category Details" do
+      f.input :name
+    end
+    f.actions do
+      label = f.object.new_record? ? 'Create' : 'Update'
+      f.action :submit, label: "#{label} Category", button_html: { disable_with: 'Wait...' }
+      f.action :cancel, label: 'Cancel', wrapper_html: { class: 'cancel'}
+    end
+  end
+
 end

@@ -18,7 +18,7 @@ ActiveAdmin.register Service, as:'Social Network Providers' do
     column 'Email', :uemail
     column 'UID', :uid
     column 'Created at', sortable: 'users.created_at' do |service|
-      service.user.created_at
+      service.user.created_at.strftime("%e %B %Y, %R")
     end
 
     actions

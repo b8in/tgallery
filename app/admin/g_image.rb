@@ -125,7 +125,7 @@ ActiveAdmin.register GImage, as:'Image' do
     end
     f.actions do
       label = f.object.new_record? ? 'Create' : 'Update'
-      f.action :submit, label: label, button_html: { disable_with: 'Wait...' }
+      f.action :submit, label: "#{label} Image", button_html: { disable_with: 'Wait...' }
       f.action :cancel, label: 'Cancel', wrapper_html: { class: 'cancel' }
     end
   end

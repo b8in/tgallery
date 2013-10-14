@@ -12,7 +12,7 @@ ActiveAdmin.register Navigation do
     end
     column :target_url
     column 'Date', sortable: 'e_histories.date' do |nav|
-      nav.e_history.date
+      nav.e_history.date.strftime("%e %B %Y, %R")
     end
 
     actions

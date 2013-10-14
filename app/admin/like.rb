@@ -1,4 +1,9 @@
 ActiveAdmin.register Like do
+
+  filter :e_history_user_name_or_e_history_user_email, as: :string, label: 'by user name or email'
+  filter :g_image_name, as: :string, label: 'by image name'
+  filter :e_history_date, as: :date_range, label: 'Search by date'
+
   actions :index, :destroy
 
   index do
@@ -11,6 +16,9 @@ ActiveAdmin.register Like do
     end
     column 'User', sortable: 'users.name' do |like|
       link_to("#{like.e_history.user.name}, <#{like.e_history.user.email}>", admin_user_path(like.e_history.user.id))
+    end
+    column 'Date', sortable: 'e_histories.date' do |like|
+      like.e_history.date.strftime("%e %B %Y, %R")
     end
 
     actions
