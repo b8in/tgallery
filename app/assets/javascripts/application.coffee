@@ -13,9 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require twitter/bootstrap
-# ## ## ## ## require_tree .
-
-
+# ## ## ## ## require_tree .    #FiXME
 
 $(document).ready ->
 
@@ -23,15 +21,9 @@ $(document).ready ->
   $(".refresh_image").click ->
     $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
 
-#  default_page_container_height = $('#page-container').height()
+  if $('#page-container').height() < ($(window).height() - $('.navbar').height() - 20)
+    $('#page-container').height($(window).height() - $('.navbar').height() - 20 - 20)
 
-  x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)
-  $('#page-container').height(x - 20 )   #  20 => $('.navbar').attr("margin-bottom")
-
-#  $(window).resize ->
-#    x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
-#    $('#page-container').height(x - 20 )
-
-  $('#page-container').resize ->
-    x = Math.max($('#page-container').height(), $(window).height() - $('.navbar').height() - 20)
-    $('#page-container').height(x - 20 )
+  $(window).resize ->
+    x = Math.max(($(window).height() - $('.navbar').height() - 20), $('#page-container').height())
+    $('#page-container').height(x - 20)

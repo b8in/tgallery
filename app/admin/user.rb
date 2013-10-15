@@ -89,7 +89,6 @@ ActiveAdmin.register User do
   controller do
 
     def create
-      puts params.inspect
       admin_passwd = params[:user].delete(:admin_password)
       @user = User.new(params[:user])
       if current_user.valid_password?(admin_passwd)

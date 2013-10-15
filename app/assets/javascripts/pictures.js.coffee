@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script
 
 #= require jquery-cookie
+#= require jquery.validate
 #= require pusher
 #= require lib/webs
 #= require new_comment_notifier/new_comment_notifier
@@ -11,6 +12,17 @@ HtmlEncode = (val) ->
   $("<div/>").text(val).html()
 
 $(document).ready ->
+
+  $("#new_user_comment").validate
+    rules:
+      "user_comment[text]":
+        required: true,
+        maxlength: 250,
+        minlength: 2
+      "user_comment[author]":
+        required: true
+      "captcha":
+        required: true
 
   if ($.cookie 'nickname') && ($("#user_comment_author"))
     $("#user_comment_author").val($.cookie 'nickname')
@@ -67,6 +79,7 @@ $(document).ready ->
   #===================================================================================
 
   $('.comment-textarea').width($('.image-box').width()-400)
+  $('#user_comment_author').width($('.comment-textarea').width())
 
   #===================================================================================
 
