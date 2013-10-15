@@ -42,10 +42,10 @@
 .comment-box.text-align-center-aa
   = form_for @comment, url: create_comment_path(image_id: @image.id), remote: true do |f|
     - unless current_user
-      = f.label 'Enter your nickname*:', align: 'left', id: 'nickname_label'
-      = f.text_field :author#, placeholder: 'your nickname'
+      = f.label 'Enter your nickname:', align: 'left', id: 'nickname_label'
+      = f.text_field :author
     %br
-    = f.label 'Enter your comment*:', align: 'left', id: 'user_comment_label'
+    = f.label 'Enter your comment:', align: 'left', id: 'user_comment_label'
     = f.text_area :text, class: 'comment-textarea', rows: 3, align: 'center'
     %br
     - unless current_user

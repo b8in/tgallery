@@ -80,6 +80,9 @@ $(document).ready ->
 
   $('.comment-textarea').width($('.image-box').width()-400)
   $('#user_comment_author').width($('.comment-textarea').width())
+  offset = $('.comment-textarea').offset()
+  $("#user_comment_label").offset({ top: $("#user_comment_label").offset.top, left: offset.left})
+  $("#nickname_label").offset({ top: $("#nickname_label").offset.top, left: offset.left})
 
   #===================================================================================
 
