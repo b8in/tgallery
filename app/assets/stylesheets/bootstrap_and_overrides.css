@@ -123,3 +123,7 @@ td input {
   margin-top: 10px;
   margin-bottom: 0px !important;
 }
+
+.comment-textarea {
+  min-width: 200px;
+}

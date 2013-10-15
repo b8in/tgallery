@@ -11,6 +11,14 @@
 HtmlEncode = (val) ->
   $("<div/>").text(val).html()
 
+resizeCommentForm = ->
+  $('.comment-textarea').width($('.image-box').width()-400)
+  $('#user_comment_author').width($('.comment-textarea').width())
+  offset = $('.comment-textarea').offset()
+  $("#user_comment_label").offset({ top: $("#user_comment_label").offset.top, left: offset.left})
+  $("#nickname_label").offset({ top: $("#nickname_label").offset.top, left: offset.left})
+
+
 $(document).ready ->
 
   $("#new_user_comment").validate
@@ -23,6 +31,9 @@ $(document).ready ->
         required: true
       "captcha":
         required: true
+
+  $(window).resize ->
+    resizeCommentForm()
 
   if ($.cookie 'nickname') && ($("#user_comment_author"))
     $("#user_comment_author").val($.cookie 'nickname')
@@ -78,11 +89,7 @@ $(document).ready ->
 
   #===================================================================================
 
-  $('.comment-textarea').width($('.image-box').width()-400)
-  $('#user_comment_author').width($('.comment-textarea').width())
-  offset = $('.comment-textarea').offset()
-  $("#user_comment_label").offset({ top: $("#user_comment_label").offset.top, left: offset.left})
-  $("#nickname_label").offset({ top: $("#nickname_label").offset.top, left: offset.left})
+  resizeCommentForm()
 
   #===================================================================================
 

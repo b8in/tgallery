@@ -24,6 +24,7 @@ $(document).ready ->
   if $('#page-container').height() < ($(window).height() - $('.navbar').height() - 20)
     $('#page-container').height($(window).height() - $('.navbar').height() - 20 - 20)
 
-  $(window).resize ->
-    x = Math.max(($(window).height() - $('.navbar').height() - 20), $('#page-container').height())
-    $('#page-container').height(x - 20)
+# FIXME пока не работает как надо
+#  $(window).resize ->
+#    x = Math.max(($(window).height() - $('.navbar').height() - 20), $('#page-container').height())
+#    $('#page-container').height(x - 20)
