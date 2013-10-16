@@ -9,7 +9,7 @@
   = yield :include_js
   = csrf_meta_tags
 %body
-  = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path, class: 'row' do
+  = nav_bar static: :top, brand: "T-Gallery", brand_link: root_path, class: 'row' do
     = menu_group pull: 'left' do
       = drop_down 'Categories' do
         - @categories_menu.each do |cat|
@@ -31,4 +31,6 @@
   .row-fluid
     .span10.offset1#page-container
       = yield
-  .bottom-page-div
+  -#%footer.footer
+  -#  = nav_bar static: :bottom, class: 'row' do
+  -#    = menu_text "c 2013", html: { 'text-align' => 'center'}
