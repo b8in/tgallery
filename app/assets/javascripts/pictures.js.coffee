@@ -14,6 +14,8 @@ HtmlEncode = (val) ->
 resizeCommentForm = ->
   $('.comment-textarea').width($('.image-box').width()-400)
   $('#user_comment_author').width($('.comment-textarea').width())
+  $('#nickname_label').width($('.comment-textarea').width())
+  $('#user_comment_label').width($('.comment-textarea').width())
   offset = $('.comment-textarea').offset()
   $("#user_comment_label").offset({ top: $("#user_comment_label").offset.top, left: offset.left})
   $("#nickname_label").offset({ top: $("#nickname_label").offset.top, left: offset.left})
@@ -105,7 +107,7 @@ $(document).ready ->
           #refresh captcha image
           $(".refresh_image").click()
 
-      if (response.responseJSON.stat) && (response.responseJSON.stat is "success")
+      if (response.responseJSON.stat ) && (response.responseJSON.stat is "success")
         if response.responseJSON.image_likes_count
           $('#span_likes_count').text(response.responseJSON.image_likes_count)
 

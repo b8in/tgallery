@@ -127,3 +127,7 @@ td input {
 .comment-textarea {
   min-width: 200px;
 }
+
+#nickname_label, #user_comment_label {
+  min-width: 250px;
+}
