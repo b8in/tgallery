@@ -21,8 +21,9 @@ $(document).ready ->
   $(".refresh_image").click ->
     $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
 
-  if $('#page-container').height() < ($(window).height() - $('.navbar').height() - 20)
-    $('#page-container').height($(window).height() - $('.navbar').height() - 20 - 20)
+  navbars_height = $('.navbar-fixed-top').height() + $('.navbar-fixed-bottom').height()
+  if $('#page-container').height() < ($(window).height() - navbars_height - 20)
+    $('#page-container').height($(window).height() - navbars_height - 20 - 20)
 
 # FIXME пока не работает как надо
 #  $(window).resize ->

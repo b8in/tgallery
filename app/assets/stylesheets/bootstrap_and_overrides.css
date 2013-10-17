@@ -19,8 +19,8 @@ body {
   border-radius: 20px;
   padding-left: 30px;
   padding-right: 30px;
-  margin-bottom: 20px;
-  margin-top: 20px
+  margin-bottom: 80px;
+  margin-top: 60px
 }
 
 .text-align-center-aa {
@@ -130,4 +130,13 @@ td input {
 
 #nickname_label, #user_comment_label {
   min-width: 250px;
+}
+
+.footer-text {
+  font-size: 10px;
+  margin-bottom: -20px;
+}
+
+.footer-text:last-child {
+  margin-bottom: 0px;
 }
