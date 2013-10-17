@@ -16,16 +16,28 @@
 # ## ## ## ## require_tree .    #FiXME
 
 $(document).ready ->
+  console.log('@@@@')
 
   $('#refresh-captcha-btn').width($('.simple_captcha').width())
   $(".refresh_image").click ->
     $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
+  console.log('zzzzzzzzzzzzzz')
 
-  navbars_height = $('.navbar-fixed-top').height() + $('.navbar-fixed-bottom').height()
-  if $('#page-container').height() < ($(window).height() - navbars_height - 20)
-    $('#page-container').height($(window).height() - navbars_height - 20 - 20)
+
 
 # FIXME пока не работает как надо
 #  $(window).resize ->
 #    x = Math.max(($(window).height() - $('.navbar').height() - 20), $('#page-container').height())
 #    $('#page-container').height(x - 20)
+
+$(window).load ->
+  console.log('******')
+  console.log $('#page-container').height()
+  page_con_padd_and_margs = parseInt($('#page-container').css('margin-top')) + parseInt($('#page-container').css('margin-bottom'))
+  console.log page_con_padd_and_margs
+  if $('#page-container').height() < ($(window).height() - page_con_padd_and_margs)
+    $('#page-container').height($(window).height() - page_con_padd_and_margs)
+    console.log('11111')
+  else
+    $('#page-container').height('100%')
+  console.log('++')
