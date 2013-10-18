@@ -16,13 +16,10 @@
 # ## ## ## ## require_tree .    #FiXME
 
 $(document).ready ->
-  console.log('@@@@')
 
   $('#refresh-captcha-btn').width($('.simple_captcha').width())
   $(".refresh_image").click ->
     $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
-  console.log('zzzzzzzzzzzzzz')
-
 
 
 # FIXME пока не работает как надо
@@ -31,13 +28,11 @@ $(document).ready ->
 #    $('#page-container').height(x - 20)
 
 $(window).load ->
-  console.log('******')
-  console.log $('#page-container').height()
   page_con_padd_and_margs = parseInt($('#page-container').css('margin-top')) + parseInt($('#page-container').css('margin-bottom'))
-  console.log page_con_padd_and_margs
   if $('#page-container').height() < ($(window).height() - page_con_padd_and_margs)
     $('#page-container').height($(window).height() - page_con_padd_and_margs)
-    console.log('11111')
+    carousel_and_pagin_height = $('#carousel').outerHeight(true) + $('.pagination').outerHeight(true) + $('h3').outerHeight(true)
+    $('#cetral-image').height($('#page-container').height() - carousel_and_pagin_height)
   else
     $('#page-container').height('100%')
-  console.log('++')
+    $('#cetral-image').height('auto')

@@ -16,7 +16,6 @@ body {
 
 #page-container {
   background-color: white;
-  /*min-height: 670px;*/
   border-radius: 20px;
   padding-left: 30px;
   padding-right: 30px;
@@ -151,6 +150,3 @@ td input {
   cursor: pointer;  /*not needed if you wrap carousel items in links */
 }
 
-#cetral-image {
-  /*min-height: 400px;*/
-}

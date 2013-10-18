@@ -13,7 +13,6 @@
       = "#{@image.likes.count}"
     = " likes"
   .span1.offset1.pull-right
-    -#= button_to( 'I like', set_like_path(image_id: @image.id), method: :post, remote: true)
     = form_tag set_like_path(image_id: @image.id), method: :post, remote: true do
       = button_tag do
         = 'I like'
