@@ -36,4 +36,9 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path unless current_user.try(:admin)
   end
 
+  def default_url_options(options={})
+    puts "default_url_options is passed options: #{options.inspect}\n"
+    { locale: I18n.locale }
+  end
+
 end
