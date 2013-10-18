@@ -140,3 +140,13 @@ td input {
 .footer-text:last-child {
   margin-bottom: 0px;
 }
+
+#carousel {
+  height: 150px;
+  display: relative;
+}
+#carousel img {
+  display: hidden; /* hide images until carousel prepares them */
+  cursor: pointer;  /*not needed if you wrap carousel items in links */
+}
+

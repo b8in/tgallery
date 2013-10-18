@@ -21,11 +21,18 @@ $(document).ready ->
   $(".refresh_image").click ->
     $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
 
-  navbars_height = $('.navbar-fixed-top').height() + $('.navbar-fixed-bottom').height()
-  if $('#page-container').height() < ($(window).height() - navbars_height - 20)
-    $('#page-container').height($(window).height() - navbars_height - 20 - 20)
 
 # FIXME пока не работает как надо
 #  $(window).resize ->
 #    x = Math.max(($(window).height() - $('.navbar').height() - 20), $('#page-container').height())
 #    $('#page-container').height(x - 20)
+
+$(window).load ->
+  page_con_padd_and_margs = parseInt($('#page-container').css('margin-top')) + parseInt($('#page-container').css('margin-bottom'))
+  if $('#page-container').height() < ($(window).height() - page_con_padd_and_margs)
+    $('#page-container').height($(window).height() - page_con_padd_and_margs)
+    carousel_and_pagin_height = $('#carousel').outerHeight(true) + $('.pagination').outerHeight(true) + $('h3').outerHeight(true)
+    $('#cetral-image').height($('#page-container').height() - carousel_and_pagin_height)
+  else
+    $('#page-container').height('100%')
+    $('#cetral-image').height('auto')
