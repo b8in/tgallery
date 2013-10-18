@@ -3,7 +3,7 @@
 
 %h3.text-align-center-aa
   All images
-#cetral-image.text-align-center-aa
+#central-image.text-align-center-aa
   = link_to (image_tag @images[2].image.url), picture_path(@images[2].g_image_category.name, @images[2].id)
 #carousel
   - @images.each do |img|
