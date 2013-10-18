@@ -3,10 +3,15 @@ Tgallery::Application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   mount Resque::Server, at: "/resque"
 
+  get '/homes/change_locale', as: 'change_locale'
   post '/pusher/auth'
   post '/pictures/refresh_captcha_div'
   post '/load_all_comments', to: "user_comments#load_all_comments"
   match '/auth/facebook/callback' => 'services#create'
+
+  scope "/:locale", locale: /en|ru/ do
+    get '/', to:"homes#index"
+  end
 
   scope "(:locale)", locale: /en|ru/ do
     get '/categories', to: "categories#index"
@@ -16,7 +21,6 @@ Tgallery::Application.routes.draw do
     get '/comments', to: "user_comments#index", as:"user_comments"
     get '/events', to: "events#index", as: "events"
     get '/events/:user_id/:event_name', to:"events#show", as:"event"
-    get '/', to:"homes#index"
 
     resource :services, only: [:create, :destroy]
     resource :likes, only: [:create], as: 'set_like'
@@ -24,7 +28,7 @@ Tgallery::Application.routes.draw do
     resource :watching_categories, only: [:create, :destroy]
   end
 
-  root to:"homes#index", locale: 'en'
+  root to:"homes#index", locale: I18n.default_locale
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation:
   # first created -> highest priority.

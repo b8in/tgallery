@@ -18,6 +18,17 @@
         = menu_item 'All comments', user_comments_path
         = menu_item 'User events', events_path if user_signed_in? && current_user.admin?
       = menu_group pull: 'right' do
+        - if I18n.locale.to_s == 'ru'
+          - language_img = 'ru.png'
+        - elsif I18n.locale.to_s == 'en'
+          - language_img = 'us.png'
+        = drop_down image_tag(language_img) do
+          = menu_item change_locale_path(new_locale: 'ru', back_url: url_for(locale: 'ru')) do
+            = image_tag('ru.png')
+            = 'Russian'
+          = menu_item change_locale_path(new_locale: 'en', back_url: url_for(locale: 'en')) do
+            = image_tag('us.png')
+            = 'English'
         - unless user_signed_in?
           = menu_item 'Sign in', new_user_session_path
           = menu_item 'Sign up', new_user_registration_path
