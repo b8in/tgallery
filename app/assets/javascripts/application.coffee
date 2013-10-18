@@ -32,7 +32,7 @@ $(window).load ->
   if $('#page-container').height() < ($(window).height() - page_con_padd_and_margs)
     $('#page-container').height($(window).height() - page_con_padd_and_margs)
     carousel_and_pagin_height = $('#carousel').outerHeight(true) + $('.pagination').outerHeight(true) + $('h3').outerHeight(true)
-    $('#cetral-image').height($('#page-container').height() - carousel_and_pagin_height)
+    $('#central-image').height($('#page-container').height() - carousel_and_pagin_height)
   else
     $('#page-container').height('100%')
-    $('#cetral-image').height('auto')
+    $('#central-image').height('auto')
