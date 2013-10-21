@@ -5,6 +5,7 @@ en:
   simple_captcha:
     placeholder: "Enter the image value"
     label: "Enter the code in the box:"
+    refresh_btn_text: "refresh captcha"
     message:
       default: "Secret Code did not match with the Image"
       user: "The secret Image and code were different"
@@ -30,3 +31,16 @@ en:
       sign_up: "Sign up"
       sign_in: "Sign in"
       profile: "Profile"
+  pictures:
+    index:
+      all_images: "All images"
+    show:
+      total: "Total"
+      likes: "likes"
+      i_like: "I like"
+      show_prev_comments: "Show previous comments"
+      hide_prev_comments: "Hide previous comments"
+      ago: "ago"
+      your_nickname: "Enter your nickname:"
+      your_comment: "Enter your comment:"
+      add_comment: "Add comment"

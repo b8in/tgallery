@@ -5,6 +5,7 @@ ru:
   simple_captcha:
     placeholder: "Enter the image value"
     label: "Enter the code in the box:"
+    refresh_btn_text: "обновить капчу"
     message:
       default: "Secret Code did not match with the Image"
       user: "The secret Image and code were different"
@@ -30,3 +31,16 @@ ru:
       sign_up: "Зарегистрироваться"
       sign_in: "Войти"
       profile: "Профиль"
+  pictures:
+    index:
+      all_images: "Все картинки"
+    show:
+      total: "Всего"
+      likes: "лайк(ов)"
+      i_like: "I like"
+      show_prev_comments: "Показать предыдущие комментарии"
+      hide_prev_comments: "Скрыть предыдущие комментарии"
+      ago: "назад"
+      your_nickname: "Введите свой ник"
+      your_comment: "Напишите свой комментарий"
+      add_comment: "Добавить комментарий"

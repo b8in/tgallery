@@ -2,7 +2,7 @@
   = javascript_include_tag 'pictures_carousel'
 
 %h3.text-align-center-aa
-  All images
+  = t('.all_images')
 #central-image.text-align-center-aa
   = link_to (image_tag @images[2].image.url), picture_path(@images[2].g_image_category.name, @images[2].id)
 #carousel
