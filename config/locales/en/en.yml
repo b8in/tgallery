@@ -10,4 +10,23 @@ en:
       user: "The secret Image and code were different"
   homes:
     index:
-      title: "Dear Friend"
+      title: "Welcome!"
+      about: "About"
+      about_text: "This is super mega gallery, blah-blah-blah. If you want have extra abilities, you should %{sign_up} or %{sign_in} ."
+      sign_up: "sign up"
+      sign_in: "sign in"
+      last_comments: "Last comments"
+      last_galleries: "Last galleries"
+      ago: "ago"
+  layouts:
+    application:
+      title: "T-Gallery"
+      categories: "Categories"
+      all_images: "All images"
+      all_comments: "All comments"
+      user_events: "User events"
+      admin_panel: "Admin panel"
+      sign_out: "Sign out"
+      sign_up: "Sign up"
+      sign_in: "Sign in"
+      profile: "Profile"

@@ -9,10 +9,6 @@ Tgallery::Application.routes.draw do
   post '/load_all_comments', to: "user_comments#load_all_comments"
   match '/auth/facebook/callback' => 'services#create'
 
-  scope "/:locale", locale: /en|ru/ do
-    get '/', to:"homes#index"
-  end
-
   scope "(:locale)", locale: /en|ru/ do
     get '/categories', to: "categories#index"
     get '/categories/:category_name', to:"categories#show_by_name", as:"category"
@@ -28,7 +24,9 @@ Tgallery::Application.routes.draw do
     resource :watching_categories, only: [:create, :destroy]
   end
 
-  root to:"homes#index", locale: I18n.default_locale
+  scope "(:locale)", locale: /en|ru/ do
+    root to:"homes#index"
+  end
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation:
   # first created -> highest priority.

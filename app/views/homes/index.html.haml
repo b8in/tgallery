@@ -10,15 +10,11 @@
   .span8
     #about-tgallery
       %h5
-        = "About"
+        = t('.about')
       %p
-        Это супер пупер галлерея, blah-blah-blah, доступ к которой возможно получит только
-        = link_to 'зарегистировавшись', new_user_registration_path
-        = " и "
-        = link_to 'авторизовавшись', new_user_session_path
-        = "."
+        != t('.about_text', sign_up: link_to(t('.sign_up'), new_user_registration_path), sign_in: link_to(t('.sign_in'), new_user_session_path))
     %h3.text-align-center-aa
-      Last galleries
+      = t('.last_galleries')
     .image-categories-container
       - 2.times do |i|
         - unless @categories[i*3].blank?
@@ -33,7 +29,7 @@
                     = link_to cat.name.capitalize, category_path(cat.name)
   .span4
     %h5
-      = "Last comments"
+      = t('.last_comments')
     .comments_block
       .comments
         - i = 4
@@ -51,5 +47,5 @@
             %br
             %small.comment_time
               = time_ago_in_words(comment.created_at)
-              = 'ago'
+              = t('.ago')
             %hr
