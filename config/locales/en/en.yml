@@ -60,3 +60,14 @@ en:
       link: "Link"
       image: "Image"
       text: "Text"
+  categories:
+    index:
+      title: "TGallery list categories"
+      category_name: "Category name:"
+      images_count: "Images count:"
+      comments_count: "Total comments count:"
+      likes_count: "Total likes count:"
+      last_updated: "Last updated:"
+    subscribe_panel:
+      unsubscribe: "Unsubscribe this category"
+      subscribe: "Subscribe this category"

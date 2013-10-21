@@ -1,5 +1,5 @@
 %h3.text-align-center-aa
-  TGallery list categories
+  = t('.title')
 .categories-list
   - @categories.each do |cat|
     .category-item
@@ -7,14 +7,18 @@
         .span2.offset1
           = link_to (image_tag cat.g_images.sample.image.url(:thumb)), category_path(cat.name)
         .span8
-          = "Category name: "
+          = t('.category_name')
           = link_to cat.name.capitalize, category_path(cat.name)
           %br
-          = "Images count: "+"#{cat.g_images.count}"
+          = t('.images_count')
+          = "#{cat.g_images.count}"
           %br
-          = "Total comments count: "+"#{@category_comments_count_hash[cat.name]}"
+          = t('.comments_count')
+          = "#{@category_comments_count_hash[cat.name]}"
           %br
-          = "Total likes count: "+"#{@category_likes_count_hash[cat.name]}"
+          = t('.likes_count')
+          = "#{@category_likes_count_hash[cat.name]}"
           %br
-          = "Last updated: "+"#{cat.updated_at}"
+          = t('.last_updated')
+          = "#{cat.updated_at}"
   = paginate @categories

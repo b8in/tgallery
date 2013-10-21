@@ -60,3 +60,14 @@ ru:
       link: "Ссылка"
       image: "Картинка"
       text: "Текст"
+  categories:
+    index:
+      title: "Перечень категорий"
+      category_name: "Имя категории:"
+      images_count: "количество картинок:"
+      comments_count: "Всего комментарией:"
+      likes_count: "Всего лайков:"
+      last_updated: "Последнее обновление:"
+    subscribe_panel:
+      unsubscribe: "Перестать следить за обновлениями"
+      subscribe: "Следить за обновлениями"
