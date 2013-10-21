@@ -51,3 +51,12 @@ en:
       date: "Date:"
       image: "Image:"
       text: "Text:"
+  events:
+    index:
+      events: "Events"
+      user: "User"
+    show:
+      date: "Date"
+      link: "Link"
+      image: "Image"
+      text: "Text"

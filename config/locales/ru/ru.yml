@@ -51,3 +51,12 @@ ru:
       date: "Дата:"
       image: "Картинка:"
       text: "Текст:"
+  events:
+    index:
+      events: "События"
+      user: "Пользователь"
+    show:
+      date: "Дата"
+      link: "Ссылка"
+      image: "Картинка"
+      text: "Текст"

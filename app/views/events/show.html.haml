@@ -4,14 +4,14 @@
   %thead
     %tr
       %th
-        Date
+        = t('.date')
       - if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name) || (@h_events[0].eventable_type == Navigation.name)
         %th
-          = "Link" if @h_events[0].eventable_type == Navigation.name
-          = "Image" if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name)
+          = t('.link') if @h_events[0].eventable_type == Navigation.name
+          = t('.image') if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name)
       - if @h_events[0].eventable_type == UserComment.name
         %th
-          = "Text"
+          = t('.text')
   %tbody
     - @h_events.each do |he|
       %tr
