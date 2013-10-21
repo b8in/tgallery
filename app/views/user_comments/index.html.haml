@@ -1,19 +1,21 @@
 %h3.text-align-center-aa
-  All comments
+  = t('.all_comments')
 %div
   - @comments.each do |com|
     .comment-div.green-border
       .row-fluid.green-color
         .span4
-          = 'Author:'
+          = t('.author')
           %span.white-color
             = (com.author || com.e_history.user.name)
         .span4
-          = 'Date: '
+          = t('.date')
           %span.white-color
             = com.created_at.getlocal.strftime("%H:%M")
         .span4
-          = 'Image: '+ com.g_image.name
+          = t('.image')
+          = com.g_image.name
       .comment-text
-        = 'Text: '+com.text
+        = t('.text')
+        = com.text
   = paginate @comments

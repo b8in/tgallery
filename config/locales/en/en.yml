@@ -44,3 +44,10 @@ en:
       your_nickname: "Enter your nickname:"
       your_comment: "Enter your comment:"
       add_comment: "Add comment"
+  user_comments:
+    index:
+      all_comments: "All comments"
+      author: "Author:"
+      date: "Date:"
+      image: "Image:"
+      text: "Text:"

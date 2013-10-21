@@ -3,12 +3,12 @@
 
 ru:
   simple_captcha:
-    placeholder: "Enter the image value"
-    label: "Enter the code in the box:"
+    placeholder: "Введите значение с картинки"
+    label: "Введите код поле"
     refresh_btn_text: "обновить капчу"
     message:
-      default: "Secret Code did not match with the Image"
-      user: "The secret Image and code were different"
+      default: "Код не совпадает с картинкой"
+      user: "Картинка и код отличаются"
   homes:
     index:
       title: "Добро пожаловать!"
@@ -44,3 +44,10 @@ ru:
       your_nickname: "Введите свой ник"
       your_comment: "Напишите свой комментарий"
       add_comment: "Добавить комментарий"
+  user_comments:
+    index:
+      all_comments: "Все комментарии"
+      author: "Автор:"
+      date: "Дата:"
+      image: "Картинка:"
+      text: "Текст:"
