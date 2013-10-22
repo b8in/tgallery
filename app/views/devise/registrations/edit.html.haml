@@ -1,5 +1,5 @@
 %h2.text-align-center-aa
-  Edit profile for
+  = t('devise.views.phrases.reg_edit')
   %span.blue-color
     = resource.name
 
@@ -8,61 +8,62 @@
   %div
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
-        Currently waiting confirmation for:
+        = t('devise.views.phrases.waiting_conf')+t('devise.views.colon')
         = resource.unconfirmed_email
     %table
       %tr
         %td
-          = f.label 'Nickname*: '
+          = f.label :name, t('devise.views.nickname')+t('devise.views.mark')+t('devise.views.colon')
         %td
-          = f.text_field :name, autofocus: true
+          = f.text_field :name, autofocus: true, required: true
       %tr
         %td
-          = f.label 'Email*: '
+          = f.label :email, t('devise.views.email')+t('devise.views.mark')+t('devise.views.colon')
         %td
-          = f.email_field :email
+          = f.email_field :email, required: true
       %tr
         %td
-          = f.label 'Password*: ', class: 'with-hint'
+          = f.label :password, t('devise.views.password'), class: 'with-hint'
           %i.hint
-            (leave blank if you don't want to change it)
+            = '('+t('devise.views.phrases.leave_blank')+')'
         %td
           = f.password_field :password, :autocomplete => "off"
       %tr
         %td
-          = f.label 'Confirm password*: '
+          = f.label :password_confirmation, t('devise.views.passwd_conf')
         %td
           = f.password_field :password_confirmation
       - @facebook_account = current_user.services.where(provider: 'facebook').first          #FIXME нехорошо так делать
       - if @facebook_account.blank?
         %tr
           %td
-            = f.label 'Facebook: '
+            = f.label t('devise.views.facebook')
           %td
-            = link_to "Link account", '/auth/facebook'
+            = link_to t('devise.views.link_account'), '/auth/facebook'
       - else
         %tr
           %td
-            = f.label 'Facebook: '
+            = f.label t('devise.views.facebook')
           %td
-            = link_to "Unlink account", service_path(@facebook_account), method: :delete
+            = link_to t('devise.views.unlink_account'), service_path(@facebook_account), method: :delete
       %tr
         %td
-          = f.label 'Current password*: ', class: 'with-hint'
+          = f.label :current_password, t('devise.views.current_passwd')+t('devise.views.mark')+t('devise.views.colon'), class: 'with-hint'
           %i.hint
-            (we need your current password to confirm your changes)
+            = '('+t('devise.views.phrases.need_your_passwd')+')'
         %td
-          = f.password_field :current_password
+          = f.password_field :current_password, class: 'with-hint'
           - unless current_user.services.blank?
+            %br
             %i.hint
-              (maybe it is your downcase email of Facebook)
+              = '('+t('devise.views.phrases.maybe_your_email', provider: t('devise.views.facebook'))+')'
     %div
-      = f.submit "Update profile"
+      = f.submit t('devise.views.update_profile')
   %div
 
 
 
-= link_to "Delete account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
+= link_to t('devise.views.delete_account'), registration_path(resource_name), :data => { :confirm => t('helpers.links.confirm') }, :method => :delete
 %br
 %br
-= link_to "Back", :back
+= link_to t('helpers.links.back'), :back

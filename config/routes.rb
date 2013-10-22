@@ -17,12 +17,12 @@ Tgallery::Application.routes.draw do
     get '/comments', to: "user_comments#index", as:"user_comments"
     get '/events', to: "events#index", as: "events"
     get '/events/:user_id/:event_name', to:"events#show", as:"event"
-
-    resource :services, only: [:create, :destroy]
-    resource :likes, only: [:create], as: 'set_like'
-    resource :user_comments, only: [:create], as: "create_comment"
-    resource :watching_categories, only: [:create, :destroy]
   end
+
+  resources :services, only: [:create, :destroy]
+  resource :likes, only: [:create], as: 'set_like'
+  resource :user_comments, only: [:create], as: "create_comment"
+  resource :watching_categories, only: [:create, :destroy]
 
   scope "(:locale)", locale: /en|ru/ do
     root to:"homes#index"
