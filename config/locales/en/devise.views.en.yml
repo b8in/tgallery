@@ -37,7 +37,6 @@ en:
         resend_conf_instructions: "Resend confirmation instructions"
         receive_unlock_instructions: "Didn't receive unlock instructions?"
         resend_unlock_instructions: "Resend unlock instructions"
-        forgot_passwd: "Forgot your password?"
         send_reset_passwd_inctructions: "Send me reset password instructions"
         change_passwd: "Change password"
         conf_your_account_by_link: "You can confirm your account email through the link below:"
