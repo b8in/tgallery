@@ -1,5 +1,5 @@
 %h3.text-align-center-aa
-  = @h_events[0].event.name
+  = "#{@h_events[0].event.name.capitalize} for #{@h_events[0].user.name}"
 %table.events-table{align: 'center'}
   %thead
     %tr
