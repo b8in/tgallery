@@ -2,6 +2,7 @@ Tgallery::Application.routes.draw do
 
   scope "(:locale)", locale: /en|ru/ do
     devise_for :users, controllers: { registrations: "registrations" }
+
     get '/homes/change_locale', as: 'change_locale'
 
     get '/categories', to: "categories#index"
@@ -27,7 +28,6 @@ Tgallery::Application.routes.draw do
   resource :watching_categories, only: [:create, :destroy]
 
   ActiveAdmin.routes(self)
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

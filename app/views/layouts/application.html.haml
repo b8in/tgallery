@@ -34,7 +34,7 @@
           = menu_item t('.sign_up'), new_user_registration_path
         - else
           - if current_user.admin?
-            = menu_item t('.admin_panel'), admin_root_path
+            = menu_item t('.admin_panel'), admin_root_path(locale: 'en')
           - else
             = menu_item t('.profile'), edit_user_registration_path(current_user)
           = menu_item t('.sign_out'), destroy_user_session_path, method: :delete
