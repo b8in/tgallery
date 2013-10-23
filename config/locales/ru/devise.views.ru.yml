@@ -23,7 +23,6 @@ ru:
       welcome: "Приветствуем %{email}!"
       conf_my_account: "Подтвердить мой аккаунт"
       hello: "Привет %{email}!"
-      change_my_passwd: "Сменить мой пароль"
       change_passwd: "Сменить пароль"
       unlock_my_account: "Разблокировать мой аккаунт"
 

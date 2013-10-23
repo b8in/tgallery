@@ -23,7 +23,7 @@ en:
       welcome: "Welcome %{email}!"
       conf_my_account: "Confirm my account"
       hello: "Hello %{email}!"
-      change_my_passwd: "Change my password"
+      change_passwd: "Change password"
       unlock_my_account: "Unlock my account"
 
       phrases:
@@ -38,7 +38,6 @@ en:
         receive_unlock_instructions: "Didn't receive unlock instructions?"
         resend_unlock_instructions: "Resend unlock instructions"
         send_reset_passwd_inctructions: "Send me reset password instructions"
-        change_passwd: "Change password"
         conf_your_account_by_link: "You can confirm your account email through the link below:"
         link_to_change_passwd: "Someone has requested a link to change your password. You can do this through the link below."
         ignore_this_email: "If you didn't request this, please ignore this email."

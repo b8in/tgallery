@@ -1,5 +1,5 @@
 %h2
-  = t('devise.views.phrases.change_passwd')
+  = t('devise.views.change_passwd')
 = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
   = f.hidden_field :reset_password_token
@@ -12,5 +12,5 @@
     %br
     = f.password_field :password_confirmation
   %div
-    = f.submit t('devise.views.phrases.change_passwd')
+    = f.submit t('devise.views.change_passwd')
 = render "devise/shared/links"

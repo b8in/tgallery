@@ -71,3 +71,7 @@ en:
     subscribe_panel:
       unsubscribe: "Unsubscribe this category"
       subscribe: "Subscribe this category"
+  registrations:
+    create:
+      wrong_captcha: "You enter wrong captcha"
+      wrong_password: "You enter wrong current password"

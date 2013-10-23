@@ -71,3 +71,7 @@ ru:
     subscribe_panel:
       unsubscribe: "Перестать следить за обновлениями"
       subscribe: "Следить за обновлениями"
+  registrations:
+    create:
+      wrong_captcha: "Вы ввели неверную капчу"
+      wrong_password: "Вы ввели неверный текущий пароль"
