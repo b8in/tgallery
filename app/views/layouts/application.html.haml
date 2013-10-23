@@ -5,25 +5,44 @@
       Tgallery
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    = yield :include_gon
+    = yield :include_js
     = csrf_meta_tags
   %body
-    = nav_bar staic: :top, brand: "T-Gallery", brand_link: root_path, class: 'row' do
+    = nav_bar fixed: :top, brand: t('.title'), brand_link: root_path, class: 'row' do
       = menu_group pull: 'left' do
-        = drop_down 'Categories' do
+        = drop_down t('.categories') do
           - @categories_menu.each do |cat|
             = menu_item cat.name, category_path(cat.name)
-        = menu_item 'All images', '#'
-        = menu_item 'All comments', '#'
-        = menu_item 'User events', events_path
+        = menu_item t('.all_images'), pictures_path
+        = menu_item t('.all_comments'), user_comments_path
+        = menu_item t('.user_events'), events_path if user_signed_in? && current_user.admin?
       = menu_group pull: 'right' do
+        - if I18n.locale.to_s == 'ru'
+          - language_img = 'ru.png'
+        - elsif I18n.locale.to_s == 'en'
+          - language_img = 'us.png'
+        = drop_down image_tag(language_img) do
+          = menu_item change_locale_path(new_locale: 'ru', back_url: url_for(locale: 'ru')) do
+            = image_tag('ru.png')
+            = 'Русский'
+          = menu_item change_locale_path(new_locale: 'en', back_url: url_for(locale: 'en')) do
+            = image_tag('us.png')
+            = 'English'
         - unless user_signed_in?
-          = menu_item 'Sign in', new_user_session_path
-          = menu_item 'Sign up', new_user_registration_path
+          = menu_item t('.sign_in'), new_user_session_path
+          = menu_item t('.sign_up'), new_user_registration_path
         - else
-          =# menu_text "You login as: "+current_user.email
-          = menu_item 'Sign out', destroy_user_session_path, method: :delete
+          - if current_user.admin?
+            = menu_item t('.admin_panel'), admin_root_path(locale: 'en')
+          - else
+            = menu_item t('.profile'), edit_user_registration_path(current_user)
+          = menu_item t('.sign_out'), destroy_user_session_path, method: :delete
     = bootstrap_flash
     .row-fluid
       .span10.offset1#page-container
         = yield
-    .bottom-page-div
+    -#%footer.footer
+    = nav_bar fixed: :bottom, class: 'row' do
+      = menu_text "ABCompany", align: 'center', class: 'footer-text'
+      = menu_text "© 2013", align: 'center', class: 'footer-text'

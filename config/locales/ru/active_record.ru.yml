@@ -1,0 +1,30 @@
+ru:
+  activerecord:
+    models:
+      e_history:
+        one: "Атрибут события"
+        other: "Атрибуты события"
+      event:
+        one: "Событие"
+        other: "События"
+      g_image:
+        one: "Картинка"
+        other: "Картинки"
+      g_image_category:
+        one: "Категория"
+        other: "Категории"
+      like:
+        one: "Лайк"
+        other: "Лайки"
+      navigation:
+        one: "Переход по ссылке"
+        other: "Переходы по ссылкам"
+      service:
+        one: "Провайдер социальной сети"
+        other: "Провайдеры социальных сетей"
+      user:
+        one: "Пользователь"
+        other: "Пользователи"
+      watching_category:
+        one: "Подписка на обновления"
+        other: "Подписки на обновления"

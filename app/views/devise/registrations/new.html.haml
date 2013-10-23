@@ -1,0 +1,44 @@
+= content_for :include_js do
+  = javascript_include_tag 'devise_registration'
+
+%h3.text-align-center-aa
+  = t('devise.views.sign_up')
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  %div
+    %table
+      %tr
+        %td
+          = f.label :name, t('devise.views.name')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          = f.text_field :name, autofocus: true, required: true
+      %tr
+        %td
+          = f.label :email, t('devise.views.email')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          = f.email_field :email, required: true
+      %tr
+        %td
+          = f.label :password, t('devise.views.password')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          = f.password_field :password, required: true
+      %tr
+        %td
+          = f.label :password_confirmation, t('devise.views.passwd_conf')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          = f.password_field :password_confirmation, required: true
+      %tr
+        %td
+          = f.label t('devise.views.captcha')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          #captcha_block.text-align-center-aa
+            #captcha
+              = render "simple_captcha/simple_captcha_block"
+            %button{id: 'refresh-captcha-btn', class: 'refresh_image', type: :button}
+              %i{class: "icon-refresh"}
+              = t('simple_captcha.refresh_btn_text')
+    %div
+      = f.submit t('devise.views.sign_up')
+
+
+= render "devise/shared/links"

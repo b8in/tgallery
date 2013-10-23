@@ -4,5 +4,6 @@ class Navigation < ActiveRecord::Base
   has_one :e_history, as: :eventable, dependent: :destroy
 
   validates :target_url,
-            presence: true
+            presence: true,
+            url: true
 end

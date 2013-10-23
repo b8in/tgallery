@@ -1,0 +1,77 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  simple_captcha:
+    placeholder: "Enter the image value"
+    label: "Enter the code in the box:"
+    refresh_btn_text: "refresh captcha"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "The secret Image and code were different"
+  homes:
+    index:
+      title: "Welcome!"
+      about: "About"
+      about_text: "This is super mega gallery, blah-blah-blah. If you want have extra abilities, you should %{sign_up} or %{sign_in} ."
+      sign_up: "sign up"
+      sign_in: "sign in"
+      last_comments: "Last comments"
+      last_galleries: "Last galleries"
+      ago: "ago"
+  layouts:
+    application:
+      title: "T-Gallery"
+      categories: "Categories"
+      all_images: "All images"
+      all_comments: "All comments"
+      user_events: "User events"
+      admin_panel: "Admin panel"
+      sign_out: "Sign out"
+      sign_up: "Sign up"
+      sign_in: "Sign in"
+      profile: "Profile"
+  pictures:
+    index:
+      all_images: "All images"
+    show:
+      total: "Total"
+      likes: "likes"
+      i_like: "I like"
+      show_prev_comments: "Show previous comments"
+      hide_prev_comments: "Hide previous comments"
+      ago: "ago"
+      your_nickname: "Enter your nickname:"
+      your_comment: "Enter your comment:"
+      add_comment: "Add comment"
+  user_comments:
+    index:
+      all_comments: "All comments"
+      author: "Author:"
+      date: "Date:"
+      image: "Image:"
+      text: "Text:"
+  events:
+    index:
+      events: "Events"
+      user: "User"
+    show:
+      date: "Date"
+      link: "Link"
+      image: "Image"
+      text: "Text"
+  categories:
+    index:
+      title: "TGallery list categories"
+      category_name: "Category name:"
+      images_count: "Images count:"
+      comments_count: "Total comments count:"
+      likes_count: "Total likes count:"
+      last_updated: "Last updated:"
+    subscribe_panel:
+      unsubscribe: "Unsubscribe this category"
+      subscribe: "Subscribe this category"
+  registrations:
+    create:
+      wrong_captcha: "You enter wrong captcha"
+      wrong_password: "You enter wrong current password"

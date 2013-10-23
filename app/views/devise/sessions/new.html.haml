@@ -1,0 +1,27 @@
+%h2
+  = t('devise.views.sign_in')
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  %div
+    %table
+      %tr
+        %td
+          = f.label :email, t('devise.views.email')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          = f.email_field :email, required: true
+      %tr
+        %td
+          = f.label :password, t('devise.views.password')+t('devise.views.mark')+t('devise.views.colon')
+        %td
+          = f.password_field :password, required: true
+
+  - if devise_mapping.rememberable?
+    %div
+      %label
+        = f.check_box :remember_me
+        = t('devise.views.remember_me')
+      %br
+  %div
+    = f.submit t('devise.views.sign_in')
+    = link_to (image_tag("facebook_32.png", :size => "32x32",  :alt => t('devise.views.facebook'))), "/auth/facebook"
+
+= render "devise/shared/links"

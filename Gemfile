@@ -12,7 +12,24 @@ gem 'rmagick'
 gem 'kaminari'
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
+gem 'validate_url'
+gem 'validate_email'
+gem 'rails_config'
+
+gem "pusher", "~> 0.12.0"
+gem 'gon'#, '3.0.5'
+
+gem 'resque', :require => 'resque/server'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+# sample:  https://github.com/jherrm/Resque-Scheduler-Example
+
+gem 'activeadmin'
+
+gem "nokogiri", "~> 1.6.0"
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12'
@@ -38,7 +55,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '< 3.0.0'
 gem 'haml'
 gem 'twitter-bootstrap-rails'
 

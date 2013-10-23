@@ -16,5 +16,6 @@ class CategoriesController < ApplicationController
   def show_by_name
     @category = GImageCategory.find_by_name(params[:category_name])
     @images = @category.g_images.page params[:page]
+    @user_watch_this_category = user_signed_in? && !WatchingCategory.where(user_id: current_user.id, g_image_category_id: @category.id).blank?
   end
 end

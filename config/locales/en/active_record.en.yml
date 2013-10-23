@@ -1,0 +1,30 @@
+en:
+  activerecord:
+    models:
+      e_history:
+        one: "Event history"
+        other: "Event histories"
+      event:
+        one: "Event"
+        other: "Events"
+      g_image:
+        one: "Image"
+        other: "Images"
+      g_image_category:
+        one: "Category"
+        other: "Categories"
+      like:
+        one: "Like"
+        other: "Likes"
+      navigation:
+        one: "Navigation"
+        other: "Navigations"
+      service:
+        one: "Social network provider"
+        other: "Social network providers"
+      user:
+        one: "user"
+        other: "users"
+      watching_category:
+        one: "Watching category"
+        other: "Watching categories"

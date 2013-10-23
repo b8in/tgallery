@@ -1,23 +1,51 @@
+= content_for :include_gon do
+  = include_gon camel_case: true, namespace: 'TGallery'
+
+= content_for :include_js do
+  = javascript_include_tag 'homes'
+
 %h3.text-align-center-aa
-  Dear Friend
-#about-tgallery
-  %p
-    Это супер пупер галлерея, blah-blah-blah, доступ к которой возможно получит только
-    = link_to 'зарегистировавшись', new_user_registration_path
-    = " и "
-    = link_to 'авторизовавшись', new_user_session_path
-    = "."
-%h3.text-align-center-aa
-  Last galleries
-.image-categories-container
-  - 2.times do |i|
-    - unless @categories[i*3].blank?
-      .row
-        - 3.times do |j|
-          - unless @categories[i*3+j].blank?
-            - cat = @categories[i*3+j]
-            .span4
-              .image-category.text-align-center-aa
-                = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), "#"
-                %br
-                = link_to cat.name.capitalize, "#"
+  = t('.title')
+.row-fluid
+  .span8
+    #about-tgallery
+      %h5
+        = t('.about')
+      %p
+        != t('.about_text', sign_up: link_to(t('.sign_up'), new_user_registration_path), sign_in: link_to(t('.sign_in'), new_user_session_path))
+    %h3.text-align-center-aa
+      = t('.last_galleries')
+    .image-categories-container
+      - 2.times do |i|
+        - unless @categories[i*3].blank?
+          .row
+            - 3.times do |j|
+              - unless @categories[i*3+j].blank?
+                - cat = @categories[i*3+j]
+                .span4
+                  .image-category.text-align-center-aa
+                    = link_to (image_tag cat.g_images.sample.image.url(:thumb), title: cat.name.capitalize), category_path(cat.name)
+                    %br
+                    = link_to cat.name.capitalize, category_path(cat.name)
+  .span4
+    %h5
+      = t('.last_comments')
+    .comments_block
+      .comments
+        - i = 4
+        - @comments.each do |comment|
+          %blockquote{id: "comment_#{i}"}
+            - i -= 1
+            .comment_nickname
+              %b.text-primary
+                = comment.author || comment.e_history.user.name
+                = ' ['
+                = link_to comment.g_image.name, picture_path(comment.g_image.g_image_category.name, comment.g_image.id)
+                = ']'
+            .comment_description
+              = comment.text
+            %br
+            %small.comment_time
+              = time_ago_in_words(comment.created_at)
+              = t('.ago')
+            %hr

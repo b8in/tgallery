@@ -1,0 +1,5 @@
+do_my_job:
+  every: 1m
+  class: NewImagesNiotifier
+  args:
+  description: Runs the perform method in NewImagesNiotifier

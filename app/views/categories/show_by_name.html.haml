@@ -1,7 +1,16 @@
+= content_for :include_js do
+  = javascript_include_tag 'categories'
+
 %h3.text-align-center-aa
   = "#{@category.name.capitalize}"
+
+= render 'subscribe_panel'
+
 #images-container
   - @images.each do |img|
     .image-box.text-align-center-aa
       = link_to (image_tag img.image.url, title: img.name), picture_path(@category.name, img.id)
-  = paginate @images
+
+= render 'subscribe_panel'
+
+= paginate @images
