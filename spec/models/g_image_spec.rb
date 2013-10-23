@@ -5,8 +5,9 @@ describe GImage do
   describe 'mass assignment attributes' do
     it { should allow_mass_assignment_of :name }
     it { should allow_mass_assignment_of :image }
+    it { should allow_mass_assignment_of :g_image_category_id }
+    it { should allow_mass_assignment_of :remote_image_url }
     it { should_not allow_mass_assignment_of :id }
-    it { should_not allow_mass_assignment_of :g_image_category_id }
     it { should_not allow_mass_assignment_of :likes_count }
     it { should_not allow_mass_assignment_of :user_comments_count }
   end
@@ -29,7 +30,6 @@ describe GImage do
   describe "validations" do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
-    it { should validate_presence_of(:image) }
     it { should validate_presence_of(:likes_count) }
     it { should validate_numericality_of(:likes_count).only_integer }
     it { should validate_presence_of(:user_comments_count) }
@@ -43,7 +43,7 @@ describe GImage do
       GImage.last.should eql(g_image)
     end
     it "invalid object" do
-      g_image = FactoryGirl.build(:g_image, image: nil)
+      g_image = FactoryGirl.build(:g_image, name: nil)
       g_image.save.should be_false
       lambda {g_image.save!}.should raise_error
     end

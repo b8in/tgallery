@@ -8,10 +8,11 @@ describe User do
     it { should allow_mass_assignment_of :password }
     it { should allow_mass_assignment_of :password_confirmation }
     it { should allow_mass_assignment_of :remember_me }
+    it { should allow_mass_assignment_of :admin }
+    it { should allow_mass_assignment_of :current_password }
     it { should_not allow_mass_assignment_of :id }
     it { should_not allow_mass_assignment_of :created_at }
     it { should_not allow_mass_assignment_of :updated_at }
-    it { should_not allow_mass_assignment_of :admin }
     it { should_not allow_mass_assignment_of :encrypted_password }
   end
 
@@ -34,15 +35,19 @@ describe User do
   end
 
   describe "associations" do
+    it { should have_many(:services).dependent(:destroy) }
     it { should have_many(:e_histories).dependent(:destroy) }
     it { should have_many(:user_comments).dependent(:destroy).through(:e_histories) }
+    it { should have_many(:likes).dependent(:destroy).through(:e_histories) }
     it { should have_many(:events).through(:e_histories) }
+    it { should have_many(:watching_categories).dependent(:destroy) }
+    it { should have_many(:g_image_categories).through(:watching_categories) }
   end
 
   describe "validations" do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email).case_insensitive }
-    it { should validate_presence_of(:encrypted_password) }
+    it { should validate_presence_of(:name) }
   end
 
   describe "valid and invalid attributes" do
@@ -52,7 +57,7 @@ describe User do
     it { should allow_value("usa@mail.com").for(:email) }
     it { should_not allow_value("@mail.com").for(:email) }
     it { should_not allow_value(" @mail.com").for(:email) }
-    it { should_not allow_value("usa@mail.x").for(:email) }
+    it { should_not allow_value("usa@mail,x").for(:email) }
     it { should_not allow_value("usa@ma il.com").for(:email) }
   end
 

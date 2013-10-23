@@ -24,6 +24,7 @@ describe Event do
 
   describe "valid and invalid objects" do
     it { should allow_value("navigation").for(:name) }
+    it { should_not allow_value("x").for(:name) }
   end
 
   describe "saving into db" do

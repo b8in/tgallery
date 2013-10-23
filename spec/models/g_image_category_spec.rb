@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GImageCategory do
 
   describe 'mass assignment attributes' do
-    it { should_not allow_mass_assignment_of :name }
+    it { should allow_mass_assignment_of :name }
     it { should_not allow_mass_assignment_of :id }
     it { should_not allow_mass_assignment_of :updated_at }
   end
@@ -16,6 +16,8 @@ describe GImageCategory do
 
   describe "associations" do
     it { should have_many(:g_images).dependent(:destroy) }
+    it { should have_many(:watching_categories).dependent(:destroy) }
+    it { should have_many(:users).through(:watching_categories) }
   end
 
   describe "validations" do

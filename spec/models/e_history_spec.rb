@@ -30,7 +30,6 @@ describe EHistory do
     it { should validate_numericality_of(:user_id).only_integer }
     it { should validate_presence_of(:event_id) }
     it { should validate_numericality_of(:event_id).only_integer }
-    it { should validate_numericality_of(:eventable_id).only_integer }
   end
 
   describe "saving into db" do
