@@ -16,7 +16,7 @@
     - @h_events.each do |he|
       %tr
         %td
-          = "#{he.date}"
+          = l(he.date.localtime, format: :long)
         - if (he.eventable_type == UserComment.name) || (he.eventable_type == Like.name) || (he.eventable_type == Navigation.name)
           %td
             = "#{he.eventable.target_url}" if he.eventable_type == Navigation.name && he.eventable.respond_to?(:target_url)

@@ -20,5 +20,5 @@
           = "#{@category_likes_count_hash[cat.name]}"
           %br
           = t('.last_updated')
-          = "#{cat.updated_at}"
+          = l(cat.updated_at.localtime, format: :long)
   = paginate @categories
