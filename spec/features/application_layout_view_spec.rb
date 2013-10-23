@@ -10,10 +10,10 @@ describe "application layout" do
     @events[3] = Event.create(name: 'likes')
     @events[4] = Event.create(name: 'comments')
 
-    @user = FactoryGirl.create(:user, email: "ya@ya.su")
+    @user = FactoryGirl.create(:user, email: "aleks@ukr.net")
 
     @categories = []
-    10.times { |i|
+    5.times { |i|
       @categories[i] = FactoryGirl.create(:g_image_category)
       2.times {
         @categories[i].g_images.create(FactoryGirl.attributes_for(:g_image))
@@ -28,13 +28,15 @@ describe "application layout" do
     click_link("Sign in")
 
     within('#new_user') do
-      fill_in 'user_email', with: @user.email
-      fill_in 'user_password', with: 'password'
+      fill_in 'Email*:', with: @user.email
+      fill_in 'Password*:', with: "password"
       click_button('Sign in')
     end
 
-    page.should have_content('Signed in successfully')
-    current_path.should eq(categories_path)
+    page.should have_css('div.alert')
+    puts find(".alert").text
+   # page.should have_content('Signed in successfully')
+    current_path.should eql(categories_path(locale: :en))
 
 
   end

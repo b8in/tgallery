@@ -11,13 +11,12 @@ require 'capybara/rspec'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-#DatabaseCleaner.strategy = :truncation
-
+DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
 
   #config.include Warden::Test::Helpers
-  config.include Devise::TestHelpers, type: :controller        # ##################################
+  #config.include Devise::TestHelpers, type: :controller
 
   #config.before(:suite) do
   #  DatabaseCleaner.clean_with(:truncation)
