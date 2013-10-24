@@ -2,46 +2,46 @@ require 'spec_helper'
 
 describe EHistory do
   describe 'mass assignment attributes' do
-    it { should allow_mass_assignment_of :date }
-    it { should allow_mass_assignment_of :event_id }
-    it { should allow_mass_assignment_of :eventable }
-    it { should_not allow_mass_assignment_of :id }
-    it { should_not allow_mass_assignment_of :user_id }
+    it { expect(subject).to allow_mass_assignment_of :date }
+    it { expect(subject).to allow_mass_assignment_of :event_id }
+    it { expect(subject).to allow_mass_assignment_of :eventable }
+    it { expect(subject).not_to allow_mass_assignment_of :id }
+    it { expect(subject).not_to allow_mass_assignment_of :user_id }
   end
 
   describe "data types" do
-    it { should have_db_column(:id).of_type(:integer).with_options(null: false) }
-    it { should have_db_column(:date).of_type(:datetime) }
-    it { should have_db_column(:eventable_type).of_type(:string) }
-    it { should have_db_column(:eventable_id).of_type(:integer) }
-    it { should have_db_column(:user_id).of_type(:integer) }
-    it { should have_db_column(:event_id).of_type(:integer) }
+    it { expect(subject).to have_db_column(:id).of_type(:integer).with_options(null: false) }
+    it { expect(subject).to have_db_column(:date).of_type(:datetime) }
+    it { expect(subject).to have_db_column(:eventable_type).of_type(:string) }
+    it { expect(subject).to have_db_column(:eventable_id).of_type(:integer) }
+    it { expect(subject).to have_db_column(:user_id).of_type(:integer) }
+    it { expect(subject).to have_db_column(:event_id).of_type(:integer) }
   end
 
   describe "associations" do
-    it { should belong_to(:user) }
-    it { should belong_to(:event) }
-    it { should belong_to(:eventable) }
+    it { expect(subject).to belong_to(:user) }
+    it { expect(subject).to belong_to(:event) }
+    it { expect(subject).to belong_to(:eventable) }
   end
 
   describe "validations" do
-    it { should validate_presence_of(:date) }
-    it { should validate_presence_of(:user_id) }
-    it { should validate_numericality_of(:user_id).only_integer }
-    it { should validate_presence_of(:event_id) }
-    it { should validate_numericality_of(:event_id).only_integer }
+    it { expect(subject).to validate_presence_of(:date) }
+    it { expect(subject).to validate_presence_of(:user_id) }
+    it { expect(subject).to validate_numericality_of(:user_id).only_integer }
+    it { expect(subject).to validate_presence_of(:event_id) }
+    it { expect(subject).to validate_numericality_of(:event_id).only_integer }
   end
 
   describe "saving into db" do
     it "valid object" do
       e_hist = FactoryGirl.build(:e_history)
-      e_hist.save.should be_true
-      EHistory.last.should eql(e_hist)
+      expect(e_hist.save).to be_true
+      expect(EHistory.last).to eql(e_hist)
     end
     it "invalid object" do
       e_hist = FactoryGirl.build(:e_history, user: nil)
-      e_hist.save.should be_false
-      lambda {e_hist.save!}.should raise_error
+      expect(e_hist.save).to be_false
+      expect {e_hist.save!}.to raise_error
     end
   end
 
