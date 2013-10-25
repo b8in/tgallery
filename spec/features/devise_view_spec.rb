@@ -32,10 +32,10 @@ describe "Devise" do
         click_button('Sign in')
       end
 
-      page.should have_css('div.alert.alert-success')
+      expect(page).to have_css('div.alert.alert-success')
       #puts find(".alert").text
-      find(".alert").should have_content('Signed in successfully')
-      current_path.should eql(categories_path(locale: :en))
+      expect(find(".alert")).to have_content('Signed in successfully')
+      expect(current_path).to eql(categories_path(locale: :en))
     end
 
     it "unsuccessful", js:true do
@@ -48,9 +48,9 @@ describe "Devise" do
         click_button('Sign in')
       end
 
-      page.should have_css('div.alert.alert-error')
-      find(".alert").should have_content('Invalid email or password')
-      current_path.should eql(new_user_session_path(locale: :en))
+      expect(page).to have_css('div.alert.alert-error')
+      expect(find(".alert")).to have_content('Invalid email or password')
+      expect(current_path).to eql(new_user_session_path(locale: :en))
     end
   end
 
@@ -68,9 +68,9 @@ describe "Devise" do
         click_button('Sign up')
       end
 
-      page.should have_css('div.alert.alert-success')
-      current_path.should eq(categories_path(locale: :en))
-      find(".alert").should have_content('You have signed up successfully')
+      expect(page).to have_css('div.alert.alert-success')
+      expect(current_path).to eq(categories_path(locale: :en))
+      expect(find(".alert")).to have_content('You have signed up successfully')
     end
 
     it "unsuccessful", js:true do
@@ -86,7 +86,7 @@ describe "Devise" do
         click_button('Sign up')
       end
 
-      current_path.should eq(new_user_registration_path(locale: :en))
+      expect(current_path).to eq(new_user_registration_path(locale: :en))
     end
   end
 

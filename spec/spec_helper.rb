@@ -9,32 +9,14 @@ require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-DatabaseCleaner.strategy = :truncation
+#!!!!!! http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
 
   #config.include Warden::Test::Helpers
   #config.include Devise::TestHelpers, type: :controller
-
-  #config.before(:suite) do
-  #  DatabaseCleaner.clean_with(:truncation)
-  #end
-  #
-  #config.before(:each) do
-  #  DatabaseCleaner.strategy = :transaction
-  #end
-
-
-  config.before :each do
-    DatabaseCleaner.start
-  end
-
-  config.after :each do
-    DatabaseCleaner.clean
-  end
-
 
   # ## Mock Framework
   #

@@ -13,21 +13,21 @@ describe "homes/index" do
 
   it "check page content" do
     visit root_path
-    page.should have_selector('.navbar')
-    find('#about-tgallery').should_not be_nil
-    find('.image-categories-container').should_not be_nil
+    expect(page).to have_selector('.navbar')
+    expect(find('#about-tgallery')).not_to be_nil
+    expect(find('.image-categories-container')).not_to be_nil
     10.times { |i|
-      page.should have_selector('ul.dropdown-menu li')
-      find('ul.dropdown-menu').should have_content @categories[i].name
+      expect(page).to have_selector('ul.dropdown-menu li')
+      expect(find('.pull-left ul.dropdown-menu')).to have_content @categories[i].name
     }
 
-    find('.image-categories-container').find_link(@categories[9].name.capitalize).should be
-    find('.image-categories-container').find_link(@categories[4].name.capitalize).should be
-    find('.image-categories-container').should_not have_content(@categories[3].name.capitalize)
+    expect(find('.image-categories-container').find_link(@categories[9].name.capitalize)).to be
+    expect(find('.image-categories-container').find_link(@categories[4].name.capitalize)).to be
+    expect(find('.image-categories-container')).not_to have_content(@categories[3].name.capitalize)
 
     i = 9
-    all('a > img').each do |img|
-      img[:title].should eq(@categories[i].name.capitalize)
+    all('.image-categories-container a > img').each do |img|
+      expect(img[:title]).to eq(@categories[i].name.capitalize)
       i -= 1
     end
   end
