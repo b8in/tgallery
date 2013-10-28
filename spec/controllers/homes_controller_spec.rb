@@ -2,19 +2,20 @@ require 'spec_helper'
 
 describe HomesController do
 
+  let!(:event) { FactoryGirl.create(:event, name: "navigation") }
+
   describe "GET #index" do
 
     it "respond success, 200 OK" do
       get :index
-      should respond_with(:success)
-      should respond_with(200)
-      #assert_response(:success)
+      expect(response).to be_success
+      expect(response.status).to eq 200
     end
 
     it "render template and layouts" do
       get :index
-      should render_template("index")
-      should render_with_layout(:application)
+      expect(response).to render_template("index")
+      expect(response).to render_with_layout(:application)
     end
 
     context "display page-info:" do
@@ -29,47 +30,54 @@ describe HomesController do
 
       it "categories names" do
         get :index
-        assigns(:categories).should_not be_nil
-        assigns(:categories).should have(6).items
-        assigns(:categories).should start_with(@categories[6])
-        assigns(:categories).should end_with(@categories[1])
+        expect(assigns(:categories)).not_to be_nil
+        expect(assigns(:categories)).to have(6).items
+        expect(assigns(:categories)).to start_with(@categories[6])
+        expect(assigns(:categories)).to end_with(@categories[1])
       end
 
       it "categories images" do
         get :index
-        @categories[6].should eql(assigns(:categories)[0])
-        assigns(:categories)[0].should respond_to(:g_images)
-        assigns(:categories)[0].g_images[0].image.should_not be_nil
+        expect(@categories[6]).to eql(assigns(:categories)[0])
+        expect(assigns(:categories)[0]).to respond_to(:g_images)
+        expect(assigns(:categories)[0].g_images[0].image).not_to be_nil
       end
     end
 
     context "if user sign in" do
 
       before do
-        FactoryGirl.create(:event, name: "navigation")
         @user = FactoryGirl.create(:user)
         sign_in @user
       end
 
       it "save navigation url" do
         get :index
-        Navigation.last.should_not be_nil
-        Navigation.last.e_history.user_id.should eq(@user.id)
-        Navigation.last.e_history.event.name.should eq("navigation")
+        expect(Navigation.last).not_to be_nil
+        expect(Navigation.last.e_history.user_id).to eq(@user.id)
+        expect(Navigation.last.e_history.event.name).to eq(event.name)
       end
     end
 
-    context "if guest not sign in" do
+    context "if guest" do
 
-      before do
-        FactoryGirl.create(:event, name: "navigation")
-      end
-
-      it "save navigation url" do
+      it "don't save navigation url" do
         get :index
-        Navigation.last.should be_nil
+        expect(Navigation.last).to be_nil
       end
     end
 
+  end
+
+  describe "GET #change_locale" do
+
+    it "change locale" do
+      get :index
+      I18n.locale = :ru
+      get :change_locale, new_locale: 'en', back_url: root_path
+      expect(I18n.locale).to eq :en
+      get :index
+      expect(I18n.locale).to eq :en
+    end
   end
 end
