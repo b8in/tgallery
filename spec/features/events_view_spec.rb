@@ -12,7 +12,7 @@ describe "events" do
     @events[4] = Event.create(name: 'comments')
     @users = []
     2.times { |i|
-      @users[i] = FactoryGirl.create(:user)
+      @users[i] = FactoryGirl.create(:user, admin: true)
     }
 
     @category = FactoryGirl.create(:g_image_category)
@@ -20,22 +20,22 @@ describe "events" do
 
     #user events modeling (creating a history)
 
-    #login_as @users[0]
-    #visit root_path
-    #
-    #visit picture_path(category_name: @category.name, id: @image.id)
-    #fill_in('user_comment_text', with: COMMENT_TEXT)
-    #
-    #logout
-    #
-    #login_as @users[1]
-    #visit root_path
-    #logout @users[1]
+    current_user = @users[0]
+    visit root_path
+
+    visit picture_path(category_name: @category.name, id: @image.id)
+    fill_in('user_comment_text', with: COMMENT_TEXT)
+
+    current_user = nil
+
+    current_user =  @users[1]
+    visit root_path
+    current_user = nil
   end
 
   describe "events/index" do
-    it "check page content" do
-#      login_as @users[0]
+    it "check page content", js: true do
+      current_user = @users[0]
       visit events_path
       page.should have_selector('.navbar')
       page.should have_selector('table')
