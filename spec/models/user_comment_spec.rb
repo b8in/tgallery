@@ -41,4 +41,12 @@ describe UserComment do
     end
   end
 
+  describe "parameters" do
+    let!(:comments) { FactoryGirl.create_list(:user_comment, 15) }
+
+    it "comments per page" do
+      UserComment.page(1).size.should eq 5
+    end
+  end
+
 end

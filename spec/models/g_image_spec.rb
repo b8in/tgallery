@@ -49,4 +49,11 @@ describe GImage do
     end
   end
 
+  describe "parameters" do
+    let!(:images) { FactoryGirl.create_list(:g_image, 15) }
+
+    it "comments per page" do
+      GImage.page(1).size.should eq 5
+    end
+  end
 end
