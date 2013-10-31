@@ -83,3 +83,8 @@ en:
     create:
       already_voted: "You have already voted for this image"
       should_been_authorized: "You should been authorized"
+  watching_categories:
+    create:
+      unsubscribe_category: 'Unsubscribe this category'
+    destroy:
+      subscribe_category: 'Subscribe this category'

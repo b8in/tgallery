@@ -83,3 +83,8 @@ ru:
     create:
       already_voted: "Вы уже голосовали за эту картинку"
       should_been_authorized: "Необходима авторизация"
+  watching_categories:
+    create:
+      unsubscribe_category: 'Следить за обновлениями'
+    destroy:
+      subscribe_category: 'Перестать следить за обновлениями'
