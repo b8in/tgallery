@@ -60,6 +60,8 @@ en:
       link: "Link"
       image: "Image"
       text: "Text"
+    must_be_admin:
+      access_denied: 'Access denied'
   categories:
     index:
       title: "TGallery list categories"

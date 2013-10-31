@@ -60,6 +60,8 @@ ru:
       link: "Ссылка"
       image: "Картинка"
       text: "Текст"
+    must_be_admin:
+      access_denied: 'В доступе отказано'
   categories:
     index:
       title: "Перечень категорий"
