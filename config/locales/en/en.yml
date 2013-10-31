@@ -51,6 +51,8 @@ en:
       date: "Date:"
       image: "Image:"
       text: "Text:"
+    create:
+      be_authorized_or_enter_captcha: "You must be authorized or enter correct captcha"
   events:
     index:
       events: "Events"
