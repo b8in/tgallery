@@ -77,3 +77,7 @@ ru:
     create:
       wrong_captcha: "Вы ввели неверную капчу"
       wrong_password: "Вы ввели неверный текущий пароль"
+  likes:
+    create:
+      already_voted: "Вы уже голосовали за эту картинку"
+      should_been_authorized: "Необходима авторизация"

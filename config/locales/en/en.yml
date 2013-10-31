@@ -77,3 +77,7 @@ en:
     create:
       wrong_captcha: "You enter wrong captcha"
       wrong_password: "You enter wrong current password"
+  likes:
+    create:
+      already_voted: "You have already voted for this image"
+      should_been_authorized: "You should been authorized"
