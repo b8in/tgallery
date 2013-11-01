@@ -5,6 +5,8 @@
       Tgallery
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    :javascript
+      var I18n = I18n || {}; I18n.locale = "#{I18n.locale}";
     = yield :include_gon
     = yield :include_js
     = csrf_meta_tags

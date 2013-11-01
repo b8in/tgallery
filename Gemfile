@@ -31,6 +31,8 @@ gem 'activeadmin'
 
 gem "nokogiri", "~> 1.6.0"
 
+gem "i18n-js"
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.12'
   gem "factory_girl_rails", "~> 4.0"

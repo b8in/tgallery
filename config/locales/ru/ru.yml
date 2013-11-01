@@ -97,3 +97,5 @@ ru:
       service_account_alresdy_linked: "%{provider} аккаунт уже связан с Вашей учетной записью."
       return_invalid_data: "%{provider} вернул неверные данные."
       error_sign_in_via_provider: "Произошла ошибка аутентификации через %{provider}."
+  javascript:
+    fresh: "недавний"
