@@ -88,3 +88,12 @@ ru:
       unsubscribe_category: 'Следить за обновлениями'
     destroy:
       subscribe_category: 'Перестать следить за обновлениями'
+  services:
+    create:
+      sign_in_success_via: "Авторизация успешно пройдена через %{provider}."
+      sign_in_success_and_add_service_to_account: "Ваш %{provider} аккаунт успешно привязан к учетной записи %{email}."
+      create_service_account: "Вы успешно зарегистрировались на сайте TGallery через %{provider}. Вы можете отредактировать свой профиль."
+      wrong_service_account_without_email: "Ваш %{provider} аккаунт не может быть использован для регистрации на сайте TGallery так как он не позволил получить Ваш имейл . Вы можете заполнить форму регистрации непосредственно на сайте TGallery. Если Вы уже зарегистрированы, тогда можете добавить %{provider} аккаунт в свой профиль."
+      service_account_alresdy_linked: "%{provider} аккаунт уже связан с Вашей учетной записью."
+      return_invalid_data: "%{provider} вернул неверные данные."
+      error_sign_in_via_provider: "Произошла ошибка аутентификации через %{provider}."

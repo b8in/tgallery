@@ -88,3 +88,12 @@ en:
       unsubscribe_category: 'Unsubscribe this category'
     destroy:
       subscribe_category: 'Subscribe this category'
+  services:
+    create:
+      sign_in_success_via: "Signed in successfully via %{provider}."
+      sign_in_success_and_add_service_to_account: "Sign in via %{provider} has been added to your account %{email}."
+      create_service_account: "Your account on TGallery has been created via %{provider}. In your profile you can change your personal information and add a local password."
+      wrong_service_account_without_email: "%{provider} can not be used to sign-up on TGallery as no valid email address has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add %{provider} from your profile."
+      service_account_alresdy_linked: "%{provider} is already linked to your account."
+      return_invalid_data: "%{provider} returned invalid data for the user id."
+      error_sign_in_via_provider: "Error while authenticating via %{provider}."
