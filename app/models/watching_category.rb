@@ -4,6 +4,6 @@ class WatchingCategory < ActiveRecord::Base
   belongs_to :user
   belongs_to :g_image_category
 
-  validates :user_id, presence: true
-  validates :g_image_category_id, presence: true
+  validates :user_id, presence: true, numericality: { only_integer: true}
+  validates :g_image_category_id, presence: true, numericality: { only_integer: true}
 end
