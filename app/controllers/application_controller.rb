@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SimpleCaptcha::ControllerHelpers
 
   protect_from_forgery
-  before_filter :load_categories, :set_user_or_guest_id
+  before_filter :load_categories, :set_user_or_guest_id, :set_locale
   after_filter :save_navigation
 
   private
@@ -36,4 +36,11 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path unless current_user.try(:admin)
   end
 
+  def default_url_options(options={})
+    { locale: I18n.locale }
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 end

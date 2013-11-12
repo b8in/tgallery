@@ -1,0 +1,101 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ru:
+  simple_captcha:
+    placeholder: "Введите значение с картинки"
+    label: "Введите код поле"
+    refresh_btn_text: "обновить капчу"
+    message:
+      default: "Код не совпадает с картинкой"
+      user: "Картинка и код отличаются"
+  homes:
+    index:
+      title: "Добро пожаловать!"
+      about: "О сайте"
+      about_text: "Это супер пупер галлерея, blah-blah-blah, доступ к которой возможно получить только %{sign_up} или %{sign_in}."
+      sign_up: "зарегистировавшись"
+      sign_in: "авторизовавшись"
+      last_comments: "Последние комментарии"
+      last_galleries: "Последние галлереи"
+      ago: "назад"
+  layouts:
+    application:
+      title: "T-Gallery"
+      categories: "Категории"
+      all_images: "Все картинки"
+      all_comments: "Все комментарии"
+      user_events: "Статистика переходов"
+      admin_panel: "АдминПанель"
+      sign_out: "Выйти"
+      sign_up: "Зарегистрироваться"
+      sign_in: "Войти"
+      profile: "Профиль"
+  pictures:
+    index:
+      all_images: "Все картинки"
+    show:
+      total: "Всего"
+      likes: "лайк(ов)"
+      i_like: "I like"
+      show_prev_comments: "Показать предыдущие комментарии"
+      hide_prev_comments: "Скрыть предыдущие комментарии"
+      ago: "назад"
+      your_nickname: "Введите свой ник:"
+      your_comment: "Напишите свой комментарий:"
+      add_comment: "Добавить комментарий"
+  user_comments:
+    index:
+      all_comments: "Все комментарии"
+      author: "Автор:"
+      date: "Дата:"
+      image: "Картинка:"
+      text: "Текст:"
+    create:
+      be_authorized_or_enter_captcha: "Необходимо авторизоваться либо правильно ввести капчу"
+  events:
+    index:
+      events: "События"
+      user: "Пользователь"
+    show:
+      date: "Дата"
+      link: "Ссылка"
+      image: "Картинка"
+      text: "Текст"
+    must_be_admin:
+      access_denied: 'В доступе отказано'
+  categories:
+    index:
+      title: "Перечень категорий"
+      category_name: "Имя категории:"
+      images_count: "Количество картинок:"
+      comments_count: "Всего комментарией:"
+      likes_count: "Всего лайков:"
+      last_updated: "Последнее обновление:"
+    subscribe_panel:
+      unsubscribe: "Перестать следить за обновлениями"
+      subscribe: "Следить за обновлениями"
+  registrations:
+    create:
+      wrong_captcha: "Вы ввели неверную капчу"
+      wrong_password: "Вы ввели неверный текущий пароль"
+  likes:
+    create:
+      already_voted: "Вы уже голосовали за эту картинку"
+      should_been_authorized: "Необходима авторизация"
+  watching_categories:
+    create:
+      unsubscribe_category: 'Следить за обновлениями'
+    destroy:
+      subscribe_category: 'Перестать следить за обновлениями'
+  services:
+    create:
+      sign_in_success_via: "Авторизация успешно пройдена через %{provider}."
+      sign_in_success_and_add_service_to_account: "Ваш %{provider} аккаунт успешно привязан к учетной записи %{email}."
+      create_service_account: "Вы успешно зарегистрировались на сайте TGallery через %{provider}. Вы можете отредактировать свой профиль."
+      wrong_service_account_without_email: "Ваш %{provider} аккаунт не может быть использован для регистрации на сайте TGallery так как он не позволил получить Ваш имейл . Вы можете заполнить форму регистрации непосредственно на сайте TGallery. Если Вы уже зарегистрированы, тогда можете добавить %{provider} аккаунт в свой профиль."
+      service_account_alresdy_linked: "%{provider} аккаунт уже связан с Вашей учетной записью."
+      return_invalid_data: "%{provider} вернул неверные данные."
+      error_sign_in_via_provider: "Произошла ошибка аутентификации через %{provider}."
+  javascript:
+    fresh: "недавний"

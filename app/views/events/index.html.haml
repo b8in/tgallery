@@ -1,12 +1,12 @@
 %h3.text-align-center-aa
-  Events
+  = t('.events')
 %table.events-table{align: 'center'}
   %thead
     %tr
       %th
-        User
+        = t('.user')
       %th{colspan: 5}
-        Events
+        = t('.events')
   %tbody
     - @users.each do |user|
       %tr

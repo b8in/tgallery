@@ -13,6 +13,6 @@ class EventsController < ApplicationController
 
   private
   def must_be_admin
-    redirect_to root_path, alert: 'Access denied' unless (!!current_user && current_user.try(:admin))
+    redirect_to root_path, alert: t('events.must_be_admin.access_denied') unless (!!current_user && current_user.try(:admin))
   end
 end

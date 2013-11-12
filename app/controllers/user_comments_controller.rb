@@ -34,7 +34,7 @@ include ActionView::Helpers::DateHelper
       }
     else
       render json: { stat: 'error',
-                     message: "You are not authorized and enter wrong captcha",
+                     message: t('user_comments.create.be_authorized_or_enter_captcha'),
                      image_comments_count: -1
       }
     end
@@ -48,7 +48,7 @@ include ActionView::Helpers::DateHelper
       data_hash = {}
       data_hash[:text] = com.text
       data_hash[:author] = com.author || com.e_history.user.name
-      data_hash[:date] = "#{time_ago_in_words(com.created_at)} ago"
+      data_hash[:date] = "#{time_ago_in_words(com.created_at)} #{t('pictures.show.ago')}"
       array << data_hash
     end
     render json: {comments: array}

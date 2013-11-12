@@ -14,13 +14,13 @@ class LikesController < ApplicationController
       else
         render json: {  image_likes_count: -1,
                         stat: 'error',
-                        message: "You have already voted for this image"
+                        message: t('likes.create.already_voted')
         }
       end
     else
       render json: {  image_likes_count: -1,
                       stat: 'error',
-                      message: "You should been authorized"
+                      message: t('likes.create.should_been_authorized')
       }
     end
   end

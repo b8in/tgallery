@@ -1,0 +1,101 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  simple_captcha:
+    placeholder: "Enter the image value"
+    label: "Enter the code in the box:"
+    refresh_btn_text: "refresh captcha"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "The secret Image and code were different"
+  homes:
+    index:
+      title: "Welcome!"
+      about: "About"
+      about_text: "This is super mega gallery, blah-blah-blah. If you want have extra abilities, you should %{sign_up} or %{sign_in} ."
+      sign_up: "sign up"
+      sign_in: "sign in"
+      last_comments: "Last comments"
+      last_galleries: "Last galleries"
+      ago: "ago"
+  layouts:
+    application:
+      title: "T-Gallery"
+      categories: "Categories"
+      all_images: "All images"
+      all_comments: "All comments"
+      user_events: "User events"
+      admin_panel: "Admin panel"
+      sign_out: "Sign out"
+      sign_up: "Sign up"
+      sign_in: "Sign in"
+      profile: "Profile"
+  pictures:
+    index:
+      all_images: "All images"
+    show:
+      total: "Total"
+      likes: "likes"
+      i_like: "I like"
+      show_prev_comments: "Show previous comments"
+      hide_prev_comments: "Hide previous comments"
+      ago: "ago"
+      your_nickname: "Enter your nickname:"
+      your_comment: "Enter your comment:"
+      add_comment: "Add comment"
+  user_comments:
+    index:
+      all_comments: "All comments"
+      author: "Author:"
+      date: "Date:"
+      image: "Image:"
+      text: "Text:"
+    create:
+      be_authorized_or_enter_captcha: "You must be authorized or enter correct captcha"
+  events:
+    index:
+      events: "Events"
+      user: "User"
+    show:
+      date: "Date"
+      link: "Link"
+      image: "Image"
+      text: "Text"
+    must_be_admin:
+      access_denied: 'Access denied'
+  categories:
+    index:
+      title: "TGallery list categories"
+      category_name: "Category name:"
+      images_count: "Images count:"
+      comments_count: "Total comments count:"
+      likes_count: "Total likes count:"
+      last_updated: "Last updated:"
+    subscribe_panel:
+      unsubscribe: "Unsubscribe this category"
+      subscribe: "Subscribe this category"
+  registrations:
+    create:
+      wrong_captcha: "You enter wrong captcha"
+      wrong_password: "You enter wrong current password"
+  likes:
+    create:
+      already_voted: "You have already voted for this image"
+      should_been_authorized: "You should been authorized"
+  watching_categories:
+    create:
+      unsubscribe_category: 'Unsubscribe this category'
+    destroy:
+      subscribe_category: 'Subscribe this category'
+  services:
+    create:
+      sign_in_success_via: "Signed in successfully via %{provider}."
+      sign_in_success_and_add_service_to_account: "Sign in via %{provider} has been added to your account %{email}."
+      create_service_account: "Your account on TGallery has been created via %{provider}. In your profile you can change your personal information and add a local password."
+      wrong_service_account_without_email: "%{provider} can not be used to sign-up on TGallery as no valid email address has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add %{provider} from your profile."
+      service_account_alresdy_linked: "%{provider} is already linked to your account."
+      return_invalid_data: "%{provider} returned invalid data for the user id."
+      error_sign_in_via_provider: "Error while authenticating via %{provider}."
+  javascript:
+    fresh: "fresh=="
