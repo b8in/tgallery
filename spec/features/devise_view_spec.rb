@@ -2,24 +2,27 @@ require 'spec_helper'
 
 
 describe "Devise" do
-  before do
-    @events = []
-    @events[0] = Event.create(name: 'navigation')
-    @events[1] = Event.create(name: 'sign_in')
-    @events[2] = Event.create(name: 'sign_out')
-    @events[3] = Event.create(name: 'likes')
-    @events[4] = Event.create(name: 'comments')
-
-    @user = FactoryGirl.create(:user, email: "aleks@ukr.net")
-
-    @categories = []
+  let!(:create_events) do
+    events = []
+    events[0] = Event.create(name: 'navigation')
+    events[1] = Event.create(name: 'sign_in')
+    events[2] = Event.create(name: 'sign_out')
+    events[3] = Event.create(name: 'likes')
+    events[4] = Event.create(name: 'comments')
+    events
+  end
+  let!(:create_10_categories) do
+    categories = []
     5.times { |i|
-      @categories[i] = FactoryGirl.create(:g_image_category)
+      categories[i] = FactoryGirl.create(:g_image_category)
       2.times {
-        @categories[i].g_images.create(FactoryGirl.attributes_for(:g_image))
+        categories[i].g_images.create(FactoryGirl.attributes_for(:g_image))
       }
     }
+    categories
   end
+
+  let(:user) { FactoryGirl.create(:user, email: "aleks@ukr.net") }
 
   describe "user sign_in" do
     it "successful", js:true do
@@ -27,8 +30,8 @@ describe "Devise" do
       click_link("Sign in")
 
       within('#new_user') do
-        fill_in 'Email*:', with: @user.email
-        fill_in 'Password*:', with: "password"
+        fill_in 'Email*:', with: user.email
+        fill_in 'Password*:', with: user.password
         click_button('Sign in')
       end
 
@@ -43,8 +46,8 @@ describe "Devise" do
       click_link("Sign in")
 
       within('#new_user') do
-        fill_in 'Email*:', with: @user.email
-        fill_in 'Password*:', with: "pass**word"
+        fill_in 'Email*:', with: user.email
+        fill_in 'Password*:', with: "wrong #{user.password}"
         click_button('Sign in')
       end
 
@@ -61,7 +64,7 @@ describe "Devise" do
 
       within('#new_user') do
         fill_in 'user_name', with: "New User"
-        fill_in 'user_email', with: "user#{Time.now.to_i%100000}@mail.com"
+        fill_in 'user_email', with: "user1@mail.com"
         fill_in 'user_password', with: 'password'
         fill_in 'user_password_confirmation', with: 'password'
         fill_in 'captcha', with: '12345'
@@ -79,7 +82,7 @@ describe "Devise" do
 
       within('#new_user') do
         fill_in 'user_name', with: "New User"
-        fill_in 'user_email', with: "user#{Time.now.to_i%100000}mail.com"
+        fill_in 'user_email', with: "user1-mail.com"
         fill_in 'user_password', with: 'password'
         fill_in 'user_password_confirmation', with: 'password'
         fill_in 'captcha', with: '12345'
