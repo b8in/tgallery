@@ -42,3 +42,12 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+def sign_in_tgallery(user)
+  visit new_user_session_path(locale: :en)
+  within('#new_user') do
+    fill_in 'Email*:', with: user.email
+    fill_in 'Password*:', with: user.password
+    click_button('Sign in')
+  end
+end

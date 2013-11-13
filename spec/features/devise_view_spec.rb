@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe "Devise" do
   let!(:create_events) do
     events = []
@@ -26,14 +25,7 @@ describe "Devise" do
 
   describe "user sign_in" do
     it "successful", js:true do
-      visit root_path(locale: :en)
-      click_link("Sign in")
-
-      within('#new_user') do
-        fill_in 'Email*:', with: user.email
-        fill_in 'Password*:', with: user.password
-        click_button('Sign in')
-      end
+      sign_in_tgallery(user)
 
       expect(page).to have_css('div.alert.alert-success')
       #puts find(".alert").text
