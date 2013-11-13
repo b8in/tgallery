@@ -10,9 +10,9 @@ describe "Devise" do
     events[4] = Event.create(name: 'comments')
     events
   end
-  let!(:create_10_categories) do
+  let!(:create_2_categories) do
     categories = []
-    5.times { |i|
+    2.times { |i|
       categories[i] = FactoryGirl.create(:g_image_category)
       2.times {
         categories[i].g_images.create(FactoryGirl.attributes_for(:g_image))
@@ -21,7 +21,7 @@ describe "Devise" do
     categories
   end
 
-  let(:user) { FactoryGirl.create(:user, email: "aleks@ukr.net") }
+  let(:user) { FactoryGirl.create(:user, email: "aleks@mail.net") }
 
   describe "user sign_in" do
     it "successful", js:true do
