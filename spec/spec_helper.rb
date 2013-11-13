@@ -51,3 +51,17 @@ def sign_in_tgallery(user)
     click_button('Sign in')
   end
 end
+
+def clear_db
+  Rails.application.eager_load!
+  models = ActiveRecord::Base.subclasses
+  models.each do |m|
+    begin
+      m.delete_all
+      #p m.to_s+": Clean"
+    rescue
+      #p m.to_s+": Table doesn't exist"
+      next
+    end
+  end
+end
