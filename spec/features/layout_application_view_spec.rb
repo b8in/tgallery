@@ -2,12 +2,18 @@ require 'spec_helper'
 
 describe "layouts/application" do
 
+  let(:user) { FactoryGirl.create(:user) }
+  let(:admin) { FactoryGirl.create(:user, admin: true) }
+
   before(:all) do
     @categories = []
     10.times { |i|
       @categories[i] = FactoryGirl.create(:g_image_category)
       @categories[i].g_images.create(FactoryGirl.attributes_for(:g_image))
     }
+    Event.create(name: 'navigation')
+    Event.create(name: 'sign_in')
+    Event.create(name: 'sign_out')
   end
 
   before(:each) do
@@ -51,6 +57,22 @@ describe "layouts/application" do
   it "click 'All comments' link" do
     click_link('All comments')
     expect(current_path).to eq(user_comments_path(locale: :en))
+  end
+
+  it "link 'User event' not available for guest" do
+    expect(find('.navbar-fixed-top')).not_to have_content('User events')
+  end
+
+  it "link 'User event' not available for user" do
+    sign_in_tgallery(user)
+    expect(find('.navbar-fixed-top')).not_to have_content('User events')
+  end
+
+  it "link 'User event' available only admin" do
+    sign_in_tgallery(admin)
+    expect(find('.navbar-fixed-top')).to have_content('User events')
+    click_link('User events')
+    expect(current_path).to eq(events_path(locale: :en))
   end
 
   it "click language link" do
