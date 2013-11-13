@@ -13,16 +13,28 @@
 #= require jquery
 #= require jquery_ujs
 #= require twitter/bootstrap
-#= require_tree .
-
-
+#= require i18n
+#= require i18n/translations
+# ## ## ## ## require_tree .    #FiXME
 
 $(document).ready ->
-  default_page_container_height = $('#page-container').height()
 
-  x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
-  $('#page-container').height(x - 20 )   #  20 => $('.navbar').attr("margin-bottom")
+  $('#refresh-captcha-btn').width($('.simple_captcha').width())
+  $(".refresh_image").click ->
+    $('div#captcha').load("/pictures/refresh_captcha_div", {flag: true})
 
-  $(window).resize ->
-    x = Math.max(default_page_container_height, $(window).height() - $('.navbar').height() - 20)
-    $('#page-container').height(x - 20 )
+
+# FIXME пока не работает как надо
+#  $(window).resize ->
+#    x = Math.max(($(window).height() - $('.navbar').height() - 20), $('#page-container').height())
+#    $('#page-container').height(x - 20)
+
+$(window).load ->
+  page_con_padd_and_margs = parseInt($('#page-container').css('margin-top')) + parseInt($('#page-container').css('margin-bottom'))
+  if $('#page-container').height() < ($(window).height() - page_con_padd_and_margs)
+    $('#page-container').height($(window).height() - page_con_padd_and_margs)
+    carousel_and_pagin_height = $('#carousel').outerHeight(true) + $('.pagination').outerHeight(true) + $('h3').outerHeight(true)
+    $('#central-image').height($('#page-container').height() - carousel_and_pagin_height)
+  else
+    $('#page-container').height('100%')
+    $('#central-image').height('auto')

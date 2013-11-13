@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :user do
     admin  false
     sequence(:email) {|n| "user#{n}@somemail.com"}
-    password "cucuMber"
-    password_confirmation {password}
+    password 'password'
+    password_confirmation 'password'
     created_at { 1.month.ago }
     updated_at { 1.month.ago }
     sequence(:name) { |n| "User#{n}" }

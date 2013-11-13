@@ -5,8 +5,6 @@ class ServicesController < ApplicationController
     # get the full hash from omniauth
     omniauth = request.env['omniauth.auth']
 
-    puts omniauth.inspect
-
     # continue only if hash exist
     if omniauth
 
@@ -25,7 +23,7 @@ class ServicesController < ApplicationController
           # check if user has already signed in using this service provider and continue with sign in process if yes
           auth = Service.find_by_provider_and_uid(provider, uid)
           if auth
-            flash[:notice] = 'Signed in successfully via ' + provider.capitalize + '.'
+            flash[:notice] = t('services.create.sign_in_success_via', provider: provider.capitalize)
             sign_in_and_redirect(:user, auth.user)
           else
             # check if this user is already registered with this email address; get out if no email has been provided
@@ -35,7 +33,7 @@ class ServicesController < ApplicationController
               if existinguser
                 # map this new login method via a service provider to an existing account if the email address is the same
                 existinguser.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)
-                flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!'
+                flash[:notice] = t('services.create.sign_in_success_and_add_service_to_account', provider: provider.capitalize, email: existinguser.email)
                 sign_in_and_redirect(:user, existinguser)
               else
                 # let's create a new user: register this user and add this authentication method for this user
@@ -53,11 +51,11 @@ class ServicesController < ApplicationController
                 #user.confirm!
 
                 # flash and sign in
-                flash[:myinfo] = 'Your account on TGallery has been created via ' + provider.capitalize + '. In your profile you can change your personal information and add a local password.'
+                flash[:myinfo] = t('services.create.create_service_account', provider: provider.capitalize)
                 sign_in_and_redirect(:user, user)
               end
             else
-              flash[:error] =  'Facebook can not be used to sign-up on TGallery as no valid email address has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add Facebook from your profile.'
+              flash[:error] = t('services.create.wrong_service_account_without_email', provider: provider.capitalize)
               redirect_to new_user_session_path
             end
           end
@@ -68,19 +66,19 @@ class ServicesController < ApplicationController
           auth = Service.find_by_provider_and_uid(provider, uid)
           if !auth
             current_user.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)
-            flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account.'
+            flash[:notice] = t('services.create.sign_in_success_and_add_service_to_account', provider: provider.capitalize)
             redirect_to :back
           else
-            flash[:notice] = 'Facebook is already linked to your account.'
+            flash[:notice] = t('services.create.service_account_alresdy_linked', provider: provider.capitalize)
             redirect_to :back
           end
         end
       else
-        flash[:error] =  'Facebook returned invalid data for the user id.'
+        flash[:error] = t('services.create.return_invalid_data', provider: provider.capitalize)
         redirect_to new_user_session_path
       end
     else
-      flash[:error] = 'Error while authenticating via Facebook.'
+      flash[:error] = t('services.create.error_sign_in_via_provider', provider: provider.capitalize)
       redirect_to new_user_session_path
     end
   end

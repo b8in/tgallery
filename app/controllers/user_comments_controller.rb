@@ -1,7 +1,8 @@
 class UserCommentsController < ApplicationController
+include ActionView::Helpers::DateHelper
 
   def index
-    @comments = UserComment.joins(:e_history).includes(:e_history).order('e_histories.date').page params[:page]
+    @comments = UserComment.includes(e_history: [:user]).order(:created_at).page params[:page]
   end
 
   def create
@@ -17,12 +18,39 @@ class UserCommentsController < ApplicationController
         current_user.e_histories.create(date: Time.now, event_id: event.id, eventable: comment)
       end
 
+      channel = 'new-comment-channel'
+      event = 'new-comment'
+      Webs.pusher
+      Webs.notify('notify', channel, event, {message: comment.text, image_name: image.name,
+                  image_url: picture_path(image.g_image_category.name, image.id),
+                  author_name: comment.author || current_user.name, author_id: session[:user_id],
+                  image_comments_count: image.user_comments_count+1})
+
+
       render json: { comment: comment.text,
                      author: comment.author || current_user.name,
-                     image_comments_count: image.user_comments_count,
+                     image_comments_count: image.user_comments_count+1,
                      stat: 'success'
+      }
+    else
+      render json: { stat: 'error',
+                     message: t('user_comments.create.be_authorized_or_enter_captcha'),
+                     image_comments_count: -1
       }
     end
   end
 
+  def load_all_comments
+    image = GImage.find(params[:id])
+    comments = image.user_comments.includes(e_history: [:user]).order('created_at').reverse_order.offset(params[:offset])
+    array = []
+    comments.each do |com|
+      data_hash = {}
+      data_hash[:text] = com.text
+      data_hash[:author] = com.author || com.e_history.user.name
+      data_hash[:date] = "#{time_ago_in_words(com.created_at)} #{t('pictures.show.ago')}"
+      array << data_hash
+    end
+    render json: {comments: array}
+  end
 end

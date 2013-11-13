@@ -1,13 +1,12 @@
+= content_for :include_js do
+  = javascript_include_tag 'pictures_carousel'
+
 %h3.text-align-center-aa
-  All images
-%div
-  - @images.size.times do |i|
-    .row.text-align-center-aa
-      - 3.times do |j|
-        - unless @images[i*3+j].blank?
-          - img = @images[i*3+j]
-          .span4
-            = link_to (image_tag img.image.url(:thumb)), picture_path(img.g_image_category.name, img.id)
-            %br
-            = link_to img.name, picture_path(img.g_image_category.name, img.id)
-  = paginate @images
+  = t('.all_images')
+#central-image.text-align-center-aa
+  = link_to (image_tag @images[2].image.url), picture_path(@images[2].g_image_category.name, @images[2].id)
+#carousel
+  - @images.each do |img|
+    = image_tag img.image.url(:thumb), title: img.name, id: img.id
+
+= paginate @images

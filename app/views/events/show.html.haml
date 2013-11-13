@@ -1,22 +1,22 @@
 %h3.text-align-center-aa
-  = @h_events[0].event.name
+  = "#{@h_events[0].event.name.capitalize} for #{@h_events[0].user.name}"
 %table.events-table{align: 'center'}
   %thead
     %tr
       %th
-        Date
+        = t('.date')
       - if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name) || (@h_events[0].eventable_type == Navigation.name)
         %th
-          = "Link" if @h_events[0].eventable_type == Navigation.name
-          = "Image" if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name)
+          = t('.link') if @h_events[0].eventable_type == Navigation.name
+          = t('.image') if (@h_events[0].eventable_type == UserComment.name) || (@h_events[0].eventable_type == Like.name)
       - if @h_events[0].eventable_type == UserComment.name
         %th
-          = "Text"
+          = t('.text')
   %tbody
     - @h_events.each do |he|
       %tr
         %td
-          = "#{he.date}"
+          = l(he.date.localtime, format: :long)
         - if (he.eventable_type == UserComment.name) || (he.eventable_type == Like.name) || (he.eventable_type == Navigation.name)
           %td
             = "#{he.eventable.target_url}" if he.eventable_type == Navigation.name && he.eventable.respond_to?(:target_url)

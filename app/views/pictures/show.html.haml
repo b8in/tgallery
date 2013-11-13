@@ -1,21 +1,31 @@
+= content_for :include_gon do
+  = include_gon camel_case: true, namespace: 'TGallery'
+
+= content_for :include_js do
+  = javascript_include_tag 'pictures'
+
 %h3.text-align-center-aa
   = @image.name
 .row
   .span5.offset1.pull-left
-    = 'Total '
+    = t('.total')
     %span{id: 'span_likes_count'}
-      = "#{@image.likes.count}"
-    = " likes"
+      = " #{@image.likes.count} "
+    = t('.likes')
   .span1.offset1.pull-right
-    = button_to "I like", set_like_path(image_id: @image.id), method: :post, remote: true
+    = form_tag set_like_path(image_id: @image.id), method: :post, remote: true do
+      = button_tag do
+        = t('.i_like')
+        = content_tag :span, nil, :class => 'icon-thumbs-up'
 .image-box.text-align-center-aa
   = image_tag @image.image.url
+  %div{id: @image.id, class: 'number'}
 .comments_block
   -if @image.user_comments_count > 3
     #all_comments
-      %b= 'Show previous comments'
+      %b= t('.show_prev_comments')
   #close_comments
-    %b= 'Hide previous comments'
+    %b= t('.hide_prev_comments')
   .comments
     %a{name: 'comments'}
     - i = @image.user_comments_count - 3
@@ -24,19 +34,28 @@
         - i += 1
         .comment_nickname
           %b.text-primary
-            = comment.e_history.user.name
+            = comment.author || comment.e_history.user.name
         .comment_description
           = comment.text
         %br
         %small.comment_time
-          = time_ago_in_words comment.e_history.date
-          = 'ago'
+          = time_ago_in_words(comment.created_at)
+          = t('.ago')
         %hr
 .comment-box.text-align-center-aa
   = form_for @comment, url: create_comment_path(image_id: @image.id), remote: true do |f|
-    = f.text_field :author, placeholder: 'your nickname' unless current_user
+    - unless current_user
+      = f.label t('.your_nickname'), align: 'left', id: 'nickname_label'
+      = f.text_field :author
     %br
-    = f.text_area :text, class: 'comment-textarea', rows: 10, align: 'center'
+    = f.label t('.your_comment'), align: 'left', id: 'user_comment_label'
+    = f.text_area :text, class: 'comment-textarea', rows: 3, align: 'center'
     %br
-    = show_simple_captcha unless current_user
-    = f.submit "Add comment", class: 'btn-aa'
+    - unless current_user
+      #captcha_block
+        #captcha
+          = render "simple_captcha/simple_captcha_block"
+        %button{id: 'refresh-captcha-btn', class: 'refresh_image', type: :button}
+          %i{class: "icon-refresh"}
+          = t('simple_captcha.refresh_btn_text')
+    = f.submit t('.add_comment'), class: 'btn-aa'

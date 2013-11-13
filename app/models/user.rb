@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :admin, :current_password
 
   has_many :services, dependent: :destroy
   has_many :e_histories, dependent: :destroy
@@ -21,7 +20,12 @@ class User < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false },
             email: true
-  validates :encrypted_password,
+  validates :password,
+            presence: true
+  validates :password_confirmation,
+            presence: true
+  validates :name,
+#            uniqueness: true,
             presence: true
   validates :admin,
             inclusion: { in: [true, false] }

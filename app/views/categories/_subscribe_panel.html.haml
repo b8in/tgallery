@@ -1,0 +1,10 @@
+.box-for-user-subscribe-category-btn
+  - if @user_watch_this_category
+    = link_to t('.unsubscribe'), watching_categories_path(id: 0, category_id: @category.id), method: :delete,
+                class: 'user-subscribe-category-btn', remote: true
+  - else
+    - if user_signed_in?
+      = link_to t('.subscribe'), watching_categories_path(category_id: @category.id), method: :post,
+                  class: 'user-subscribe-category-btn', remote: true
+    - else
+      = link_to t('.subscribe'), new_user_session_path, class: 'user-subscribe-category-btn'

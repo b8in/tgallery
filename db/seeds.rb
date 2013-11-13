@@ -18,8 +18,16 @@
 #GImageCategory.create(name: 'christmas')
 #GImageCategory.create(name: 'ruby')
 
-Event.create(name: 'navigation')
-Event.create(name: 'sign_in')
-Event.create(name: 'sign_out')
-Event.create(name: 'likes')
-Event.create(name: 'comments')
+Event.destroy_all
+User.destroy_all
+
+Event.create!(name: 'navigation')
+Event.create!(name: 'sign_in')
+Event.create!(name: 'sign_out')
+Event.create!(name: 'likes')
+Event.create!(name: 'comments')
+
+User.create!(name: 'Lisa', email:'lisa@example.com', password: 'password', password_confirmation: 'password', admin: true)
+
+#############################################################################################
+puts "\n    SUCCESSFUL\n\n"
