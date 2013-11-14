@@ -96,13 +96,85 @@ describe "events" do
 
 
   describe "events/show" do
-    before do
-      sign_in_tgallery(@users[0])
-      visit event_path(user_id: @users[0].id, event_name: @events[0].name, locale: 'en')
+    context "common tests" do
+      before do
+        sign_in_tgallery(@users[0])
+        visit event_path(user_id: @users[0].id, event_name: @events[0].name, locale: 'en')
+      end
+
+      it { page.should have_selector('.navbar') }
+      it { page.should have_selector('table') }
     end
 
-    it { page.should have_selector('.navbar') }
-    it { page.should have_selector('table') }
-  end
+    context "event navigation" do
+      before do
+        sign_in_tgallery(@users[0])
+        visit event_path(user_id: @users[0].id, event_name: @events[0].name, locale: 'en')
+      end
 
+      it { all('table > thead > tr').count.should eq 1 }
+      it { all('table > thead > tr > th').count.should eq 2 }
+      it { all('table > thead > tr > th')[0].should have_content("Date") }
+      it { all('table > thead > tr > th')[1].should have_content("Link") }
+      it { first('table > tbody > tr').all('td').count.should eq 2 }
+    end
+
+    context "event sign_in" do
+      before do
+        sign_in_tgallery(@users[0])
+        visit event_path(user_id: @users[0].id, event_name: @events[1].name, locale: 'en')
+      end
+
+      it { all('table > thead > tr').count.should eq 1 }
+      it { all('table > thead > tr > th').count.should eq 1 }
+      it { all('table > thead > tr > th')[0].should have_content("Date") }
+      it { first('table > tbody > tr').all('td').count.should eq 1 }
+    end
+
+    context "event sign_out" do
+      before do
+        sign_in_tgallery(@users[0])
+        click_on("Sign out")
+        sign_in_tgallery(@users[0])
+        visit event_path(user_id: @users[0].id, event_name: @events[2].name, locale: 'en')
+      end
+
+      it { all('table > thead > tr').count.should eq 1 }
+      it { all('table > thead > tr > th').count.should eq 1 }
+      it { all('table > thead > tr > th')[0].should have_content("Date") }
+      it { first('table > tbody > tr').all('td').count.should eq 1 }
+    end
+
+    context "event likes" do
+      before do
+        create_like(@users[0])
+        sign_in_tgallery(@users[0])
+        visit event_path(user_id: @users[0].id, event_name: @events[3].name, locale: 'en')
+      end
+
+      it { all('table > thead > tr').count.should eq 1 }
+      it { all('table > thead > tr > th').count.should eq 2 }
+      it { all('table > thead > tr > th')[0].should have_content("Date") }
+      it { all('table > thead > tr > th')[1].should have_content("Image") }
+      it { first('table > tbody > tr').all('td').count.should eq 2 }
+      it { first('table > tbody > tr').all('td')[1].should have_content(image.name)}
+    end
+
+    context "event comments" do
+      before do
+        create_comment(@users[0])
+        sign_in_tgallery(@users[0])
+        visit event_path(user_id: @users[0].id, event_name: @events[4].name, locale: 'en')
+      end
+
+      it { all('table > thead > tr').count.should eq 1 }
+      it { all('table > thead > tr > th').count.should eq 3 }
+      it { all('table > thead > tr > th')[0].should have_content("Date") }
+      it { all('table > thead > tr > th')[1].should have_content("Image") }
+      it { all('table > thead > tr > th')[2].should have_content("Text") }
+      it { first('table > tbody > tr').all('td').count.should eq 3 }
+      it { first('table > tbody > tr').all('td')[1].should have_content(image.name)}
+      it { first('table > tbody > tr').all('td')[2].should have_content(comment)}
+    end
+  end
 end
