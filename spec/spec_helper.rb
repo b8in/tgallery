@@ -45,6 +45,7 @@ end
 
 def sign_in_tgallery(user)
   visit new_user_session_path(locale: :en)
+  #p "$$ "+current_path
   within('#new_user') do
     fill_in 'Email*:', with: user.email
     fill_in 'Password*:', with: user.password
@@ -52,16 +53,35 @@ def sign_in_tgallery(user)
   end
 end
 
-def clear_db
+def clear_db(verbose=false)
   Rails.application.eager_load!
   models = ActiveRecord::Base.subclasses
   models.each do |m|
     begin
       m.delete_all
-      #p m.to_s+": Clean"
+      p m.to_s+": Clean" if verbose
     rescue
-      #p m.to_s+": Table doesn't exist"
+      p m.to_s+": Table doesn't exist" if verbose
       next
     end
   end
+end
+
+def create_comment(user)
+  sign_in_tgallery(user)
+
+  visit picture_path(category_name: category.name, id: image.id)
+  fill_in('user_comment_text', with: comment)
+  click_on("Add comment")
+
+  reset_session!
+end
+
+def create_like(user)
+  sign_in_tgallery(user)
+
+  visit picture_path(category_name: category.name, id: image.id)
+  click_on("I like")
+
+  reset_session!
 end

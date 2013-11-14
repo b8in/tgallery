@@ -20,31 +20,16 @@ describe "events" do
     }
   end
 
-  #######################################################
-  #######################################################
-  it "asa", js: true do
-    sign_in_tgallery(@users[1])
-    #  visit root_path
-
-    visit picture_path(category_name: category.name, id: image.id)
-    fill_in('user_comment_text', with: comment)
-    click_on("Add comment")
-    sleep(5)
-
-    click_link("Sign out")
-    sleep(1)
-    sign_in_tgallery(@users[0])
-    sleep(5)
-    #visit root_path
+  after(:all) do
+    clear_db
   end
-  #########################################################
 
   describe "events/index" do
-    before do
-      sign_in_tgallery(@users[0])
-      visit events_path
-    end
     context "check page content" do
+      before do
+        sign_in_tgallery(@users[0])
+        visit events_path
+      end
       it { page.should have_selector('.navbar') }
       it { page.should have_selector('table') }
       it { all('table > thead > tr > th').count.should eq 2 }
@@ -58,13 +43,55 @@ describe "events" do
       it { first('table > tbody > tr').should have_content(@events[4].name) }
     end
 
-    it "check links in table" do
+    it "check links 'navigation' in table" do
+      sign_in_tgallery(@users[0])
+      visit events_path
+
+      first('table > tbody > tr').should have_content(@users[0].email)
       first('table > tbody > tr > td > a').should have_content(@events[0].name)
       first('table > tbody > tr > td > a').click
       current_path.should eq event_path(user_id: @users[0].id, event_name: @events[0].name, locale: 'en')
     end
 
+    it "check links 'comments' in table" do
+      create_comment(@users[0])
+      sign_in_tgallery(@users[0])
+      visit events_path
 
+      first('table > tbody > tr').should have_content(@users[0].email)
+      first('table > tbody > tr').find_link("#{@events[4].name}").click
+      current_path.should eq event_path(user_id: @users[0].id, event_name: @events[4].name, locale: 'en')
+    end
+
+    it "check links 'likes' in table" do
+      create_like(@users[0])
+      sign_in_tgallery(@users[0])
+      visit events_path
+
+      first('table > tbody > tr').should have_content(@users[0].email)
+      first('table > tbody > tr').find_link("#{@events[3].name}").click
+      current_path.should eq event_path(user_id: @users[0].id, event_name: @events[3].name, locale: 'en')
+    end
+
+    it "check links 'sign_in' in table" do
+      sign_in_tgallery(@users[0])
+      visit events_path
+
+      first('table > tbody > tr').should have_content(@users[0].email)
+      first('table > tbody > tr').find_link("#{@events[1].name}").click
+      current_path.should eq event_path(user_id: @users[0].id, event_name: @events[1].name, locale: 'en')
+    end
+
+    it "check links 'sign_out' in table" do
+      sign_in_tgallery(@users[0])
+      click_on("Sign out")
+      sign_in_tgallery(@users[0])
+      visit events_path
+
+      first('table > tbody > tr').should have_content(@users[0].email)
+      first('table > tbody > tr').find_link("#{@events[2].name}").click
+      current_path.should eq event_path(user_id: @users[0].id, event_name: @events[2].name, locale: 'en')
+    end
   end
 
 
