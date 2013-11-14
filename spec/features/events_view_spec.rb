@@ -54,7 +54,7 @@ describe "events" do
     end
 
     it "check links 'comments' in table" do
-      create_comment(@users[0])
+      create_comment(@users[0], comment)
       sign_in_tgallery(@users[0])
       visit events_path
 
@@ -162,7 +162,7 @@ describe "events" do
 
     context "event comments" do
       before do
-        create_comment(@users[0])
+        create_comment(@users[0], comment)
         sign_in_tgallery(@users[0])
         visit event_path(user_id: @users[0].id, event_name: @events[4].name, locale: 'en')
       end
