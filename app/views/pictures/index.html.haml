@@ -4,7 +4,8 @@
 %h3.text-align-center-aa
   = t('.all_images')
 #central-image.text-align-center-aa
-  = link_to (image_tag @images[2].image.url), picture_path(@images[2].g_image_category.name, @images[2].id)
+  - index = @images.size / 2
+  = link_to (image_tag @images[index].image.url), picture_path(@images[index].g_image_category.name, @images[index].id)
 #carousel
   - @images.each do |img|
     = image_tag img.image.url(:thumb), title: img.name, id: img.id
