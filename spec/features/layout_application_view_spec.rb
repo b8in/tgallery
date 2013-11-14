@@ -79,23 +79,46 @@ describe "layouts/application" do
     find('.navbar .pull-right .dropdown').click
     language_links = all('.navbar .pull-right .dropdown-menu a')
     language_links[0].click
-    #p current_path
     expect(current_path).to eq(root_path(locale: :ru))
 
     find('.navbar .pull-right .dropdown').click
     language_links = all('.navbar .pull-right .dropdown-menu a')
     language_links[1].click
-    #p current_path
     expect(current_path).to eq(root_path(locale: :en))
   end
 
-  it "click 'Sign in' link" do
-    click_link('Sign in')
-    expect(current_path).to eq(new_user_session_path(locale: :en))
+  context "when guest is not authorized" do
+    it "click 'Sign in' link" do
+      click_link('Sign in')
+      expect(current_path).to eq(new_user_session_path(locale: :en))
+    end
+
+    it "click 'Sign up' link" do
+      click_link('Sign up')
+      expect(current_path).to eq(new_user_registration_path(locale: :en))
+    end
   end
 
-  it "click 'Sign up' link" do
-    click_link('Sign up')
-    expect(current_path).to eq(new_user_registration_path(locale: :en))
+  context "when user or admin is signed in" do
+    it "admin click 'Admin panel' link" do
+      sign_in_tgallery(admin)
+      visit root_path(locale: :en)
+      click_on("Admin panel")
+      expect(current_path).to match(admin_root_path)
+    end
+
+    it "user click 'Profile' link" do
+      sign_in_tgallery(user)
+      visit root_path(locale: :en)
+      click_on("Profile")
+      expect(current_path).to eq(edit_user_registration_path(locale: :en))
+    end
+
+    it "click 'Sign out' link" do
+      sign_in_tgallery(user)
+      visit root_path(locale: :en)
+      click_on("Sign out")
+      expect(current_path).to eq(root_path(locale: :en))
+    end
   end
 end
