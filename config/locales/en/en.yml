@@ -98,4 +98,4 @@ en:
       return_invalid_data: "%{provider} returned invalid data for the user id."
       error_sign_in_via_provider: "Error while authenticating via %{provider}."
   javascript:
-    fresh: "fresh=="
+    fresh: "fresh"
