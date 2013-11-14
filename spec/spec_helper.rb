@@ -67,7 +67,7 @@ def clear_db(verbose=false)
   end
 end
 
-def create_comment(user)
+def create_comment(user, comment)
   sign_in_tgallery(user)
 
   visit picture_path(category_name: category.name, id: image.id)
