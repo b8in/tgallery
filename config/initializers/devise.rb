@@ -220,7 +220,7 @@ Devise.setup do |config|
       begin
         user.e_histories.create(date: Time.now, event_id: event.id) if User.find(user.id)
       rescue
-        puts "Account was deleted"
+        #puts "Account was deleted"
       end
   end
 
