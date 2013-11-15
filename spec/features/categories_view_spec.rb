@@ -39,6 +39,7 @@ describe "categories" do
         all('.category-item > .row > .span2 > a').each do |lnk|
           lnk.click
           expect(current_path).to eq category_path(@categories[i].name, locale: 'en')
+          visit categories_path(locale: 'en')
           i -= 1
         end
       end
@@ -48,6 +49,7 @@ describe "categories" do
         all('.category-item > .row > .span8 > a').each do |lnk|
           lnk.click
           expect(current_path).to eq category_path(@categories[i].name, locale: 'en')
+          visit categories_path(locale: 'en')
           i -= 1
         end
       end
@@ -68,23 +70,23 @@ describe "categories" do
 
     before(:all) do
       5.times {
-        @categories[0].g_images.create(FactoryGirl.attributes_for(:g_image))
+        @categories[9].g_images.create(FactoryGirl.attributes_for(:g_image))
       }
       # Total: 7 images
     end
 
     before do
-      visit category_path(category_name: @categories[0].name)
+      visit category_path(category_name: @categories[9].name)
     end
 
     context "check page content" do
       it { expect(page).to have_selector('.navbar') }
       it { expect(page).to have_selector('#images-container') }
-      it { expect(page).to have_content(@categories[0].name.capitalize) }
+      it { expect(page).to have_content(@categories[9].name.capitalize) }
       it { expect(find('#images-container')).to have_selector('.image-box') }
       it { expect(find('#images-container')).to have_css('.text-align-center-aa') }
       it { expect(all('.image-box').count).to eq 5 }
-      it { expect(first('.image-box > a > img')[:title]).to eq(@categories[0].g_images[0].name) }
+      it { expect(first('.image-box > a > img')[:title]).to eq(@categories[9].g_images[0].name) }
       it { expect(page).to have_selector('nav.pagination') }
     end
 
@@ -93,17 +95,17 @@ describe "categories" do
         i = 0
         all('#images-container > .image-box > a').each do |lnk|
           lnk.click
-          expect(current_path).to eq picture_path(category_name: @categories[0].name, id: @categories[0].g_images[i].id, locale: 'en')
+          expect(current_path).to eq picture_path(category_name: @categories[9].name, id: @categories[9].g_images[i].id, locale: 'en')
           i += 1
         end
       end
 
       it "check pagination links" do
         find('.pagination > .next').click_link('Next ›')
-        expect(current_path).to eq category_path(category_name: @categories[0].name, locale: 'en')
+        expect(current_path).to eq category_path(category_name: @categories[9].name, locale: 'en')
         uri = URI.parse(current_url)
-        expect("#{uri.path}?#{uri.query}").to eq "/en/categories/#{@categories[0].name}?page=2"
-        expect("#{uri.path}?#{uri.query}").to eq category_path(category_name: @categories[0].name, page:'2', locale: 'en')
+        expect("#{uri.path}?#{uri.query}").to eq "/en/categories/#{@categories[9].name}?page=2"
+        expect("#{uri.path}?#{uri.query}").to eq category_path(category_name: @categories[9].name, page:'2', locale: 'en')
       end
     end
   end
