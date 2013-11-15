@@ -28,9 +28,6 @@ describe "Profile" do
     it { page.has_link?("Delete account").should be_true }
     it { page.has_link?("Back").should be_true }
     it { page.should have_selector(".footer") }
-
-    it { find("#user_name").should have_content(user.name) }
-    it { find("#user_email").should have_content(user.email) }
   end
 
   it "check link 'Back'", js: true do
