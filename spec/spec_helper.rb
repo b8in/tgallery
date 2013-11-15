@@ -15,9 +15,6 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
 
-  #config.include Warden::Test::Helpers
-  #config.include Devise::TestHelpers, type: :controller
-
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -44,4 +41,47 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+end
+
+def sign_in_tgallery(user)
+  visit new_user_session_path(locale: :en)
+  #p "$$ "+current_path
+  within('#new_user') do
+    fill_in 'Email*:', with: user.email
+    fill_in 'Password*:', with: user.password
+    click_button('Sign in')
+  end
+end
+
+def clear_db(verbose=false)
+  Rails.application.eager_load!
+  models = ActiveRecord::Base.subclasses
+  models.each do |m|
+    begin
+      m.delete_all
+      p m.to_s+": Clean" if verbose
+    rescue
+      p m.to_s+": Table doesn't exist" if verbose
+      next
+    end
+  end
+end
+
+def create_comment(user, comment)
+  sign_in_tgallery(user)
+
+  visit picture_path(category_name: category.name, id: image.id)
+  fill_in('user_comment_text', with: comment)
+  click_on("Add comment")
+
+  reset_session!
+end
+
+def create_like(user)
+  sign_in_tgallery(user)
+
+  visit picture_path(category_name: category.name, id: image.id)
+  click_on("I like")
+
+  reset_session!
 end

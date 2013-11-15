@@ -44,7 +44,7 @@
     .row-fluid
       .span10.offset1#page-container
         = yield
-    -#%footer.footer
-    = nav_bar fixed: :bottom, class: 'row' do
-      = menu_text "ABCompany", align: 'center', class: 'footer-text'
-      = menu_text "© 2013", align: 'center', class: 'footer-text'
+    .footer
+      = nav_bar fixed: :bottom, class: 'row' do
+        = menu_text "ABCompany", align: 'center', class: 'footer-text'
+        = menu_text "© 2013", align: 'center', class: 'footer-text'

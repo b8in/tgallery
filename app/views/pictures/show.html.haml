@@ -13,7 +13,7 @@
       = " #{@image.likes.count} "
     = t('.likes')
   .span1.offset1.pull-right
-    = form_tag set_like_path(image_id: @image.id), method: :post, remote: true do
+    = form_tag set_like_path(image_id: @image.id), id: "set_like_form", method: :post, remote: true do
       = button_tag do
         = t('.i_like')
         = content_tag :span, nil, :class => 'icon-thumbs-up'

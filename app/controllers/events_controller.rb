@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :must_be_admin
 
   def index
-    @users = User.select([:id, :email]).includes(:events).all
+    @users = User.select([:id, :email]).includes(:events).order(:email).all
     @events = Event.all
   end
 
